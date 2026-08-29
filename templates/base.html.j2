@@ -111,15 +111,15 @@
   .index-size-head:first-child { margin-top:0; }
   .index-size-pill { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; padding:4px 12px; border-radius:999px; font-weight:700; }
   .index-size-count { font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-soft); }
-  .index-list { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  @media (max-width:640px) { .index-list { grid-template-columns:1fr; } }
+  .index-list { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px; }
+  @media (max-width:640px) { .index-list { grid-template-columns:minmax(0,1fr); } }
   .index-row { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.55); border:1px solid var(--line); border-radius:8px; padding:6px 10px 6px 6px; border-left:4px solid var(--line); text-decoration:none; color:inherit; cursor:pointer; transition:background 0.15s; }
   .index-row:hover { background:rgba(255,255,255,0.85); }
   .index-thumb { width:50px; height:37.5px; flex-shrink:0; border-radius:6px; overflow:hidden; background:linear-gradient(160deg, rgba(255,255,255,0.7), rgba(217,207,176,0.45)); border:1px solid var(--line); }
   .index-thumb svg { width:100%; height:100%; display:block; }
   .index-thumb img { width:100%; height:100%; display:block; object-fit:contain; }
-  .index-name { font-family:'Baloo 2',sans-serif; font-size:14px; color:var(--deep); flex:1; }
-  .index-page-tag { font-family:'Space Mono',monospace; font-size:10px; background:var(--navy); color:#fff; padding:3px 9px; border-radius:999px; letter-spacing:0.03em; white-space:nowrap; }
+  .index-name { font-family:'Baloo 2',sans-serif; font-size:14px; color:var(--deep); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .index-page-tag { font-family:'Space Mono',monospace; font-size:10px; background:var(--navy); color:#fff; padding:3px 9px; border-radius:999px; letter-spacing:0.03em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:40%; flex-shrink:1; }
   .tier-flag { position:absolute; top:14px; right:16px; z-index:2; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; background:rgba(255,255,255,0.85); color:var(--deep); padding:4px 10px; border-radius:999px; border:1px solid var(--line); }
   .footnote { text-align:center; font-size:12px; color:var(--ink-soft); margin-top:46px; padding-top:18px; border-top:1px dashed rgba(23,36,26,0.25); line-height:1.6; }
   .footnote a { color:var(--deep); }

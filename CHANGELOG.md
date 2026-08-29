@@ -85,3 +85,10 @@ All notable user-facing changes to this project. Format follows
   fixed red.
 - Every group page now ends with a "↑ Back to top" link back to the
   start of the document.
+- Fixed the index overflowing horizontally on narrow/mobile screens:
+  a long destination title in the page-tag pill (now full group
+  titles, not "Page X") was forcing its CSS Grid row wider than the
+  screen, because a bare `1fr` track's implicit minimum is its
+  content's width, not 0. `index-list` now uses `minmax(0,1fr)`
+  tracks, and the tag/name both truncate with an ellipsis instead of
+  forcing the row wider.
