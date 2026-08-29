@@ -20,6 +20,11 @@ as intentional, not bugs:
   has neither); index rows are `<a href="#group-...">` instead of
   `<div>` so the index is clickable, which the mockup never needed to
   be for a static 5-page preview.
+- The index's page tag shows the destination group's title ("Silo
+  Depths I") instead of a tier letter ("Page B") -- more useful once
+  the tag is also the link text for a clickable row. The tag's
+  *content* is intentionally different; this test still checks that
+  every fish, size grouping, and marker color matches.
 """
 
 from __future__ import annotations
@@ -59,6 +64,9 @@ def _normalize(html: str) -> str:
     # mockup's plain <div> so the row's *content* still gets compared.
     html = re.sub(r'<a class="index-row" href="[^"]*"', '<div class="index-row"', html)
     html = html.replace("</a>", "</div>")
+    # Tag text is title-vs-tier-letter by design (see module docstring);
+    # blank it out so the rest of the row still gets compared exactly.
+    html = re.sub(r'(<div class="index-page-tag">)[^<]*(</div>)', r"\1\2", html)
     html = re.sub(r">\s+<", "><", html)
     return re.sub(r"\s+", " ", html).strip()
 

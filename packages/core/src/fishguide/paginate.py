@@ -1,10 +1,10 @@
 """Builds the index model: every fish, grouped by size category in
-`SIZE_ORDER`, tagged with where it lives. The full book (Phase 3, all
-178 fish across ~64 numbered pages) will tag entries with a real page
-number; with only a handful of demo groups there's no numbering worth
-computing yet, so entries are tagged by tier letter instead -- the
-same "Page A/B/C/D" scheme the approved mockup uses for its preview
-index."""
+`SIZE_ORDER`, tagged with where it lives. Each entry links to its
+group's page (see the `id="group-..."` anchors in the page_*.html.j2
+templates), so the tag shows that group's title -- what the reader
+actually lands on -- rather than a page number. The full book (Phase 3,
+178 fish across ~64 pages) may want real page numbers too once print
+pagination exists; the title tag still works fine alongside that."""
 
 from __future__ import annotations
 
@@ -22,8 +22,8 @@ class IndexEntry:
 
 
 def page_tag(group: Group, is_continuation: bool) -> str:
-    suffix = " cont." if is_continuation else ""
-    return f"Page {group.tier}{suffix}"
+    suffix = " (cont.)" if is_continuation else ""
+    return f"{group.title}{suffix}"
 
 
 def build_index(groups: list[Group]) -> dict[str, list[IndexEntry]]:

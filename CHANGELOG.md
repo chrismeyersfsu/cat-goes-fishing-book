@@ -50,3 +50,6 @@ All notable user-facing changes to this project. Format follows
   interactive web version (open it in a browser, click through the
   index) and the source for the printed one. CI builds and publishes
   the PDF alongside the HTML.
+- Index page tags now show the destination group's title ("Silo
+  Depths I") instead of a tier letter ("Page B"), since the tag is
+  also the clickable row's link text.
