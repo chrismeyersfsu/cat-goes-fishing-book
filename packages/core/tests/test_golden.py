@@ -30,6 +30,12 @@ as intentional, not bugs:
   SVG -- real art beats a placeholder. Picture markup is blanked out
   before comparing so everything *around* the portrait (name, stats,
   gear, colors, layout) still gets checked exactly.
+- Marker colors: the mockup cycles fish through a 7-color palette per
+  group; the book uses one fixed red for every fish (numbered pins do
+  the disambiguation the color cycle used to). All 6-hex-digit colors
+  in `stroke=`/`border-left-color:` are blanked out before comparing
+  for the same reason the portrait markup is -- deliberately different
+  content, not a regression in anything structural around it.
 """
 
 from __future__ import annotations
@@ -76,6 +82,11 @@ def _normalize(html: str) -> str:
     # as different by design; neither has a nested </div> inside it.
     html = re.sub(r'(<div class="fish-pic"[^>]*>).*?(</div>)', r"\1PIC\2", html)
     html = re.sub(r'(<div class="index-thumb">).*?(</div>)', r"\1PIC\2", html)
+    # Marker color is uniform-red-by-design now, not per-fish/per-group
+    # (see module docstring); neutralize every hex color so the two
+    # schemes don't fail the comparison for reasons that aren't bugs.
+    html = re.sub(r'stroke="#[0-9a-fA-F]{6}"', 'stroke="#COLOR"', html)
+    html = re.sub(r"border-left-color:#[0-9a-fA-F]{6}", "border-left-color:#COLOR", html)
     html = re.sub(r">\s+<", "><", html)
     return re.sub(r"\s+", " ", html).strip()
 

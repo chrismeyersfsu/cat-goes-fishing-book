@@ -1,15 +1,7 @@
-# Marker color cycle (layout.assign_colors uses this, in fish order,
-# for cluster/roundup groups) and the index's per-size pill styles.
-# Verified against src_seed/color_assign.json.
-marker_colors:
-  - "#e8462c"
-  - "#2b6cd4"
-  - "#d99a1b"
-  - "#7a4fb0"
-  - "#1f9e6d"
-  - "#d94f96"
-  - "#1fa7c9"
-
+# The index's per-size pill styles. (Marker colors used to cycle
+# through a 7-color palette per group; dropped in favor of a single
+# fixed red -- models.MARKER_COLOR -- with numbered pins doing the
+# disambiguation instead. See layout.py's docstring.)
 size_pills:
   small: { background: "#d9f5d4", color: "#1f5c2c" }
   medium: { background: "#eddcb3", color: "#7a5a12" }

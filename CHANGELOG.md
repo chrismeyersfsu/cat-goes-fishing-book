@@ -58,3 +58,9 @@ All notable user-facing changes to this project. Format follows
   fish, embedded as a data URI so `book.html` stays one self-contained
   file. Falls back to the procedural `art.fish()` portrait for the few
   fish with no wiki picture (currently Treat, Underfin, Maw).
+- Map/legend X's are now a single fixed red for every fish, instead of
+  cycling through a 7-color palette per group -- the numbered pins
+  already disambiguate multiple fish on one map, so the color no
+  longer needed to. `portrait:` is now optional in a fish's YAML
+  record (falls back to a real wiki picture, or a plain gray
+  placeholder if there's neither).

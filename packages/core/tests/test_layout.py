@@ -1,6 +1,6 @@
-"""layout.py's page-splitting and color-assignment rules, checked
-against small synthetic groups rather than the real data files so a
-future edit to data/ can't silently break coverage here."""
+"""layout.py's page-splitting rules, checked against small synthetic
+groups rather than the real data files so a future edit to data/ can't
+silently break coverage here."""
 
 from fishguide import layout
 from fishguide.models import Fish, Group
@@ -25,19 +25,6 @@ def _group(n_fish: int, max_entries_with_map: int = 5) -> Group:
         fish=[_fish(f"f{i}") for i in range(n_fish)],
         max_entries_with_map=max_entries_with_map,
     )
-
-
-def test_assign_colors_cycles_in_fish_order():
-    fish = [_fish(f"f{i}") for i in range(3)]
-    layout.assign_colors(fish, palette=["#a", "#b"])
-    assert [f.color for f in fish] == ["#a", "#b", "#a"]
-
-
-def test_assign_colors_leaves_existing_color_alone():
-    fish = [_fish("f0")]
-    fish[0].color = "#custom"
-    layout.assign_colors(fish, palette=["#a"])
-    assert fish[0].color == "#custom"
 
 
 def test_split_group_fits_on_one_page():

@@ -9,6 +9,13 @@ from dataclasses import dataclass, field
 SIZE_ORDER = ["small", "medium", "large", "huge", "secret"]
 LAYOUTS = ["duo", "cluster", "feature"]
 
+# Every marker/legend "X" and index accent is this one red -- there is
+# no per-fish or per-group color scheme. Numbered pins (cluster
+# layout) are what disambiguates multiple fish on one map; color used
+# to also vary per fish for that job, but that's redundant with the
+# numbers and was dropped.
+MARKER_COLOR = "#e8462c"
+
 
 @dataclass
 class Stat:
@@ -24,9 +31,9 @@ class Fish:
     size: str  # one of SIZE_ORDER
     coords: list[tuple[float, float]]  # marker point(s); >1 for Torby/Cowfish-style dupes
     about: str
-    portrait: dict
+    portrait: dict = field(default_factory=dict)  # only a fallback; see render.make_fish_pic
     stats: list[Stat] = field(default_factory=list)
-    color: str | None = None  # marker color; set by layout.assign_colors if unset
+    color: str = MARKER_COLOR
     pin_dy: float = 16  # cluster layout: numbered pin offset from the X mark
 
 

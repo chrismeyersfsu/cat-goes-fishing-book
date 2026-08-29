@@ -7,7 +7,7 @@ from fishguide import validate
 from fishguide.models import Fish, Group
 
 
-def _fish(key: str, coords=(50, 100), color="#a") -> Fish:
+def _fish(key: str, coords=(50, 100)) -> Fish:
     return Fish(
         key=key,
         name=key.title(),
@@ -15,7 +15,6 @@ def _fish(key: str, coords=(50, 100), color="#a") -> Fish:
         coords=[coords],
         about="x",
         portrait={"body_color": "#fff"},
-        color=color,
     )
 
 
@@ -37,7 +36,7 @@ def _group(fish, view_box="0 0 100 251", **kw) -> Group:
 
 
 def test_clean_group_has_no_errors():
-    g = _group([_fish("a"), _fish("b", coords=(60, 100), color="#b")])
+    g = _group([_fish("a"), _fish("b", coords=(60, 100))])
     assert validate.validate_all([g]) == []
 
 
@@ -71,17 +70,20 @@ def test_duplicate_fish_key_across_groups():
     assert any("shared" in e for e in errors)
 
 
-def test_duplicate_marker_color_within_group():
-    g = _group([_fish("a", coords=(50, 100), color="#a"), _fish("b", coords=(60, 100), color="#a")])
-    errors = validate.check_no_duplicate_colors(g)
-    assert any("#a" in e for e in errors)
-
-
-def test_missing_portrait_body_color():
+def test_empty_portrait_is_fine():
+    """No portrait at all is the expected shape for a fish with a real
+    wiki picture -- see render.make_fish_pic."""
     f = _fish("a")
     f.portrait = {}
     g = _group([f])
-    errors = validate.check_has_portrait(g)
+    assert validate.check_portrait_shape(g) == []
+
+
+def test_portrait_missing_body_color_is_an_error():
+    f = _fish("a")
+    f.portrait = {"shape": "oval"}  # started, but no body_color
+    g = _group([f])
+    errors = validate.check_portrait_shape(g)
     assert any("a" in e for e in errors)
 
 

@@ -1,20 +1,13 @@
 """Splits a group's fish into pages and picks each page's presentation.
-Two rules encoded here, both reverse-engineered from the approved
-mockup (reference/design_preview.html) since fish_grouping_scheme.md
-doesn't specify them:
-
-- Marker colors cycle through the palette in fish order, per group
-  (confirmed against src_seed/color_assign.json). Duo and feature
-  layouts don't cycle -- their fish carry an explicit `color` in YAML
-  instead, since a 2-fish or 1-fish map is picked for narrative
-  contrast, not auto-assigned.
-- A cluster/roundup page's entry grid is 4 columns when it holds 4 or
-  fewer entries, else 3 -- true for all three observed map pages
-  (Silo Depths I: 5 -> 3 cols; Dragon Area: 4 -> 4 cols; Huge-Fish
-  Predators' map page: 4 -> 4 cols). Continuation pages are the one
-  layout not covered by that rule: the sole observed continuation
-  (Huge-Fish Predators, 3 leftover entries) renders 3 columns anyway,
-  so continuation pages always use 3 here pending a second data point.
+One rule encoded here, reverse-engineered from the approved mockup
+(reference/design_preview.html) since fish_grouping_scheme.md doesn't
+specify it: a cluster/roundup page's entry grid is 4 columns when it
+holds 4 or fewer entries, else 3 -- true for all three observed map
+pages (Silo Depths I: 5 -> 3 cols; Dragon Area: 4 -> 4 cols; Huge-Fish
+Predators' map page: 4 -> 4 cols). Continuation pages are the one case
+not covered by that rule: the sole observed continuation (Huge-Fish
+Predators, 3 leftover entries) renders 3 columns anyway, so
+continuation pages always use 3 here pending a second data point.
 """
 
 from __future__ import annotations
@@ -23,17 +16,7 @@ from dataclasses import dataclass
 
 from .models import Fish, Group
 
-PALETTE = ["#e8462c", "#2b6cd4", "#d99a1b", "#7a4fb0", "#1f9e6d", "#d94f96", "#1fa7c9"]
 CONTINUATION_CAPACITY = 6
-
-
-def assign_colors(fish: list[Fish], palette: list[str] = PALETTE) -> None:
-    """Cluster/roundup layouts only -- sets each fish's `color` from the
-    palette cycle, in fish order. Mutates in place; a fish with a color
-    already set (duo/feature) is left alone."""
-    for i, f in enumerate(fish):
-        if f.color is None:
-            f.color = palette[i % len(palette)]
 
 
 @dataclass

@@ -2,7 +2,6 @@
   name: Trick
   size: large
   coords: [[400, 25]]
-  color: "#e8462c"
   about: >-
     A seasonal fish that only exists on Halloween night. Found just
     above the Coral Reef wall once the clock strikes midnight on
@@ -25,7 +24,6 @@
   name: Treat
   size: large
   coords: [[695, 20]]
-  color: "#7a4fb0"
   about: >-
     Doesn't spawn on its own. Treat only appears in the surface water
     above the Silo, and only after Trick has been personally delivered

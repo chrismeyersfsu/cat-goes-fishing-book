@@ -3,9 +3,12 @@ rendering. Two of PLAN.md's validation rules aren't implemented yet
 because they need a full 178-fish roster to mean anything (roster
 totals reconciling with fish_grouping_scheme.md; index page-number
 self-consistency, which needs paginate.py's numbering, not yet built)
--- both are Phase 3 concerns. What's here already catches the bug
-class PLAN.md calls out by name (a marker rendering off the visible
-map crop)."""
+-- both are Phase 3 concerns. A third, checking for duplicate marker
+colors within a group, no longer applies: every fish shares the same
+fixed marker color now (models.MARKER_COLOR), so "duplicate" is the
+expected, correct state. What's here already catches the bug class
+PLAN.md calls out by name (a marker rendering off the visible map
+crop)."""
 
 from __future__ import annotations
 
@@ -66,19 +69,14 @@ def check_unique_fish(groups: list[Group]) -> list[str]:
     return errors
 
 
-def check_no_duplicate_colors(group: Group) -> list[str]:
-    colors = [f.color for f in group.fish if f.color]
-    dupes = {c for c in colors if colors.count(c) > 1}
-    if dupes:
-        return [f"{group.id}: duplicate marker color(s) {sorted(dupes)}"]
-    return []
-
-
-def check_has_portrait(group: Group) -> list[str]:
+def check_portrait_shape(group: Group) -> list[str]:
+    """`portrait` is optional (see render.make_fish_pic) -- a real wiki
+    picture or the generic fallback covers a fish with none. Only
+    flag a portrait dict someone started filling in but left broken."""
     return [
-        f"{group.id}: fish {f.key!r} missing portrait body_color"
+        f"{group.id}: fish {f.key!r} has a portrait dict but no body_color"
         for f in group.fish
-        if not f.portrait or "body_color" not in f.portrait
+        if f.portrait and "body_color" not in f.portrait
     ]
 
 
@@ -87,8 +85,7 @@ def validate_all(groups: list[Group]) -> list[str]:
     for g in groups:
         errors += check_view_box_height(g)
         errors += check_marker_safe_area(g)
-        errors += check_no_duplicate_colors(g)
-        errors += check_has_portrait(g)
+        errors += check_portrait_shape(g)
     return errors
 
 

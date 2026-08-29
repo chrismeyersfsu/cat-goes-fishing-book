@@ -8,7 +8,7 @@ from pathlib import Path
 
 import yaml
 
-from .models import Badge, Fish, GearItem, Group, Stat
+from .models import MARKER_COLOR, Badge, Fish, GearItem, Group, Stat
 from .models import Path as MarkerPath
 
 DATA_DIR = Path("data")
@@ -25,9 +25,9 @@ def _fish(d: dict) -> Fish:
         size=d["size"],
         coords=[tuple(c) for c in d["coords"]],
         about=d["about"],
-        portrait=d["portrait"],
+        portrait=d.get("portrait", {}),
         stats=[_stat(s) for s in d.get("stats", [])],
-        color=d.get("color"),
+        color=d.get("color", MARKER_COLOR),
         pin_dy=d.get("pin_dy", 16),
     )
 

@@ -65,7 +65,7 @@ def make_fish_pic(assets_dir: Path = ASSETS_DIR):
         uri = _picture_uri(f.key, assets_dir)
         if uri:
             return f'<img src="{uri}" alt="{f.name}" loading="lazy">'
-        return art.fish(**f.portrait)
+        return art.fish(**f.portrait) if f.portrait else art.fish(body_color="#9aa5ac")
 
     return fish_pic
 
@@ -201,9 +201,6 @@ def build_book(
 
     groups = data_mod.load_groups(data_dir)
     palette = data_mod.load_palette(data_dir)
-    for g in groups:
-        if g.layout == "cluster":
-            layout.assign_colors(g.fish, palette["marker_colors"])
 
     validate_or_raise(groups)
 
