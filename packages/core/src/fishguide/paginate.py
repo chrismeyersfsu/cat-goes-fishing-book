@@ -18,6 +18,7 @@ from .models import SIZE_ORDER, Fish, Group
 class IndexEntry:
     fish: Fish
     page_tag: str
+    group_id: str  # anchor target: id="group-{group_id}" on that group's first page
 
 
 def page_tag(group: Group, is_continuation: bool) -> str:
@@ -31,5 +32,5 @@ def build_index(groups: list[Group]) -> dict[str, list[IndexEntry]]:
         for page in layout.split_group(g):
             tag = page_tag(g, page.is_continuation)
             for f in page.fish:
-                by_size[f.size].append(IndexEntry(f, tag))
+                by_size[f.size].append(IndexEntry(f, tag, g.id))
     return {size: entries for size, entries in by_size.items() if entries}

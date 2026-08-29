@@ -7,6 +7,7 @@ and file I/O here; keep the importable modules pure.
 import argparse
 from pathlib import Path
 
+from . import pdf as pdf_mod
 from . import render
 
 BOOK = Path("build/book.html")
@@ -22,14 +23,25 @@ def build() -> Path:
     return BOOK
 
 
+def pdf() -> Path:
+    """Print build/book.html to build/book.pdf (see pdf.py). Needs
+    `fishguide build` to have run first, and `playwright install
+    chromium` once per machine."""
+    return pdf_mod.build_pdf()
+
+
 def main(argv=None) -> None:
     p = argparse.ArgumentParser(prog="fishguide", description=__doc__.splitlines()[0])
     sub = p.add_subparsers(dest="command")
     sub.add_parser("build", help="render the book to build/book.html")
+    sub.add_parser("pdf", help="print build/book.html to build/book.pdf")
     args = p.parse_args(argv)
 
     if args.command == "build":
         path = build()
+        print(f"fishguide: wrote {path}")
+    elif args.command == "pdf":
+        path = pdf()
         print(f"fishguide: wrote {path}")
     else:
         print("fishguide: replace me with a real command")

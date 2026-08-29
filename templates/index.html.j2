@@ -6,7 +6,7 @@
   </div>
   <div class="index-body">
     {% for size in sizes %}
-    <div class="index-size-head"><span class="index-size-pill" style="background:{{ size.pill.background }};color:{{ size.pill.color }};">{{ size.label }}</span><span class="index-size-count">{{ size.entries|length }} {{ "entry" if size.entries|length == 1 else "entries" }}</span></div><div class="index-list">{% for e in size.entries %}<div class="index-row" style="border-left-color:{{ e.fish.color }};"><div class="index-thumb">{{ fish_pic(e.fish) }}</div><div class="index-name">{{ e.fish.name }}</div><div class="index-page-tag">{{ e.page_tag }}</div></div>{% endfor %}</div>
+    <div class="index-size-head"><span class="index-size-pill" style="background:{{ size.pill.background }};color:{{ size.pill.color }};">{{ size.label }}</span><span class="index-size-count">{{ size.entries|length }} {{ "entry" if size.entries|length == 1 else "entries" }}</span></div><div class="index-list">{% for e in size.entries %}<a class="index-row" href="#group-{{ e.group_id }}" style="border-left-color:{{ e.fish.color }};"><div class="index-thumb">{{ fish_pic(e.fish) }}</div><div class="index-name">{{ e.fish.name }}</div><div class="index-page-tag">{{ e.page_tag }}</div></a>{% endfor %}</div>
     {% endfor %}
   </div>
 </div>

@@ -26,11 +26,14 @@ SIZE_LABELS = {
 }
 TOTAL_ROSTER = 178
 
-# The full world map's extent in the 1568x251 coordinate space every
-# group's cropped viewBox is a slice of (PLAN.md's data model comment;
-# confirmed against assets/map_terrain_defs.html's own path/label
-# bounds -- everything drawn stays within y<=238).
-FULL_MAP_VIEW_BOX = "0 0 1568 251"
+# The world map's coordinate space runs to x=1568 (PLAN.md's data
+# model comment; confirmed against assets/map_terrain_defs.html's own
+# path bounds), but everything actually drawn -- including the
+# "Furthest distance a tech boat can go" label past the boundary
+# arrow -- ends by x~=1410. Past that is solid, undrawn ocean fill, so
+# the overview page crops to 1450 instead of the full 1568 to cut that
+# dead space (checked visually; see git history for the before/after).
+FULL_MAP_VIEW_BOX = "0 0 1450 251"
 
 
 def env(templates_dir: Path = TEMPLATES_DIR) -> jinja2.Environment:
@@ -183,8 +186,8 @@ def build_book(
 
     jinja_env = env(templates_dir)
     content = render_overview(jinja_env)
-    content += "\n" + "\n".join(render_group(jinja_env, g) for g in groups)
     content += "\n" + render_index(jinja_env, groups, palette["size_pills"])
+    content += "\n" + "\n".join(render_group(jinja_env, g) for g in groups)
 
     base = jinja_env.get_template("base.html.j2")
     map_defs = (assets_dir / "map_terrain_defs.html").read_text()

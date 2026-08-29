@@ -25,5 +25,28 @@ All notable user-facing changes to this project. Format follows
   into `data/`; a golden test confirms the render matches the approved
   mockup page-for-page. The other 173 fish (Phase 3) still aren't in
   `data/` yet.
-- The book now opens with a full, uncropped map page (the whole
-  1568x251 world, not a per-group slice) before the group pages.
+- New `fishguide-wiki` package: `uv run fishwiki download` pulls a
+  picture for every fish in the Cat Goes Fishing wiki's `Category:Fish`
+  (197 articles) into `assets/wiki_fish/`, named by the same key style
+  the fish records in `data/` use, alongside a `manifest.yaml` recording
+  each picture's source page, URL, dimensions and hash. Resumable
+  (existing files are skipped; `--force` re-fetches), rate-limited, and
+  `--list` shows what it would do without downloading. It reads the
+  wiki's MediaWiki API rather than its pages, so it doesn't need a
+  browser.
+- `assets/wiki_fish/` is tracked in Git LFS — run `git lfs install`
+  once, or the pictures clone as pointer files.
+- The book now opens with a full map overview page (a wide, mostly
+  uncropped view of the world, not a per-group slice) before the group
+  pages, cropped to x<=1450 to cut the dead ocean past the map's own
+  "furthest distance a tech boat can go" boundary marker.
+- The fish index moved to right after the overview page (previously
+  last), and its entries are now clickable -- each jumps straight to
+  that fish's group page.
+- `fishguide pdf` prints `build/book.html` to `build/book.pdf` with a
+  headless Chromium (`playwright install chromium` once per machine).
+  `base.html.j2` gained `@media print` rules so each `.page` lands on
+  its own sheet; the same `book.html` now serves as both the
+  interactive web version (open it in a browser, click through the
+  index) and the source for the printed one. CI builds and publishes
+  the PDF alongside the HTML.

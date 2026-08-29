@@ -20,14 +20,31 @@ ci-release).
 | World-map SVG defs | `assets/` |
 | Working prototypes for portrait art + map markers (to be ported into `packages/core/src/fishguide/`) | `src_seed/` |
 | The `fishguide` package (build engine + CLI) | `packages/core/` |
+| The `fishguide-wiki` package (fish art fetcher + CLI) | `packages/wiki/` |
+| Fish pictures fetched from the wiki (Git LFS) | `assets/wiki_fish/` |
 
 ## Use it
 
 ```
 uv sync
-./packages/core/ci.sh       # ruff + pytest
-uv run fishguide            # CLI stub — see PLAN.md for the intended commands
+./packages/core/ci.sh          # ruff + pytest
+./packages/wiki/ci.sh
+uv run fishwiki download       # fish pictures from the wiki -> assets/wiki_fish/
+uv run fishguide build         # data/ + templates/ -> build/book.html
+uv run playwright install chromium  # once per machine, before `fishguide pdf`
+uv run fishguide pdf           # build/book.html -> build/book.pdf (one .page per sheet)
 ```
+
+`build/book.html` doubles as the interactive web version (open it in a
+browser; the index links jump to each group's page) and the source for
+the printed version (`fishguide pdf` prints it with `@media print`
+rules so each page lands on its own sheet).
+
+`assets/wiki_fish/` is stored in [Git LFS](https://git-lfs.com), so
+`git lfs install` once before cloning or pulling, or the PNGs arrive as
+pointer text files. `fishwiki download` is resumable: it skips pictures
+already on disk, so re-running it after the wiki adds a fish costs only
+the new ones (`--force` re-fetches everything).
 
 ## Conventions baked in
 
