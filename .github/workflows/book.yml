@@ -1,9 +1,17 @@
 name: book
 
-# Builds the book and attaches it to the run as a downloadable artifact
-# (Actions tab -> the run -> Artifacts) so it can be reviewed without
-# cloning the repo. See fishguide.cli.build for what "build" currently
-# means, ahead of the real Phase 1 renderer.
+# Builds the book and publishes it three ways so it can be reviewed
+# without a local checkout:
+#  - Actions artifact on every run (Actions tab -> the run -> Artifacts;
+#    GitHub always wraps artifact downloads in a zip, even single-file
+#    ones -- that's an Actions platform limitation, not configurable).
+#  - A rolling "latest" GitHub Release asset on pushes to main -- a
+#    stable direct-download link to the raw HTML, no zip.
+#  - GitHub Pages on pushes to main -- viewable in-browser at
+#    https://chrismeyersfsu.github.io/cat-goes-fishing-book/, no
+#    download at all.
+# See fishguide.cli.build for what "build" currently means, ahead of
+# the real Phase 1 renderer.
 on:
   push:
     paths:
@@ -27,6 +35,15 @@ on:
       - ".github/workflows/book.yml"
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "book-pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,3 +56,34 @@ jobs:
         with:
           name: book
           path: build/
+
+      - name: Update the rolling "latest" release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view latest >/dev/null 2>&1 ||
+            gh release create latest --title "Book (latest)" \
+              --notes "Auto-updated on every push to main. Direct download, no zip."
+          gh release upload latest build/book.html --clobber
+
+      - name: Prepare Pages site
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p site
+          cp build/book.html site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          path: site
+
+  deploy-pages:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
