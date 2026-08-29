@@ -22,5 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true  # the golden test renders the book, and the book reads assets/wiki_fish/
       - uses: astral-sh/setup-uv@v5
       - run: ./packages/core/ci.sh
