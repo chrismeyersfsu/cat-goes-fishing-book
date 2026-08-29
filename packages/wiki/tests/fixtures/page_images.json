@@ -1,0 +1,44 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "pages": {
+      "1120": {
+        "images": [
+          {
+            "ns": 6,
+            "title": "File:Spr tim hal 0.png"
+          },
+          {
+            "ns": 6,
+            "title": "File:Tim Clear.png.png"
+          }
+        ],
+        "ns": 0,
+        "pageid": 1120,
+        "title": "Tim"
+      },
+      "1178": {
+        "images": [
+          {
+            "ns": 6,
+            "title": "File:Spr smarty 0.png"
+          }
+        ],
+        "ns": 0,
+        "pageid": 1178,
+        "title": "Smarty"
+      },
+      "218": {
+        "images": [
+          {
+            "ns": 6,
+            "title": "File:Spr fish s18 0.png"
+          }
+        ],
+        "ns": 0,
+        "pageid": 218,
+        "title": "Bombat"
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+# Fish artwork fetched by `fishwiki download`: ~200 binaries that are
+# regenerable from the wiki, so they ride in Git LFS instead of bloating
+# every clone's history. The manifest beside them stays plain text so the
+# diff still shows what changed and where it came from.
+assets/wiki_fish/*.png  filter=lfs diff=lfs merge=lfs -text
+assets/wiki_fish/*.jpg  filter=lfs diff=lfs merge=lfs -text
+assets/wiki_fish/*.gif  filter=lfs diff=lfs merge=lfs -text
+assets/wiki_fish/*.webp filter=lfs diff=lfs merge=lfs -text

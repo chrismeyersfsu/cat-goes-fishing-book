@@ -1,0 +1,58 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "pages": {
+      "1190": {
+        "imageinfo": [
+          {
+            "descriptionshorturl": "https://cat-goes-fishing.fandom.com/index.php?curid=1190",
+            "descriptionurl": "https://cat-goes-fishing.fandom.com/wiki/File:Tim_Clear.png.png",
+            "height": 73,
+            "mime": "image/png",
+            "size": 1869,
+            "url": "https://static.wikia.nocookie.net/cat-goes-fishing/images/4/41/Tim_Clear.png.png/revision/latest?cb=20230812000915",
+            "width": 130
+          }
+        ],
+        "imagerepository": "local",
+        "ns": 6,
+        "pageid": 1190,
+        "title": "File:Tim Clear.png.png"
+      },
+      "1191": {
+        "imageinfo": [
+          {
+            "descriptionshorturl": "https://cat-goes-fishing.fandom.com/index.php?curid=1191",
+            "descriptionurl": "https://cat-goes-fishing.fandom.com/wiki/File:Spr_smarty_0.png",
+            "height": 119,
+            "mime": "image/png",
+            "size": 6061,
+            "url": "https://static.wikia.nocookie.net/cat-goes-fishing/images/d/d4/Spr_smarty_0.png/revision/latest?cb=20230803190730",
+            "width": 306
+          }
+        ],
+        "imagerepository": "local",
+        "ns": 6,
+        "pageid": 1191,
+        "title": "File:Spr smarty 0.png"
+      },
+      "1261": {
+        "imageinfo": [
+          {
+            "descriptionshorturl": "https://cat-goes-fishing.fandom.com/index.php?curid=1261",
+            "descriptionurl": "https://cat-goes-fishing.fandom.com/wiki/File:Spr_fish_s18_0.png",
+            "height": 66,
+            "mime": "image/png",
+            "size": 3382,
+            "url": "https://static.wikia.nocookie.net/cat-goes-fishing/images/9/90/Spr_fish_s18_0.png/revision/latest?cb=20230809210713",
+            "width": 80
+          }
+        ],
+        "imagerepository": "local",
+        "ns": 6,
+        "pageid": 1261,
+        "title": "File:Spr fish s18 0.png"
+      }
+    }
+  }
+}

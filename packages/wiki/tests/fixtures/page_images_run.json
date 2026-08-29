@@ -1,0 +1,29 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "pages": {
+      "1166": {
+        "images": [
+          {
+            "ns": 6,
+            "title": "File:Bishop.png"
+          }
+        ],
+        "ns": 0,
+        "pageid": 1166,
+        "title": "Bishop"
+      },
+      "525": {
+        "images": [
+          {
+            "ns": 6,
+            "title": "File:Beakfish.cgf.png"
+          }
+        ],
+        "ns": 0,
+        "pageid": 525,
+        "title": "Beakfish"
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "pages": {
+      "1240": {
+        "imageinfo": [
+          {
+            "descriptionshorturl": "https://cat-goes-fishing.fandom.com/index.php?curid=1240",
+            "descriptionurl": "https://cat-goes-fishing.fandom.com/wiki/File:Beakfish.cgf.png",
+            "height": 89,
+            "mime": "image/png",
+            "size": 6859,
+            "url": "https://static.wikia.nocookie.net/cat-goes-fishing/images/4/46/Beakfish.cgf.png/revision/latest?cb=20230808114501",
+            "width": 183
+          }
+        ],
+        "imagerepository": "local",
+        "ns": 6,
+        "pageid": 1240,
+        "title": "File:Beakfish.cgf.png"
+      },
+      "1267": {
+        "imageinfo": [
+          {
+            "descriptionshorturl": "https://cat-goes-fishing.fandom.com/index.php?curid=1267",
+            "descriptionurl": "https://cat-goes-fishing.fandom.com/wiki/File:Bishop.png",
+            "height": 102,
+            "mime": "image/png",
+            "size": 5830,
+            "url": "https://static.wikia.nocookie.net/cat-goes-fishing/images/f/f0/Bishop.png/revision/latest?cb=20230810192646",
+            "width": 426
+          }
+        ],
+        "imagerepository": "local",
+        "ns": 6,
+        "pageid": 1267,
+        "title": "File:Bishop.png"
+      }
+    }
+  }
+}

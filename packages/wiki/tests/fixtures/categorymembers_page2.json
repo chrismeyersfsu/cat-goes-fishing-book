@@ -1,0 +1,50 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "pages": {
+      "1166": {
+        "ns": 0,
+        "pageid": 1166,
+        "title": "Bishop"
+      },
+      "344": {
+        "ns": 0,
+        "original": {
+          "height": 135,
+          "source": "https://static.wikia.nocookie.net/cat-goes-fishing/images/5/59/Babysizzer_clear.png/revision/latest?cb=20220312064810",
+          "width": 171
+        },
+        "pageid": 344,
+        "pageimage": "Babysizzer_clear.png",
+        "title": "Baby Sizzer"
+      },
+      "431": {
+        "ns": 0,
+        "original": {
+          "height": 130,
+          "source": "https://static.wikia.nocookie.net/cat-goes-fishing/images/4/49/Babyjaw_clear.png/revision/latest?cb=20220312032222",
+          "width": 175
+        },
+        "pageid": 431,
+        "pageimage": "Babyjaw_clear.png",
+        "title": "Babyjaw"
+      },
+      "433": {
+        "ns": 0,
+        "original": {
+          "height": 164,
+          "source": "https://static.wikia.nocookie.net/cat-goes-fishing/images/3/3c/Bagu_clear.png/revision/latest?cb=20211122102943",
+          "width": 270
+        },
+        "pageid": 433,
+        "pageimage": "Bagu_clear.png",
+        "title": "Bagu"
+      },
+      "525": {
+        "ns": 0,
+        "pageid": 525,
+        "title": "Beakfish"
+      }
+    }
+  }
+}

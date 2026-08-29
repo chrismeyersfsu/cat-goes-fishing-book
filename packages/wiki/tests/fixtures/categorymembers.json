@@ -1,0 +1,66 @@
+{
+  "batchcomplete": "",
+  "continue": {
+    "continue": "gcmcontinue||",
+    "gcmcontinue": "page|424142592053495a5a4552|344"
+  },
+  "query": {
+    "pages": {
+      "1126": {
+        "ns": 0,
+        "original": {
+          "height": 270,
+          "source": "https://static.wikia.nocookie.net/cat-goes-fishing/images/a/a4/Spr_ancientkingfish.png/revision/latest?cb=20230807175033",
+          "width": 558
+        },
+        "pageid": 1126,
+        "pageimage": "Spr_ancientkingfish.png",
+        "title": "Ancient Kingfish"
+      },
+      "148": {
+        "ns": 0,
+        "original": {
+          "height": 173,
+          "source": "https://static.wikia.nocookie.net/cat-goes-fishing/images/b/bb/Anglerfish_clear.png/revision/latest?cb=20211121123643",
+          "width": 255
+        },
+        "pageid": 148,
+        "pageimage": "Anglerfish_clear.png",
+        "title": "Anglerfish"
+      },
+      "428": {
+        "ns": 0,
+        "original": {
+          "height": 168,
+          "source": "https://static.wikia.nocookie.net/cat-goes-fishing/images/0/0b/Angle_fish_CGF.png/revision/latest?cb=20230729120330",
+          "width": 166
+        },
+        "pageid": 428,
+        "pageimage": "Angle_fish_CGF.png",
+        "title": "Angle"
+      },
+      "435": {
+        "ns": 0,
+        "original": {
+          "height": 138,
+          "source": "https://static.wikia.nocookie.net/cat-goes-fishing/images/4/49/Abyssal_clear.png/revision/latest?cb=20211122110818",
+          "width": 340
+        },
+        "pageid": 435,
+        "pageimage": "Abyssal_clear.png",
+        "title": "Abyssal"
+      },
+      "960": {
+        "ns": 0,
+        "original": {
+          "height": 190,
+          "source": "https://static.wikia.nocookie.net/cat-goes-fishing/images/1/16/Akuma.png/revision/latest?cb=20220731220251",
+          "width": 462
+        },
+        "pageid": 960,
+        "pageimage": "Akuma.png",
+        "title": "Akuma"
+      }
+    }
+  }
+}
