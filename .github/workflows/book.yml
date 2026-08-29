@@ -1,0 +1,41 @@
+name: book
+
+# Builds the book and attaches it to the run as a downloadable artifact
+# (Actions tab -> the run -> Artifacts) so it can be reviewed without
+# cloning the repo. See fishguide.cli.build for what "build" currently
+# means, ahead of the real Phase 1 renderer.
+on:
+  push:
+    paths:
+      - "reference/**"
+      - "assets/**"
+      - "data/**"
+      - "templates/**"
+      - "packages/core/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/book.yml"
+  pull_request:
+    paths:
+      - "reference/**"
+      - "assets/**"
+      - "data/**"
+      - "templates/**"
+      - "packages/core/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/book.yml"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync -q --package fishguide
+      - run: uv run --package fishguide fishguide build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: book
+          path: build/
