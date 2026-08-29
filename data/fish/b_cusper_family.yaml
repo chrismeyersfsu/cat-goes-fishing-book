@@ -1,0 +1,39 @@
+- key: oldcusper
+  name: Old Cusper
+  size: medium
+  coords: [[1020, 90]]
+  pin_dy: 16
+  about: >-
+    A pale yellow, apparently eyeless Cusper that otherwise looks
+    normal. Sink a large bait to a reasonable depth and hold sonar
+    open — with a little patience, it surfaces on its own.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Sonar recommended" }
+
+- key: bluecusper
+  name: Blue Cusper
+  size: large
+  coords: [[1060, 60]]
+  pin_dy: 16
+  about: >-
+    Pale gray and whale-shaped, with a permanent happy grin. Hold your
+    sonar open long enough and a whole pod swarms in close — easy
+    pickings with large bait once they do.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Sonar held open" }
+
+- key: greatcusper
+  name: Great Cusper
+  size: huge
+  coords: [[1100, 130]]
+  pin_dy: 16
+  about: >-
+    The biggest of the family, shaped like a blue whale with two faint
+    rings for eyes. Keep a large bait and mega hook off the bottom and
+    drift for a while — a pod of Old Cuspers arrives first, with the
+    Great Cusper following behind.
+  stats:
+    - { icon: "🪝", label: "Gear", value: "Mega hook" }
+    - { icon: "📍", value: "Sonar required" }

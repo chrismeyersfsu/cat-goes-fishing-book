@@ -1,0 +1,12 @@
+- key: ghost
+  name: Ghost
+  size: secret
+  coords: [[300, 190]]
+  about: >-
+    A transparent, skeletal version of Torby that only appears on
+    stormy nights, and only after both regular Torby have been fished
+    to extinction on your save.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Secret Fish" }
+    - { icon: "📍", label: "Zone", value: "Above the Basin, just before the Reef wall" }
+    - { icon: "⛈️", label: "Trigger", value: "Stormy night, both Torby extinct" }

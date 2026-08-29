@@ -1,0 +1,40 @@
+- key: bramble
+  name: Bramble
+  size: medium
+  coords: [[1010, 130]]
+  pin_dy: 16
+  about: >-
+    An energetic orange relative of the Brimble, patrolling up and
+    down right before the Plateau/Kelp rockbed. Medium bait is all it
+    wants.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+
+- key: zub
+  name: Zub
+  size: medium
+  coords: [[1050, 160]]
+  pin_dy: 16
+  about: >-
+    A blue fish in a little hat with a yellow "Z" on its side,
+    hovering over a fossil-strewn rockbed. It ignores every normal
+    bait — you'll need a huge hook baited with a Rare Fruit, carried
+    all the way over from the Kelp's Cheesefin patch.
+  stats:
+    - { icon: "🪝", label: "Bait", value: "Rare Fruit on a huge hook" }
+    - { icon: "🎣", value: "Ignores normal bait entirely" }
+
+- key: rogachev
+  name: Rogachev
+  size: medium
+  coords: [[1090, 100]]
+  pin_dy: 16
+  about: >-
+    A snouted fish with purple fin tips, trailed by a swarm of small
+    Flechettes as it wanders the Plateau and Kelp. Let a Flechette
+    hook itself on a medium fish, Flick it loose, and repeat until the
+    swarm is gone — Rogachev finally bites once its escorts are
+    cleared.
+  stats:
+    - { icon: "🪝", label: "Gear", value: "Huge hook + Flick" }
+    - { icon: "🐟", value: "Clear the Flechette swarm first" }

@@ -1,0 +1,24 @@
+- key: yang
+  name: Yang
+  size: small
+  coords: [[120, 110]]
+  about: >-
+    The black half of a matched pair, found circling in a little group of
+    three just inside the first cave entrance from shore. Skittish, but easy
+    enough to spot.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small/Medium" }
+    - { icon: "📍", label: "Location", value: "First cave entrance" }
+
+- key: yin
+  name: Yin
+  size: small
+  coords: [[310, 205]]
+  about: >-
+    The white half of the pair, tucked deep in the Basin against the reef
+    wall. It won't circle your bait — or become catchable — until Yang has
+    been led all the way down to it.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small/Medium" }
+    - { icon: "🪝", value: "Flick helps a lot" }
+    - { icon: "📍", label: "Location", value: "Basin, reef wall" }

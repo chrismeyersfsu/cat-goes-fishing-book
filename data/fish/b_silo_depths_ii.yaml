@@ -1,0 +1,76 @@
+- key: piercer
+  name: Piercer
+  size: large
+  coords: [[760, 50]]
+  pin_dy: 16
+  about: >-
+    A big, circular, hot-pink fish with a horn jutting off its head. Sits
+    in the shallow-to-mid water above the Silo — large bait is all it
+    takes to bring one in.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Shallow-to-mid water above the Silo" }
+
+- key: goldbeard
+  name: Goldbeard
+  size: medium
+  coords: [[650, 100]]
+  pin_dy: 16
+  about: >-
+    Bright yellow with a prominent beard that's hard to miss. Spawns near
+    the center of the Silo's surface fish — clearing the area out first
+    helps, and it can be anywhere from the lower mid-ocean down to deep.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "📍", value: "Center of the Silo's surface fish, lower mid to deep" }
+
+- key: thistle
+  name: Thistle
+  size: large
+  coords: [[800, 130]]
+  pin_dy: 16
+  about: >-
+    Another hot-pink fish, though this one looks thoroughly beaten-up.
+    Stationary in the deep-to-mid water above the Silo, and its size makes
+    it easy to spot once you're in the right band.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Deep-to-mid water above the Silo, stationary" }
+
+- key: germ
+  name: Germ
+  size: large
+  coords: [[665, 155]]
+  pin_dy: 16
+  about: >-
+    Looks almost fungal — a yellow body with red growths on top, bottom,
+    and sides. Found to the left of the Silo door, in the spot marked
+    Germ's Place.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Left of the Silo door — Germ's Place" }
+
+- key: geiger
+  name: Geiger
+  size: large
+  coords: [[830, 170]]
+  pin_dy: 16
+  about: >-
+    A dark green, bomb-shaped fish with a faintly noxious look. Stakes out
+    the water just above the Silo's door.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Just above the Silo's door" }
+
+- key: lampis
+  name: Lampis
+  size: large
+  coords: [[750, 205]]
+  pin_dy: 16
+  about: >-
+    One of the odder catches — a loose, ooze-like body dotted with large
+    glowing circles that aren't actually its eyes. Found deep in the dark
+    water above the Silo.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Deep, dark water above the Silo" }

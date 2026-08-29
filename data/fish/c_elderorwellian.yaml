@@ -1,0 +1,24 @@
+- key: elderorwellian
+  name: Elder Orwellian
+  size: secret
+  coords: [[500, 130]]
+  about: >-
+    Elder Orwellian can't be found swimming anywhere — you make one by
+    carrying a live Orwellian to a bottomless pocket of the map and
+    delivering it to your baited line by hand. A crack of lightning
+    follows, and the Elder Orwellian drags your line straight down
+    under the map before you can reel it in.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Secret Fish" }
+    - { icon: "📍", label: "Zone", value: "Any bottomless pocket (The Empty, etc.)" }
+    - { icon: "⚡", label: "Tell", value: "A crack of lightning kills nearby fish" }
+  portrait:
+    body_color: "#6b7b8c"
+    shape: round
+    tail: fan
+    dorsal: triangle
+    eye: sharp
+    mouth: flat
+    tail_color: "#3f5770"
+    belly: "#a9b7c4"
+    glow: true

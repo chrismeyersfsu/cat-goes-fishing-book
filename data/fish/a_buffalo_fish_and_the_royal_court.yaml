@@ -1,0 +1,88 @@
+- key: buffalofish
+  name: Buffalo Fish
+  size: large
+  coords:
+  - - 900
+    - 140
+  pin_dy: 16
+  about: A green, rhino-horned fish resembling a Cowfish, found in a trio at the first cave entrance in
+    the Very Distant Sea. It hooks normally like any large fish, but bombing one against the cracked left
+    wall of its cave — and startling it — breaks the wall open and frees the entire royal court.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 🪝
+    value: Bombs to crack the wall
+- key: bishop
+  name: Bishop
+  size: medium
+  coords:
+  - - 950
+    - 180
+  pin_dy: 16
+  about: A gray, sword-shaped fish that circles Regina and the Ancient Kingfish, snapping your line if
+    you go after either one first. Catch it early on plain medium bait to clear the way.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 📍
+    value: Catch before Regina or the Kingfish
+- key: caval
+  name: Caval
+  size: medium
+  coords:
+  - - 1000
+    - 90
+  pin_dy: 16
+  about: A green fish with red, webbed fins, released once the cave wall is cracked and left to patrol
+    the Plateau and Kelp waters above. An easy catch on medium bait.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+- key: chook
+  name: Chook
+  size: large
+  coords:
+  - - 1140
+    - 160
+  pin_dy: 16
+  about: A large, dumpy brown-gray fish that only becomes catchable once released from the Kingfish's
+    cave on the Labyrinth's left side. Straightforward with large bait once it's loose.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Released from the Kingfish's cave
+- key: regina
+  name: Regina
+  size: huge
+  coords:
+  - - 985
+    - 195
+  pin_dy: 16
+  about: A red-and-yellow, whale-like fish that stays glued to the Kingfish's side and ignores bait entirely
+    — until you're actively luring the Kingfish out. Feed her the hooked Bishop and she'll hook herself
+    trying to eat it.
+  stats:
+  - icon: 🪝
+    value: Huge hook + large bait
+  - icon: 📍
+    value: Only interested while luring the Kingfish
+- key: ancientkingfish
+  name: Ancient Kingfish
+  size: huge
+  coords:
+  - - 1032
+    - 210
+  pin_dy: -16
+  about: The crowned yellow ruler of its own cave under the Plateau, guarded by every other fish on this
+    page. Once Bishop, Caval, Chook, and Regina are cleared, lure it out and finish it near the surface.
+  stats:
+  - icon: 🪝
+    value: Huge hook + large bait
+  - icon: 📍
+    value: Catch last

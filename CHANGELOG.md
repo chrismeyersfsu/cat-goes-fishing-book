@@ -64,3 +64,18 @@ All notable user-facing changes to this project. Format follows
   longer needed to. `portrait:` is now optional in a fish's YAML
   record (falls back to a real wiki picture, or a plain gray
   placeholder if there's neither).
+- Phase 3: the full 178-fish roster is in `data/` now, not just the 5
+  demo groups -- every group from `reference/fish_grouping_scheme.md`
+  (11 more Tier A, 16 more Tier B, 20 more Tier C, 12 more Tier D),
+  each with map coordinates, a paraphrased description, and gear/bait
+  notes sourced from `reference/guide_text.txt`. Coordinates are a
+  first pass, not verified pixel-for-pixel against the game -- the
+  same caveat `fish_grouping_scheme.md` already carried for its 8
+  provisionally-placed fish now applies more broadly.
+- Duo/feature map frames now compute their own aspect-ratio from the
+  group's `view_box` (like cluster layout already did) instead of
+  using a fixed CSS ratio that only matched the two original demo
+  crops -- a mismatched ratio was cropping some new groups' markers
+  off-screen via `preserveAspectRatio="slice"`. Map captions also
+  truncate with an ellipsis instead of wrapping and overlapping when
+  they're too long for a narrow crop.

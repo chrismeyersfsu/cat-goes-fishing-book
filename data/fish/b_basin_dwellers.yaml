@@ -1,0 +1,31 @@
+- key: gupper
+  name: Gupper
+  size: large
+  coords:
+  - - 300
+    - 205
+  pin_dy: 16
+  about: A plump, cherry-pink fish found in the Basin just under the drop-off on the left. Lure it out
+    into the open basin first, or it'll snag your line on the cave ceiling above it.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 🎣
+    value: Lure into open water before hooking
+- key: gorbon
+  name: Gorbon
+  size: large
+  coords:
+  - - 345
+    - 222
+  pin_dy: -16
+  about: A yellow-green striped fish that hangs near the Yin in the Basin, hugging the rock's upper lip
+    just beneath it. Hug the right-hand cave wall by the Yin without wandering into any caves and you'll
+    turn one up.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Upper lip of the rock beneath the Yin

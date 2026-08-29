@@ -1,128 +1,1730 @@
-# The book's groups, in reading order. Phase 1 has only the 5 demo
-# groups from reference/design_preview.html, hand-transcribed for
-# parity; Phase 3 adds the rest of fish_grouping_scheme.md's ~64.
-#
-# path.points/start_gap/end_gap and every fish coords/pin_dy value
-# below were reverse-engineered from the mockup's rendered marker SVG
-# (not eyeballed) -- see the golden test for the check that they still
-# reproduce it byte-for-byte.
-
+# The book's groups. Phase 1 seeded 5 demo groups by hand for
+# parity with reference/design_preview.html; the rest (Phase 3) were
+# authored against reference/fish_grouping_scheme.md and
+# reference/guide_text.txt. Coordinates are provisional pending
+# re-verification against the actual game, same as PLAN.md always
+# expected for a first content pass.
 - id: a_trick_and_treat
-  title: "Trick & Treat"
+  title: Trick & Treat
   tier: A
   layout: duo
-  subtitle: "Large Fish · Halloween Pair"
+  subtitle: Large Fish · Halloween Pair
   badges:
-    - { text: "Large Fish", kind: cat }
-    - { text: "Hard", kind: diff-hard }
-  cast: "Hook Trick above the Reef wall on Halloween night, then lead it across to the surface above the Silo."
-  view_box: "365 0 380 251"
-  map_caption: "Reef wall (Trick) — dashed lure path — Above Silo (Treat)"
-  map_alt: "Map slice showing the path from the Reef wall (Trick) across to above the Silo (Treat)"
-  about: >-
-    Trick only appears on Halloween night — set your clock to 12:00 AM,
-    October 31st, and watch for the "Happy Halloween!" prompt. Treat
-    doesn't exist at all until you personally deliver Trick to the
+  - text: Large Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Hook Trick above the Reef wall on Halloween night, then lead it across to the surface above the
+    Silo.
+  view_box: 365 0 380 251
+  map_caption: Reef wall (Trick) — dashed lure path — Above Silo (Treat)
+  map_alt: Map slice showing the path from the Reef wall (Trick) across to above the Silo (Treat)
+  about: Trick only appears on Halloween night — set your clock to 12:00 AM, October 31st, and watch for
+    the "Happy Halloween!" prompt. Treat doesn't exist at all until you personally deliver Trick to the
     right patch of water above the Silo.
-  special_instructions: >-
-    Catch Trick with medium bait, but don't bank it yet. Lure it the
-    whole way across the map to the upper sea above the Silo — right
-    where your sonar zooms in, under the big surface cluster. Treat
-    only appears once Trick arrives there. Clearing out the larger
-    surface fish first makes the trip a lot less chaotic.
+  special_instructions: Catch Trick with medium bait, but don't bank it yet. Lure it the whole way across
+    the map to the upper sea above the Silo — right where your sonar zooms in, under the big surface cluster.
+    Treat only appears once Trick arrives there. Clearing out the larger surface fish first makes the
+    trip a lot less chaotic.
   shared_gear:
-    - { icon: "🪱", text: "Medium bait", required: true }
-    - { icon: "🪝", text: "Flick attachment" }
-    - { icon: "📅", text: "Date set to Oct 31, 12:00 AM", required: true }
+  - icon: 🪱
+    text: Medium bait
+    required: true
+  - icon: 🪝
+    text: Flick attachment
+  - icon: 📅
+    text: Date set to Oct 31, 12:00 AM
+    required: true
   path:
-    points: [[400, 25], [480, 45], [560, 35], [630, 25], [695, 20]]
+    points:
+    - - 400
+      - 25
+    - - 480
+      - 45
+    - - 560
+      - 35
+    - - 630
+      - 25
+    - - 695
+      - 20
     start_gap: 11
     end_gap: 11
-
 - id: b_silo_depths_i
-  title: "Silo Depths I"
+  title: Silo Depths I
   tier: B
   layout: cluster
-  subtitle: "Medium Fish · Five Entries"
+  subtitle: Medium Fish · Five Entries
   badges:
-    - { text: "Medium Fish", kind: cat }
-    - { text: "Easy", kind: diff-easy }
-  cast: "Position over the Silo and work your line from mid-depth down to the very bottom."
-  view_box: "640 0 200 251"
-  map_caption: "Above the Silo — shallow to very deep"
-  map_alt: "Map slice of the water column above the Silo showing five fish at different depths"
-  map_label: "Numbers on the map match the entries below, shallowest to deepest."
+  - text: Medium Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Position over the Silo and work your line from mid-depth down to the very bottom.
+  view_box: 640 0 200 251
+  map_caption: Above the Silo — shallow to very deep
+  map_alt: Map slice of the water column above the Silo showing five fish at different depths
+  map_label: Numbers on the map match the entries below, shallowest to deepest.
   max_entries_with_map: 5
   shared_gear:
-    - { icon: "🪱", text: "Medium bait", required: true }
-    - { icon: "⚓", text: "Sinker attachment — helps reach depth fast" }
-
+  - icon: 🪱
+    text: Medium bait
+    required: true
+  - icon: ⚓
+    text: Sinker attachment — helps reach depth fast
 - id: c_underfin
-  title: "Underfin"
+  title: Underfin
   tier: C
   layout: feature
-  subtitle: "Secret Fish · The Empty"
+  subtitle: Secret Fish · The Empty
   badges:
-    - { text: "Secret Fish", kind: cat }
-    - { text: "Hard", kind: diff-hard }
-  cast: "Bottom of The Empty cave, hugging the Cuddlecanth fossil."
-  view_box: "420 0 220 251"
-  map_caption: "Fossil corner (start) → drag right → Underfin bites"
-  map_alt: "Map slice of the bottom of The Empty cave showing the drag path from the fossil to where Underfin bites"
-  special_instructions: >-
-    Hook a small fish on medium bait with a huge hook and Flick
-    equipped. Lower it beside the Cuddlecanth fossil, hugging the left
-    wall near the very bottom of the map. Without reeling up, move your
-    boat left until your sonar shows the line near the far-left corner,
-    then Flick right to free the bait toward the cave's center. If your
-    bait settles mid-cave, you should hear Underfin take the small
-    fish. Re-try if it snaps on the rock instead.
+  - text: Secret Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Bottom of The Empty cave, hugging the Cuddlecanth fossil.
+  view_box: 420 0 220 251
+  map_caption: Fossil corner (start) → drag right → Underfin bites
+  map_alt: Map slice of the bottom of The Empty cave showing the drag path from the fossil to where Underfin
+    bites
+  special_instructions: Hook a small fish on medium bait with a huge hook and Flick equipped. Lower it
+    beside the Cuddlecanth fossil, hugging the left wall near the very bottom of the map. Without reeling
+    up, move your boat left until your sonar shows the line near the far-left corner, then Flick right
+    to free the bait toward the cave's center. If your bait settles mid-cave, you should hear Underfin
+    take the small fish. Re-try if it snaps on the rock instead.
   shared_gear:
-    - { icon: "🪱", text: "Medium bait + small fish", required: true }
-    - { icon: "🪝", text: "Huge hook", required: true }
-    - { icon: "🎣", text: "Flick attachment", required: true }
+  - icon: 🪱
+    text: Medium bait + small fish
+    required: true
+  - icon: 🪝
+    text: Huge hook
+    required: true
+  - icon: 🎣
+    text: Flick attachment
+    required: true
   path:
-    points: [[462, 205], [485, 203], [503, 200], [516, 198]]
+    points:
+    - - 462
+      - 205
+    - - 485
+      - 203
+    - - 503
+      - 200
+    - - 516
+      - 198
     start_gap: 8
     end_gap: 10
-
 - id: d_dragon_area_the_empty
-  title: "Dragon Area & The Empty"
+  title: Dragon Area & The Empty
   tier: D
   layout: cluster
-  subtitle: "Mixed Category · Four Entries"
+  subtitle: Mixed Category · Four Entries
   badges:
-    - { text: "Mixed", kind: cat }
-    - { text: "Moderate", kind: diff-mod }
-  cast: "Anywhere between the Reef's far side and the Silo dropoff — each fish keeps to its own corner."
-  view_box: "430 0 260 251"
-  map_caption: "Dragon Area → The Empty basin → Silo dropoff"
-  map_alt: "Map slice of the Dragon Area and The Empty showing four loosely-scattered fish"
-  map_label: "Loosely scattered, not a tight cluster — grouped here for page economy."
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Anywhere between the Reef's far side and the Silo dropoff — each fish keeps to its own corner.
+  view_box: 430 0 260 251
+  map_caption: Dragon Area → The Empty basin → Silo dropoff
+  map_alt: Map slice of the Dragon Area and The Empty showing four loosely-scattered fish
+  map_label: Loosely scattered, not a tight cluster — grouped here for page economy.
   map_max_width: 420
   shared_gear:
-    - { icon: "🪱", text: "Large bait", required: true }
-    - { icon: "⚓", text: "Sinker + Flick — recommended for Conpas" }
-
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: ⚓
+    text: Sinker + Flick — recommended for Conpas
 - id: d_huge_fish_predators
-  title: "Huge-Fish Predators"
+  title: Huge-Fish Predators
   tier: D
   layout: cluster
-  subtitle: "Huge Fish · Seven Entries"
+  subtitle: Huge Fish · Seven Entries
   badges:
-    - { text: "Huge Fish", kind: cat }
-    - { text: "Moderate", kind: diff-mod }
-  cast: "The open ocean and off-shore waters, shallow down to deep — a huge hook covers all seven."
-  view_box: "30 0 320 251"
-  map_caption: "Open Ocean & Off-Shore — full depth range"
-  map_alt: "Wide map slice of the open ocean and off-shore area showing seven huge predator fish at various depths"
-  map_label: >-
-    The widest crop in the book — this whole stretch of open water is
-    one page. Seven fish is too many for full write-ups here, so 1–4
-    stay with the map and 5–7 continue on the next page.
+  - text: Huge Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: The open ocean and off-shore waters, shallow down to deep — a huge hook covers all seven.
+  view_box: 30 0 320 251
+  map_caption: Open Ocean & Off-Shore — full depth range
+  map_alt: Wide map slice of the open ocean and off-shore area showing seven huge predator fish at various
+    depths
+  map_label: The widest crop in the book — this whole stretch of open water is one page. Seven fish is
+    too many for full write-ups here, so 1–4 stay with the map and 5–7 continue on the next page.
   map_max_width: 520
   max_entries_with_map: 4
   shared_gear:
-    - { icon: "🪱", text: "Large bait", required: true }
-    - { icon: "🪝", text: "Huge hook", required: true }
-    - { icon: "💡", text: "No lightbulb — for Moga only" }
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 🪝
+    text: Huge hook
+    required: true
+  - icon: 💡
+    text: No lightbulb — for Moga only
+- id: a_yin_and_yang
+  title: Yin & Yang
+  tier: A
+  layout: duo
+  subtitle: Small Fish · Cave-to-Basin Pair
+  badges:
+  - text: Small Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Sink into the first cave from shore for Yang, then lead it down through the caves to the Basin
+    wall where Yin waits.
+  view_box: 100 0 250 251
+  map_caption: First cave entrance (Yang) — dashed lure path — Basin reef wall (Yin)
+  map_alt: Map slice showing the path from the first cave entrance down through the caves to the Basin
+    reef wall
+  about: Yin (mostly white) waits deep in the Basin against the reef wall; Yang (mostly black) circles
+    in the first cave from shore. Neither is catchable alone — lead Yang all the way to Yin and the two
+    begin circling each other, at which point either can be hooked.
+  special_instructions: With medium or small bait, get Yang circling and slowly guide it through the caves
+    toward the Basin, staying out of other fish's aggro range so they don't steal your bait along the
+    way. Once Yang reaches Yin, they'll start circling one another — hook either one.
+  shared_gear:
+  - icon: 🪱
+    text: Small or medium bait
+    required: true
+  - icon: 🪝
+    text: Flick attachment
+    required: true
+  path:
+    points:
+    - - 120
+      - 110
+    - - 180
+      - 140
+    - - 240
+      - 175
+    - - 310
+      - 205
+    start_gap: 10
+    end_gap: 10
+- id: a_chompy_and_crayfin
+  title: Chompy & Crayfin
+  tier: A
+  layout: duo
+  subtitle: Mixed Size · Trust Pair
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Work the open water just before the Reef wall — hook Chompy first, then earn Crayfin's trust.
+  view_box: 160 0 200 251
+  map_caption: Open Ocean, just before the Reef wall
+  map_alt: Map slice of the open water before the Reef wall showing Chompy and its trailing Crayfin
+  about: Crayfin follows its Chompy everywhere and won't trust your bait while they're together. Hook
+    the Chompy but let it go instead of boating it, and Crayfin will finally let you catch it too.
+  special_instructions: Get a large bait on a huge hook and catch the Chompy like any other large fish
+    — but release it back into the water instead of putting it in your boat. This earns Crayfin's trust,
+    and it can now be caught easily with medium bait as long as it isn't right next to its Chompy (which
+    will otherwise snap your line). Afterward, catch the Chompy again normally.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait, then medium bait
+    required: true
+  - icon: 🪝
+    text: Huge hook
+    required: true
+- id: a_rodi_lav_and_rodilav
+  title: Rodi, Lav & Rodilav
+  tier: A
+  layout: cluster
+  subtitle: Small & Large Mix · Family Trio
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Scan the Very Distant Sea and Kelp waters above the Labyrinth for the family drifting together
+    in a loose, sporadic pattern.
+  view_box: 1080 0 300 251
+  map_caption: Very Distant Sea & Kelp, above the Labyrinth
+  map_alt: Map slice above the Labyrinth showing the Rodi/Lav/Rodilav family trio
+  map_label: 'Catch order matters: lure a child away from Rodilav first, and don''t sell both children
+    before catching the parent.'
+  shared_gear:
+  - icon: 🪱
+    text: Small bait, for the children
+    required: true
+  - icon: 🪱
+    text: Large bait, for Rodilav
+- id: a_luifin_and_mizifin
+  title: Luifin & Mizifin
+  tier: A
+  layout: duo
+  subtitle: Large Fish · Reef Dance Pair
+  badges:
+  - text: Large Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Find the reef pair mid-dance and hook whichever one bites first — the other follows along, subdued.
+  view_box: 180 0 200 251
+  map_caption: Reef — dancing pair
+  map_alt: Map slice of the Reef showing Luifin and Mizifin circling each other
+  about: Luifin (pink) and Mizifin (blue) circle each other in a looping courtship dance across the Reef.
+    Catch either one and its partner visibly slumps into a slow, sad drift — but it can still be caught
+    afterward with the same large bait.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+- id: a_mamo_and_the_dragon
+  title: Mamo & the Dragon
+  tier: A
+  layout: duo
+  subtitle: Large & Huge Mix · Egg Mechanic Pair
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Work the Dragon Area with sonar switched off — the whole egg trade happens between the open water
+    and Mamo's den just below it.
+  view_box: 480 0 200 251
+  map_caption: Dragon Area — dashed lure path down — Mamo's Den
+  map_alt: Map slice of the Dragon Area showing the path down into Mamo's den just below it
+  about: Mamo guards a single egg in a den just beneath the Dragon's usual spot, snapping any baited line
+    that enters. The Dragon can only be hooked using that same egg. Catching either fish means walking
+    through both halves of the trick.
+  special_instructions: Disable every sonar ability first — the Dragon is sensitive and bolts if it's
+    pinged. Get its attention with any bait on your hook (no need to hook it) and lead it down into Mamo's
+    den, keeping it just out of striking range; this scares Mamo to the far wall so you can pick up the
+    egg. Lure the Dragon back out into the open the same careful way, then use the egg — no separate bait
+    needed — to land the Dragon itself. Head back into the now-empty den afterward and catch the visibly
+    grieving Mamo normally with large bait.
+  shared_gear:
+  - icon: 📍
+    text: Sonar disabled
+    required: true
+  - icon: 🪱
+    text: Any bait, to lure the Dragon
+    required: true
+  - icon: 🪝
+    text: Mega hook, for the Dragon/egg catch
+    required: true
+  - icon: 🪱
+    text: Large bait, for Mamo afterward
+  path:
+    points:
+    - - 560
+      - 35
+    - - 560
+      - 65
+    - - 560
+      - 95
+    start_gap: 10
+    end_gap: 10
+- id: a_lindfin_and_tart
+  title: Lindfin & Tart
+  tier: A
+  layout: duo
+  subtitle: Medium & Large Mix · Guarded Pair
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Head to the far-right Labyrinth entrance, right where the Tech boat's reach runs out.
+  view_box: 1250 0 250 251
+  map_caption: Labyrinth far-right entrance — Tart above Lindfin's hat
+  map_alt: Map slice of the Labyrinth's far-right entrance showing Tart guarding Lindfin
+  about: Tart guards Lindfin fiercely and snaps your line on sight if you go for its ward first. Catch
+    Tart, then use a hidden hat on the rockbed below to finally hook Lindfin.
+  special_instructions: Catch Tart first with large bait, flicking your line near it so it lunges — skip
+    this and it will snap your line the moment you hook Lindfin. With Tart gone, switch to medium bait
+    and hold it near the cat-ears hat resting on the rockbed just below Lindfin. You don't need to hook
+    the hat itself, just keep your bait in its vicinity, and Lindfin should take it — the hat is yours
+    to collect afterward.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait, for Tart
+    required: true
+  - icon: 🎣
+    text: Flick attachment
+    required: true
+  - icon: 🪱
+    text: Medium bait, for Lindfin
+    required: true
+  - icon: 📍
+    text: Cat-ears hat on the rockbed below
+- id: a_torby
+  title: Torby
+  tier: A
+  layout: feature
+  subtitle: Large Fish · Two Spawn Points
+  badges:
+  - text: Large Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Check both banks of the Basin — deep just before the Reef wall — for the plump orange-and-white
+    Torby.
+  view_box: 230 0 220 251
+  map_caption: Basin-side spawn — Reef-wall-side spawn
+  map_alt: Map slice of the Basin and Reef wall showing Torby's two spawn points
+  special_instructions: Only two Torby exist per save, one deep near the Basin and one deep just before
+    the Reef wall. Catch only one per reload if you want the species to keep respawning — landing both
+    on the same save extinguishes the pair for good. Full completion requires both, and doing so also
+    unlocks the transparent Ghost variant that spawns on stormy nights afterward.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait
+    required: true
+- id: a_glacier_and_magmer
+  title: Glacier & Magmer
+  tier: A
+  layout: duo
+  subtitle: Medium & Large Mix · Cross-Map Cooldown
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Pick up Glacier on the far side of The Empty, then haul it the length of the map to Magmer's lava
+    vents in the Labyrinth.
+  view_box: 430 0 970 251
+  map_caption: The Empty (Glacier) — dashed lure path across the whole map — Labyrinth lava vents (Magmer)
+  map_alt: Wide map slice from The Empty across the Silo, Plateau, and Kelp to the Labyrinth, showing
+    the cross-map path from Glacier to Magmer
+  about: Magmer runs white-hot and melts any line that touches it while unlured. Getting a Glacier anywhere
+    near it cools it down long enough to hook — a trick that works whether or not you land the Glacier
+    first.
+  special_instructions: Equip a huge hook, sinker, Flick, and the Explorer hat if you have it, then find
+    a Glacier on the left side of The Empty. Lead or catch it and haul it the entire way over to Magmer's
+    cave deep in the Labyrinth, above the lava vents. Bring it within range of Magmer and the heat drops
+    enough to hook Magmer safely — pull it away from the vents quickly before it reheats. Only one Glacier
+    is needed, and with a huge hook already equipped you can catch Glacier first, Flick it loose onto
+    Magmer, then re-catch the freed Glacier and finally hook Magmer, all in one cast.
+  shared_gear:
+  - icon: 🪝
+    text: Huge hook
+    required: true
+  - icon: ⚓
+    text: Sinker
+  - icon: 🎣
+    text: Flick attachment
+  - icon: 📍
+    text: Explorer hat (recommended)
+  path:
+    points:
+    - - 450
+      - 110
+    - - 650
+      - 140
+    - - 850
+      - 170
+    - - 1050
+      - 190
+    - - 1250
+      - 200
+    - - 1360
+      - 205
+    start_gap: 10
+    end_gap: 10
+- id: a_cave_shark_and_bonefish
+  title: Cave Shark & Bonefish
+  tier: A
+  layout: duo
+  subtitle: Large Fish · Bomb-Wake Pair
+  badges:
+  - text: Large Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Bomb the sleeping pocket in the main caves — both fish wake to the same blast, though only one
+    comes quietly.
+  view_box: 150 0 220 251
+  map_caption: Caves' main pocket — Bonefish bolts toward the Reef once woken
+  map_alt: Map slice of the caves showing Cave Shark's side pocket, Bonefish's main pocket, and the path
+    Bonefish takes toward the Reef once woken
+  about: Cave Shark and Bonefish both sleep in the caves and only wake to the same bomb-and-detonator
+    trick — from there they behave completely differently. Cave Shark can be lured out before hooking;
+    Bonefish bolts for the Reef the moment it wakes.
+  special_instructions: Equip a bomb with the Detonator upgrade, plus Flick and a sinker to make aiming
+    easier — the Bomb Stacker upgrade helps too, since cave Bombats love to set your bomb off early. For
+    Bonefish, lower the bombed hook onto the sleeping group in the caves' main pocket and detonate; they'll
+    scatter off toward the Reef where you can chase them down. Cave Shark sleeps in a side pocket off
+    that same area — it's easiest if you lure it out into open water before actually hooking it, since
+    fighting it inside the caves is a mess.
+  shared_gear:
+  - icon: 🪝
+    text: Bomb + Detonator upgrade
+    required: true
+  - icon: ⚓
+    text: Sinker
+  - icon: 🎣
+    text: Flick attachment
+  - icon: 📍
+    text: Bomb Stacker (recommended, vs. cave Bombats)
+  path:
+    points:
+    - - 215
+      - 155
+    - - 260
+      - 120
+    - - 300
+      - 90
+    start_gap: 8
+    end_gap: 8
+- id: a_buffalo_fish_and_the_royal_court
+  title: Buffalo Fish & the Royal Court
+  tier: A
+  layout: cluster
+  subtitle: Mixed Sizes · Six-Fish Royal Set
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Crack the wall in the first Very Distant Sea cave to unlock the whole royal court, then work through
+    the mandatory catch order below.
+  view_box: 860 0 320 251
+  map_caption: Very Distant Sea → King's Cave → Plateau/Kelp waters
+  map_alt: Map slice of the Very Distant Sea cave and King's Cave area showing all six royal-court fish
+  map_label: 'Catch order is mandatory: Buffalo Fish opens the wall, then Bishop, Caval, Chook, Regina,
+    and finally Ancient Kingfish.'
+  shared_gear:
+  - icon: 🪝
+    text: Bomb / Detonator, to crack the wall
+    required: true
+  - icon: 🪱
+    text: Medium bait, for Bishop and Caval
+  - icon: 🪱
+    text: Large bait, for Buffalo Fish and Chook
+    required: true
+  - icon: 🪝
+    text: Huge hook, for the Regina/Kingfish finish
+    required: true
+- id: a_cowfish
+  title: Cowfish
+  tier: A
+  layout: feature
+  subtitle: Large Fish · Two Spawn Points
+  badges:
+  - text: Large Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Check the shallows near the open ocean and again off-shore — friendly, orange-spotted Cowfish
+    spawn in both spots.
+  view_box: 140 0 560 251
+  map_caption: Open-ocean-side spawn — Off-shore-side spawn
+  map_alt: Wide map slice of the shallows from the open ocean out to off-shore, showing Cowfish's two
+    spawn points
+  shared_gear:
+  - icon: 🪱
+    text: Medium or large bait
+- id: b_reef_wall_top
+  title: Reef Wall Top
+  tier: B
+  layout: cluster
+  subtitle: Mixed Category · Five Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Work the very top of the Reef wall, right where the reef gives way to open water.
+  view_box: 350 0 220 251
+  map_caption: Reef wall — top of the water column, shallow to a little deeper
+  map_alt: Map slice of the top of the Reef wall showing five fish clustered near the surface
+  map_label: Numbers on the map match the entries below, shallowest to deepest.
+  shared_gear:
+  - icon: 🪱
+    text: Small to large bait — bring a mix
+    required: true
+  - icon: 🪝
+    text: Huge hook — needed for Lionfish
+- id: b_reef_floor_cave_entrance
+  title: Reef Floor / Cave Entrance
+  tier: B
+  layout: cluster
+  subtitle: Small Fish · Two Entries
+  badges:
+  - text: Small Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Find the hole in the Reef floor that drops into the Reef caves — both fish sit right around it.
+  view_box: 150 0 200 251
+  map_caption: Reef floor — around the cave-entrance hole
+  map_alt: Map slice of the Reef floor showing two fish near the hole that leads into the Reef caves
+  map_label: Numbers on the map match the entries below, shallowest to deepest.
+  shared_gear:
+  - icon: 🪱
+    text: Any small bait
+    required: true
+- id: b_reef_caves
+  title: Reef Caves (Lemonback Pockets)
+  tier: B
+  layout: cluster
+  subtitle: Mixed Category · Four Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Head into the Reef caves proper — the Crystal cave, the Lemonback pockets, and the entrance pockets
+    all sit close together.
+  view_box: 140 0 200 251
+  map_caption: Inside the Reef caves — Crystal cave and the Lemonback pockets
+  map_alt: Map slice inside the Reef caves showing four fish across the Crystal cave and the Lemonback
+    pockets
+  map_label: Numbers on the map match the entries below, shallowest to deepest.
+  shared_gear:
+  - icon: 🪱
+    text: Small to large bait — bring a mix
+    required: true
+  - icon: ⚓
+    text: Sinker — helps reach the Lemonback pockets
+- id: b_caves_main_pocket
+  title: Caves — Main Pocket
+  tier: B
+  layout: cluster
+  subtitle: Large Fish · Five Entries
+  badges:
+  - text: Large Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Work the main cave pocket labeled CAVES on the map, from the first entrance down to the deeper
+    reaches behind the cave shark's den.
+  view_box: 170 0 220 251
+  map_caption: The main Caves pocket — entrance to the deep reaches
+  map_alt: Map slice of the main Caves pocket showing five large fish at different depths
+  map_label: Numbers on the map match the entries below, shallowest to deepest.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+- id: b_basin_dwellers
+  title: Basin Dwellers
+  tier: B
+  layout: cluster
+  subtitle: Large Fish · Two Entries
+  badges:
+  - text: Large Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Drop into the Basin near the drop-off and the Yin — both fish hold close to the walls there.
+  view_box: 270 0 200 251
+  map_caption: The Basin — near the drop-off and the Yin
+  map_alt: Map slice of the Basin showing two large fish near the drop-off and the Yin
+  map_label: Numbers on the map match the entries below, left to right.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+- id: b_above_silo_surface_swarm
+  title: Above-Silo Surface Swarm
+  tier: B
+  layout: cluster
+  subtitle: Mixed Category · Five Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Fish the open surface water directly above the Silo — the whole swarm packs into one tight shallow
+    band.
+  view_box: 620 0 200 251
+  map_caption: Surface water above the Silo — the swarm's shallow band
+  map_alt: Map slice of the surface water above the Silo showing five fish in the swarm
+  map_label: Numbers on the map match the entries below, shallowest to deepest.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait, plus a spare small fish for Bulb Eater
+    required: true
+  - icon: 🪝
+    text: Huge hook — needed for Bulb Eater
+  - icon: 🎣
+    text: Bait guard — recommended against Chaw
+- id: b_silo_depths_ii
+  title: Silo Depths II
+  tier: B
+  layout: cluster
+  subtitle: Mixed Category · Six Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Continue down the water column above the Silo, from the horn-headed Piercer near the top to Lampis
+    in the deep dark near the bottom.
+  view_box: 630 0 230 251
+  map_caption: Above the Silo — deeper and wider than Silo Depths I
+  map_alt: Map slice of the water above the Silo showing six fish from mid-depth down to deep, spread
+    wider than Silo Depths I
+  map_label: Numbers on the map match the entries below, shallowest to deepest.
+  max_entries_with_map: 4
+  shared_gear:
+  - icon: 🪱
+    text: Medium to large bait — bring a mix
+    required: true
+  - icon: ⚓
+    text: Sinker — helps reach the deeper end
+- id: b_plateau_far_left_pocket
+  title: Plateau Far-Left Pocket (Dunkan's Corner)
+  tier: B
+  layout: cluster
+  subtitle: Mixed Category · Three Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Head to the very far-left edge of the Plateau — Dunkan's Corner holds all three fish in one tight
+    pocket.
+  view_box: 840 0 200 251
+  map_caption: Dunkan's Corner — the Plateau's far-left pocket
+  map_alt: Map slice of the Plateau's far-left pocket showing three fish, including Dunkan guarding the
+    corner
+  map_label: Numbers on the map match the entries below, shallowest to deepest.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 🪝
+    text: Huge hook — needed for Dunkan
+  - icon: 🎣
+    text: Bomb stacker + Detonator — needed for Dunkan
+- id: b_plateau_cave_pocket_2
+  title: Plateau Cave Pocket II
+  tier: B
+  layout: cluster
+  subtitle: Mixed Sizes · Five Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Work the second Plateau cave pocket top to bottom — every fish here bites on the first drop.
+  view_box: 860 0 220 251
+  map_caption: Second Plateau cave pocket, wall to wall
+  map_alt: Map slice of the second Plateau cave pocket showing five fish scattered along its walls and
+    floor
+  map_label: Numbers on the map match the entries below, left to right through the pocket.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait — Minute, Swoosher, Lumos
+    required: true
+  - icon: 🪱
+    text: Large bait — Paladin
+    required: true
+- id: b_plateau_cave_pocket_3
+  title: Plateau Cave Pocket III
+  tier: B
+  layout: cluster
+  subtitle: Mixed Sizes · Two Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Push past King's Cave into the third Plateau pocket — both fish are waiting once that door is
+    open.
+  view_box: 1030 0 200 251
+  map_caption: Third Plateau cave pocket, behind King's Cave
+  map_alt: Map slice of the third Plateau cave pocket showing Primitive and Spec
+  map_label: Numbers on the map match the entries below, left to right.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait — Primitive
+    required: true
+  - icon: 🪱
+    text: Any bait — Spec bites easily
+  - icon: 📍
+    text: King's Cave must already be open
+    required: true
+- id: b_kelp_shallows
+  title: Kelp Shallows
+  tier: B
+  layout: cluster
+  subtitle: Mixed Sizes · Six Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Fish the shallow band of the Kelp / Very Distant Sea, working right toward the Labyrinth's edge.
+  view_box: 1070 0 260 251
+  map_caption: Kelp shallows, working right toward the Labyrinth
+  map_alt: Map slice of the Kelp shallows showing six fish spread from open Kelp water to the Labyrinth's
+    edge
+  map_label: Numbers on the map match the entries below, left to right; 1-4 continue with the map, 5-6
+    on the next page.
+  max_entries_with_map: 4
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait
+    required: true
+  - icon: 🎣
+    text: 4x Improved Crank + Rising Lure — for Cuda only
+- id: b_kelp_depths
+  title: Kelp Depths
+  tier: B
+  layout: cluster
+  subtitle: Mixed Sizes · Four Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Drop into the deeper Kelp pockets past the shallows — patience matters more than gear here.
+  view_box: 1080 0 240 251
+  map_caption: Kelp depths, deeper pockets of the Very Distant Sea
+  map_alt: Map slice of the deeper Kelp water showing four fish tucked into rockbed and kelp pockets
+  map_label: Numbers on the map match the entries below, left to right.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait
+    required: true
+  - icon: 🪱
+    text: Large bait — Elder Cheesefin
+    required: true
+- id: b_plateau_kelp_rockbed
+  title: Plateau/Kelp Rockbed
+  tier: B
+  layout: cluster
+  subtitle: Medium Fish · Three Entries
+  badges:
+  - text: Medium Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Work the fossil rockbed between the Plateau and the Kelp — bring extra gear, two of these three
+    fish need real setup.
+  view_box: 980 0 220 251
+  map_caption: Rockbed between the Plateau and the Kelp
+  map_alt: Map slice of the fossil rockbed between the Plateau and Kelp showing three fish
+  map_label: Numbers on the map match the entries below, left to right.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait — Bramble
+    required: true
+  - icon: 🪝
+    text: Huge hook
+    required: true
+  - icon: 🎣
+    text: Flick attachment — for Rogachev's Flechettes
+    required: true
+  - icon: 🐟
+    text: Rare Fruit (from the Kelp) — for Zub
+    required: true
+- id: b_labyrinth_wanderers
+  title: Labyrinth Wanderers
+  tier: B
+  layout: cluster
+  subtitle: Mostly Small Fish · Six Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Drift through the Labyrinth's main tunnels — most of this crowd bites on sight, but keep a huge
+    hook rigged for Flash.
+  view_box: 1270 0 180 251
+  map_caption: Labyrinth tunnels, entrance to interior
+  map_alt: Map slice of the Labyrinth caves showing six wandering fish from the entrance toward the interior
+  map_label: Numbers on the map match the entries below, left to right through the tunnels; 1-4 continue
+    with the map, 5-6 on the next page.
+  max_entries_with_map: 4
+  shared_gear:
+  - icon: 🪱
+    text: Any bait — most of this group bites readily
+    required: true
+  - icon: 🪝
+    text: Huge hook + small fish — for Flash
+    required: true
+- id: b_labyrinth_far_right
+  title: Labyrinth Far Right
+  tier: B
+  layout: cluster
+  subtitle: Mixed Sizes · Two Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Push to the Labyrinth's far right corner, right at the Tech Boat's limit — patience pays for both
+    of these.
+  view_box: 1350 0 150 251
+  map_caption: Labyrinth's far right corner, at the Tech Boat's limit
+  map_alt: Map slice of the far right edge of the Labyrinth caves showing Yellow Carp and Bombig
+  map_label: Numbers on the map match the entries below, left to right.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait — Yellow Carp
+    required: true
+  - icon: 🪝
+    text: Huge hook + small fish (or Lil' Cheesefin) — Bombig
+    required: true
+- id: b_cusper_family
+  title: The Cusper Family
+  tier: B
+  layout: cluster
+  subtitle: Mixed Sizes · Three Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Hold position in the open water between the Plateau, Kelp, and Silo with sonar open — the whole
+    Cusper family answers to patience.
+  view_box: 990 0 200 251
+  map_caption: Open water between the Plateau and Kelp
+  map_alt: Map slice of the open water between the Plateau and Kelp showing all three Cusper family members
+  map_label: Numbers on the map match the entries below, from most to least common.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 🪝
+    text: Mega hook — for Great Cusper
+    required: true
+  - icon: 📍
+    text: Sonar held open
+    required: true
+- id: c_noxius
+  title: Noxius
+  tier: C
+  layout: feature
+  subtitle: Secret Fish · The Silo
+  badges:
+  - text: Secret Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Down through the Silo door to the seabed, just right of the entrance, after clearing every fish
+    above it.
+  view_box: 620 0 200 251
+  map_caption: Clear the water above the Silo, then swim down through the door to the seabed
+  map_alt: Map slice of the Silo showing the surface staging area above and the seabed pocket below where
+    Noxius bumbles past
+  special_instructions: Start by clearing out nearly every fish above the Silo — a trawler net makes this
+    fast. Noxius requires level 90 to have the oxygen capacity for the dive; if you're not there yet,
+    catching and releasing Josie repeatedly levels you up quickly. Once the area's clear, catch a bulbfish
+    and carry it down with you — it helps preserve your oxygen as you descend. Press Q to swim, grab the
+    bulbfish from your boat with Ctrl, and tap the down-arrow key rather than holding it, letting momentum
+    carry you between taps to conserve air. Take it slow. Once you reach the seabed, Noxius should be
+    nearby; if not, wait a moment for it to swim by in a rapid jittering motion. Press Ctrl over it to
+    grab it (you may need to lunge), then reascend the same way — tapping the up-arrow and letting momentum
+    carry you — before swimming into your boat to let it go into the bed.
+  shared_gear:
+  - icon: 🥅
+    text: Trawler net — to clear the area first
+    required: true
+  - icon: 🐟
+    text: A live bulbfish, carried down for oxygen
+    required: true
+- id: c_maskfish
+  title: Mask Fish
+  tier: C
+  layout: feature
+  subtitle: Secret Fish · Above the Silo
+  badges:
+  - text: Secret Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Hovering over the Silo, wherever the ghostly Tims are currently spawning.
+  view_box: 600 0 220 251
+  map_caption: Somewhere in the Tim-spawn column above the Silo — watch for one blinking in and out
+  map_alt: Map slice of the area above the Silo where Tim usually glows, and where the Mask Fish sometimes
+    takes its place
+  special_instructions: Rig a mega hook with large bait, then hold position over the Silo. Turn off your
+    lightbulb and press Shift to hide your HUD before you cast — for whatever reason it seems to help.
+    Lower your hook to wherever the ghostly Tims are spawning. If one seems to flicker in and out of existence
+    instead of swimming normally, the Mask Fish has likely taken its spot — hold still and let it come
+    to you. Expect a few retries before it actually bites.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 🪝
+    text: Mega hook
+    required: true
+  - icon: 💡
+    text: No lightbulb — turn it off before casting
+    required: true
+- id: c_abyssal
+  title: Abyssal
+  tier: C
+  layout: feature
+  subtitle: Huge Fish · Above the Silo
+  badges:
+  - text: Huge Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Deep water above the Silo — huge, green, and hard to miss once it's near.
+  view_box: 620 0 210 251
+  map_caption: Deep in the Silo's water column — its size makes it hard to miss once it's near
+  map_alt: Map slice of the deep water above the Silo where the giant segmented Abyssal cruises
+  special_instructions: Rig large bait onto a mega hook — nothing less will hold it. Abyssal patrols the
+    deep water above the Silo; it's fast and a little aggressive, but its sheer size makes it easy to
+    spot once it swims into view. Lower your bait into its path and let it strike.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 🪝
+    text: Mega hook
+    required: true
+- id: c_bombat
+  title: Bombat
+  tier: C
+  layout: feature
+  subtitle: Small Fish · The Caves
+  badges:
+  - text: Small Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Through a rock-hole in the seafloor before the Reef, down into the caves.
+  view_box: 120 0 220 251
+  map_caption: Seafloor rockfield (any bait finds the hole) → down into the caves
+  map_alt: Map slice showing the seafloor before the Reef where a baited hook can uncover a hole down
+    into the caves, and the cave pocket beyond where Bombat waits
+  special_instructions: With any bait on your hook, work the sea floor of the open ocean and off-shore
+    area before the Reef — the round rocks scattered there can be picked up on a baited line. Clearing
+    a few of them eventually reveals a hole down into the caves below; ride it down with flick or a sinker.
+    Once inside, scoping the area around you should turn up a Bombat quickly. They don't put up much of
+    a fight, but watch your reel — other fish will happily bite the Bombat first, and a Bombat that's
+    latched onto one of your bombs will detonate it.
+  shared_gear:
+  - icon: 🪱
+    text: Any bait — just enough to move rocks
+    required: true
+  - icon: 🎣
+    text: Flick or Sinker — to ride the hole down
+    required: true
+  - icon: 💣
+    text: Watch your bombs — Bombats detonate them on contact
+    required: false
+- id: c_magnalav
+  title: Magnalav
+  tier: C
+  layout: feature
+  subtitle: Huge Fish · Reef Barrier & Shore
+  badges:
+  - text: Huge Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Spotted at the Reef Barrier under sonar, then coaxed back toward shore on foot.
+  view_box: 0 0 280 251
+  map_caption: Reef Barrier sighting → retreat toward shore in small steps → land it on foot
+  map_alt: Map slice from the Reef Barrier to the shore, showing the path Magnalav is coaxed along as
+    the boat retreats
+  special_instructions: Head out to the Reef Barrier and hold your sonar open until this large purple
+    fish slithers into view. It's spooked by any boat movement, so retreat toward shore in the smallest
+    increments you can manage — if it darts off-screen, just hold still with sonar open and it drifts
+    back. Once you reach shore, unequip your boat entirely (scaring it off from a boat risks it getting
+    stuck on the rocks and soft-locking your game). From shore, clear a path down to it with bombs; once
+    the way is clear it will pace calmly back and forth. Rig a mega hook with large bait — no sinker,
+    it only gets in the way — and use flick to inch your line down to it without ever reeling up. Then
+    wait; Magnalav takes its time, but it will eventually take the bait.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 🪝
+    text: Mega hook
+    required: true
+  - icon: 🎣
+    text: Flick attachment
+    required: true
+  - icon: 💣
+    text: Bombs — to clear the path from shore
+    required: true
+  path:
+    points:
+    - - 250
+      - 60
+    - - 180
+      - 90
+    - - 110
+      - 130
+    - - 60
+      - 160
+    - - 40
+      - 190
+    start_gap: 10
+    end_gap: 10
+- id: c_problematicus
+  title: Problematicus
+  tier: C
+  layout: feature
+  subtitle: Huge Fish · Very Distant Sea
+  badges:
+  - text: Huge Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: The far edge of the Very Distant Sea, barely visible after a fully rocketed cast.
+  view_box: 1300 0 268 251
+  map_caption: Past the Very Distant Sea, barely peeking onto the far edge of the screen
+  map_alt: Map slice of the far edge of the Very Distant Sea near the Labyrinth Caves, showing where Problematicus
+    barely comes into view
+  special_instructions: Before anything else, get the Dig hat, tucked behind a series of rock walls in
+    the far left of the Very Distant Sea's Labyrinth caves — either dig your own way in, or let a Buffalo
+    Fish break the walls for you. With hat in hand, take a worm from shore, rig a mega hook, and cast
+    with rocket as far as you can; Problematicus only barely peeks onto the screen at the furthest reach
+    of a rocketed cast, with flick helping close the last bit of distance. It also drifts noticeably closer
+    to the Labyrinth during storms, so triggering one with the sleeping cap hat (or just waiting one out)
+    can shorten the reach considerably.
+  shared_gear:
+  - icon: 🎩
+    text: Dig hat — required to reach the cast distance
+    required: true
+  - icon: 🪱
+    text: Worm bait from shore
+    required: true
+  - icon: 🪝
+    text: Mega hook
+    required: true
+  - icon: 🚀
+    text: Rocket cast + Flick
+    required: true
+- id: c_elderorwellian
+  title: Elder Orwellian
+  tier: C
+  layout: feature
+  subtitle: Secret Fish · The Empty
+  badges:
+  - text: Secret Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Any bottomless pocket of the map — The Empty works best — with a live Orwellian delivered by hand.
+  view_box: 440 0 200 251
+  map_caption: Drop your line into The Empty, then deliver a live Orwellian to it by hand
+  map_alt: Map slice of The Empty showing the bottomless pocket where an Elder Orwellian can be summoned
+  special_instructions: Elder Orwellian doesn't spawn on its own — first catch a normal Orwellian off
+    the sea floor on the left side of the Plateau and keep it alive in your boat. Take it to a spot with
+    no floor on the map, like The Empty, the gap between the Silo and Plateau near the cuspers, or the
+    big basin between the shallows and the Reef. Drop a line rigged with a mega hook and large bait (no
+    sinker), then press Q to swim out to your boat, grab the Orwellian, carry it over to your line, and
+    let go. A crack of lightning kills everything else nearby, and the Elder Orwellian drags your line
+    straight down under the map — once it runs out of room to pull, reel it back up.
+  shared_gear:
+  - icon: 🐟
+    text: A live, un-boated Orwellian to deliver by hand
+    required: true
+  - icon: 🪝
+    text: Mega hook
+    required: true
+  - icon: 🪱
+    text: Large bait
+    required: true
+- id: c_sodafish
+  title: Sodafish
+  tier: C
+  layout: feature
+  subtitle: Medium Fish · Open Ocean
+  badges:
+  - text: Medium Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Mid-ocean, right at the furthest reach of your starting boat.
+  view_box: 120 0 220 251
+  map_caption: Mid-depth water at the edge of how far your starting boat can travel
+  map_alt: Map slice of the open ocean showing the furthest point a starting boat can reach, where Sodafish
+    patrols
+  special_instructions: Sodafish swims in the mid-ocean depths at the furthest point your starting boat
+    can reach, sometimes drifting a little past it. Rig medium bait, with flick and a sinker to help control
+    your line, and get its attention. While it's distracted chasing the bait, work your line around it
+    until you've flipped it upside down — that's when the soda can starts sliding off its back. Keep the
+    bait close; if it drifts too far, Sodafish swims back to the can. Move fast enough while it's exposed
+    and you can hook the soda can itself to land the catch.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait
+    required: true
+  - icon: 🎣
+    text: Flick attachment
+    required: true
+  - icon: ⚓
+    text: Sinker attachment
+    required: true
+- id: c_shaku
+  title: Shaku
+  tier: C
+  layout: feature
+  subtitle: Huge Fish · Dragon Area
+  badges:
+  - text: Huge Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Sea floor of the Dragon Area, past the cave mouth just beyond The Empty.
+  view_box: 500 0 220 251
+  map_caption: Past The Empty's cave mouth, the next cave entrance down — Shaku sleeps on the floor there
+  map_alt: Map slice of the Dragon Area sea floor near the cave entrance just past The Empty, where a
+    sleeping Shaku waits
+  special_instructions: Shaku only spawns on certain dates, so be ready to time-jump your clock and check
+    periodically. Once conditions line up, it sleeps on the sea floor of the Dragon Area, past the first
+    cave entrance beyond The Empty's mouth — not The Empty itself. Swim down to it with Q, tapping gently
+    to conserve oxygen, and press Ctrl to wake it. A lightbulb over your bait (and no sinker) makes it
+    much easier to find and confirm you've got the right fish; you'll know it's awake once its pale blue
+    eye starts blinking — don't mistake the false eye near its red spot for the real one. Once awake,
+    a mega hook with large bait will land it.
+  shared_gear:
+  - icon: 🪝
+    text: Mega hook
+    required: true
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 💡
+    text: Lightbulb — helps you spot it, no sinker
+    required: false
+- id: c_cuddlecanth
+  title: Cuddlecanth
+  tier: C
+  layout: feature
+  subtitle: Secret Fish · The Empty
+  badges:
+  - text: Secret Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Small pocket just above the fossil, bottom of The Empty cave — date set before release.
+  view_box: 420 0 220 251
+  map_caption: Set your date before release, then drop large bait just above the fossil
+  map_alt: Map slice of the bottom of The Empty cave showing the small pocket above the Cuddlecanth fossil
+  special_instructions: Set your system clock to any date before Cat Goes Fishing's original release —
+    anything earlier works, though picking something with meaning to you is a nice touch. With the date
+    changed, drop large bait into the small pocket just above the Cuddlecanth fossil at the very bottom
+    of The Empty cave. No other tricks are needed — the fish only appears at all once the date requirement
+    is met.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 📅
+    text: System date set before the game's release
+    required: true
+- id: c_airy
+  title: Airy
+  tier: C
+  layout: feature
+  subtitle: Small Fish · Above the Boat
+  badges:
+  - text: Small Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Anywhere you're actively fishing — Airy flies in behind your boat rather than spawning at a fixed
+    spot.
+  view_box: 0 0 220 251
+  map_caption: Cast behind your boat, then detonate — Airy drops from the air here
+  map_alt: Map slice near the shore and open water showing where Airy is knocked down after an aerial
+    bomb detonation
+  special_instructions: Equip Casting Finesse, the Detonator, and Bomb Stacker, then load your line with
+    bombs. Double-click Cast as fast as you can to send the line flying out behind your boat instead of
+    down into the water. Once it's airborne, trigger the Detonator to blow up near Airy — the explosion
+    should knock it out of the sky and into the water below, where it becomes catchable like any other
+    fish.
+  shared_gear:
+  - icon: 💣
+    text: Bombs on the line
+    required: true
+  - icon: 🎣
+    text: Casting Finesse attachment
+    required: true
+  - icon: 💥
+    text: Detonator upgrade
+    required: true
+  - icon: 🧱
+    text: Bomb Stacker upgrade
+- id: c_bird
+  title: Bird
+  tier: C
+  layout: feature
+  subtitle: Secret Fish · Shore
+  badges:
+  - text: Secret Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Stand on shore with your boat unequipped and cast a worm so it lands right at your feet.
+  view_box: 0 0 200 251
+  map_caption: Shore, boat unequipped — cast the worm so it lands at your feet
+  map_alt: Map slice of the shore where Bird is caught by casting a worm underfoot while wearing the Kardinal
+    hat
+  special_instructions: Release a Josie first to unlock mythic hats for purchase, then buy the Kardinal
+    hat. Dig up the Dig hat in the Labyrinth, head back to shore, and unequip your boat. Cast backward
+    to fish a worm out of the ground, then sell the Dig hat and equip the Kardinal hat instead. Cast your
+    rod carefully so the worm lands right where you're standing — it may take a few tries before the cardinal
+    finally comes down and bites.
+  shared_gear:
+  - icon: 🎩
+    text: Kardinal hat equipped
+    required: true
+  - icon: ⛏️
+    text: Dig hat (to dig up the worm)
+    required: true
+  - icon: 🪱
+    text: Worm bait (self-dug)
+    required: true
+- id: c_phase
+  title: Phase
+  tier: C
+  layout: feature
+  subtitle: Small Fish · The Empty
+  badges:
+  - text: Small Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Watch the lower-right part of The Empty cave — it's the spot the two halves tend to converge.
+  view_box: 440 0 220 251
+  map_caption: Lower-right corner of The Empty — where Phase's two halves usually converge
+  map_alt: Map slice of the lower-right part of The Empty cave where Phase's two transparent halves come
+    together
+  special_instructions: Look for one of Phase's two floating, hologram-like halves in the reef caves or
+    The Empty — following either one eventually leads to where they meet. They tend to come together near
+    the bottom of The Empty, a little to the right of center. Once the two halves overlap and Phase turns
+    solid, it hooks like a normal fish. If neither half is visible, keep checking back — they cycle through
+    on their own.
+  shared_gear:
+  - icon: 🪱
+    text: Small bait
+    required: true
+  - icon: 👀
+    text: Patience — the halves wander before meeting
+- id: c_powerfin
+  title: Powerfin
+  tier: C
+  layout: feature
+  subtitle: Medium Fish · Dragon Area
+  badges:
+  - text: Medium Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Just above the rockbed, right at the opening to Mamo's Den in the Dragon Area.
+  view_box: 480 0 220 251
+  map_caption: Mouth of Mamo's Den, just above the Dragon zone rockbed
+  map_alt: Map slice of the Dragon Area near Mamo's Den where Powerfin darts around
+  special_instructions: Drop large bait near the mouth of Mamo's Den, slightly above the Dragon zone's
+    rockbed, with a light equipped — Powerfin is fast but not shy, and usually bites without much fuss.
+    Anglers chasing the secret Forebearer instead hook a Conpas on a huge hook and bring it here — Powerfin
+    grabs that line and drags it far out to the map's distant right edge, but that's a separate, much
+    longer chase (see Forebearer).
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 🔦
+    text: Light equipped
+    required: true
+- id: c_josie
+  title: Josie
+  tier: C
+  layout: feature
+  subtitle: Large Fish · Above the Silo
+  badges:
+  - text: Large Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Lower mid-ocean depth, on the far-right edge of the open water above the Silo.
+  view_box: 700 0 220 251
+  map_caption: Far-right side of the water above the Silo, lower mid-ocean depth
+  map_alt: Map slice of the far-right side of the area above the Silo where Josie now swims
+  special_instructions: Position over the far-right side of the fish-filled water above the Silo and drop
+    to a lower mid-ocean depth — Josie sits there fairly plainly and takes large bait without much trouble.
+    It moved here after the "Edge" update, so ignore older notes that place it near the Reef.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+- id: c_swisher
+  title: Swisher
+  tier: C
+  layout: feature
+  subtitle: Small Fish · The Empty
+  badges:
+  - text: Small Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Top-left edge of The Empty cave's entrance — rush there the moment you open the game.
+  view_box: 380 0 220 251
+  map_caption: Top-left edge of The Empty's cave entrance — Swisher's brief spawn point
+  map_alt: Map slice of the top-left entrance to The Empty cave where Swisher briefly spawns
+  special_instructions: Swisher's swim loop is so long that it effectively vanishes from the area for
+    a long, unpredictable stretch after each appearance. The most reliable approach is to open the game,
+    immediately equip your boat, and race straight to the top-left edge of The Empty's cave entrance to
+    cast before it swims off. If it isn't there, leave the game running a while and check back — it does
+    eventually cycle through again.
+  shared_gear:
+  - icon: 🪱
+    text: Small or medium bait
+    required: true
+  - icon: ⏱️
+    text: Speed — cast the moment you spot it
+- id: c_blossip
+  title: Blossip
+  tier: C
+  layout: feature
+  subtitle: Medium Fish · Open Ocean
+  badges:
+  - text: Medium Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Anywhere along the open surface — wait for Blossip to bob down and flick bait right into its mouth.
+  view_box: 100 0 220 251
+  map_caption: Open surface water — flick bait in at the bottom of Blossip's dip
+  map_alt: Map slice of open surface water where Blossip skims and bobs
+  special_instructions: Blossip skims the surface in a slow up-and-down bobbing pattern and is lazy about
+    chasing bait. It's most receptive right at the bottom of that dip, so line up medium bait and use
+    Flick to place it directly into its mouth as it bottoms out, rather than waiting for it to come to
+    you.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait
+    required: true
+  - icon: 🎣
+    text: Flick attachment
+    required: true
+- id: c_chrono
+  title: Chrono
+  tier: C
+  layout: feature
+  subtitle: Small Fish · Plateau Caves
+  badges:
+  - text: Small Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Second cave pocket behind the Kingfish's cave, under the Plateau.
+  view_box: 960 0 220 251
+  map_caption: Second cave pocket behind the Kingfish's cave, under the Plateau
+  map_alt: Map slice of the Plateau's second cave pocket behind King's Cave where Chrono is found
+  special_instructions: This cave stays sealed until you've used the Buffalo Fish bomb trick to crack
+    it open (see Buffalo Fish for the full steps). Once it's open, head into the second pocket behind
+    the Kingfish's cave — Chrono sits there and takes basic bait with no further tricks needed.
+  shared_gear:
+  - icon: 🪱
+    text: Small bait
+    required: true
+  - icon: 💣
+    text: Bombs — needed earlier to open the cave (see Buffalo Fish)
+- id: c_ghost
+  title: Ghost
+  tier: C
+  layout: feature
+  subtitle: Secret Fish · Above the Basin
+  badges:
+  - text: Secret Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: Torby's usual spot, deep above the Basin just before the Reef wall, on a stormy night.
+  view_box: 210 0 220 251
+  map_caption: Above the Basin, just before the Reef wall — Torby's old spot, on a stormy night
+  map_alt: Map slice above the Basin near the Reef wall where Ghost spawns on stormy nights
+  special_instructions: Both Torby need to be caught to extinction on your save first. On a stormy night
+    afterward, put medium bait on your line at Torby's old spot and cast — watch for a flash of lightning
+    that shows a transparent Torby image behind you. When it appears, release your line immediately; the
+    ghost should spawn in its place. Swap to large bait, recast, and reel it in like any other large fish.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait (to trigger it)
+    required: true
+  - icon: 🪱
+    text: Large bait (to actually catch it)
+    required: true
+  - icon: ⛈️
+    text: Stormy night
+    required: true
+- id: c_forebearer
+  title: Forebearer
+  tier: C
+  layout: feature
+  subtitle: Secret Fish · Very Distant Sea
+  badges:
+  - text: Secret Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: The far right edge of the map, out past Problematicus, where the dragged line finally settles.
+  view_box: 1340 0 228 251
+  map_caption: Far right edge of the map, past Problematicus — where the dragged line finally settles
+  map_alt: Map slice of the far right edge of the map past Problematicus where Forebearer eventually bites
+  special_instructions: Put a huge hook on your line and catch a Conpas with it, then carry that line
+    over to Powerfin's spot near Mamo's Den in the Dragon Area. Powerfin will grab the hook and drag your
+    line all the way out to the distant waters near the map's far right edge, past Problematicus. From
+    there it just takes patience — eventually Forebearer takes the line and eats the Powerfin off it in
+    the process.
+  shared_gear:
+  - icon: 🪝
+    text: Huge hook
+    required: true
+  - icon: 🐟
+    text: Conpas caught first (as live bait)
+    required: true
+- id: d_shore_open_ocean_common_i
+  title: Shore & Open Ocean Common I
+  tier: D
+  layout: cluster
+  subtitle: Common Fish · Six Entries
+  badges:
+  - text: Common Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Cast anywhere from the shore out through the open ocean — these six are usually the first things
+    that bite.
+  view_box: 0 0 300 251
+  map_caption: Shore — Open Ocean, shallow to mid-depth
+  map_alt: Map slice from the shore through the open ocean showing six common fish scattered at different
+    depths
+  map_label: Loosely scattered basics of the shore and open ocean — grouped here for page economy, not
+    by exact spot.
+  shared_gear:
+  - icon: 🪱
+    text: Small to large bait depending on target
+    required: true
+- id: d_shore_open_ocean_common_ii
+  title: Shore & Open Ocean Common II
+  tier: D
+  layout: cluster
+  subtitle: Common Fish · Six Entries
+  badges:
+  - text: Common Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: More shore-and-open-ocean regulars, spread from the shallows out to the deeper water off-shore.
+  view_box: 0 0 280 251
+  map_caption: Shore — Open Ocean, shallow to deep
+  map_alt: Map slice from the shore through the open ocean showing six more common fish at varying depths
+  map_label: Loosely scattered — grouped here for page economy, not by exact spot.
+  shared_gear:
+  - icon: 🪱
+    text: Small to medium bait covers most of these
+    required: true
+- id: d_open_ocean_predators_pairs
+  title: Open Ocean Predators & Pairs
+  tier: D
+  layout: cluster
+  subtitle: Mixed Category · Five Entries
+  badges:
+  - text: Mixed
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Work the open ocean's shallows and mid-depths — most of these fish are literally chasing each
+    other.
+  view_box: 70 0 320 251
+  map_caption: Open Ocean — predator/prey pairs
+  map_alt: Map slice of the open ocean showing five predator and paired fish at different depths
+  map_label: Loosely scattered, grouped for page economy — several of these fish are chasing one another.
+  shared_gear:
+  - icon: 🪱
+    text: Medium to large bait
+    required: true
+  - icon: 🎣
+    text: Fast reel helps with Sibilfin
+- id: d_offshore_mid_pack
+  title: Off-Shore Mid Pack
+  tier: D
+  layout: cluster
+  subtitle: Common Fish · Six Entries
+  badges:
+  - text: Common Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Head off-shore past the open ocean and work the mid-depths — this pack covers shallow water down
+    to the seafloor.
+  view_box: 800 0 260 251
+  map_caption: Off-Shore water, shallow to seafloor
+  map_alt: Map slice of off-shore water showing six fish scattered across the mid-depth range
+  map_label: Loosely scattered off-shore regulars — grouped here for page economy.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait covers most of these
+    required: true
+- id: d_offshore_south_cluster
+  title: Off-Shore South Cluster
+  tier: D
+  layout: cluster
+  subtitle: Common Fish · Five Entries
+  badges:
+  - text: Common Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Further off-shore near the farthest Cowfish pair — this cluster sits in the mid-ocean band.
+  view_box: 850 0 260 251
+  map_caption: Off-Shore water, near the far Cowfish
+  map_alt: Map slice of off-shore water showing five fish clustered near the farthest Cowfish pair
+  map_label: Loosely scattered — grouped here for page economy, not by exact spot.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait
+    required: true
+- id: d_offshore_large_fish
+  title: Off-Shore Large Fish
+  tier: D
+  layout: cluster
+  subtitle: Large Fish · Four Entries
+  badges:
+  - text: Large Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Off-shore water holds these four larger, faster regulars — a sturdy line helps land them intact.
+  view_box: 850 0 250 251
+  map_caption: Off-Shore water, shallow to mid-ocean
+  map_alt: Map slice of off-shore water showing four larger fish at various depths
+  map_label: Loosely scattered — grouped here for page economy, not by exact spot.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+- id: d_reef_general_i
+  title: Reef General I
+  tier: D
+  layout: cluster
+  subtitle: Common Fish · Seven Entries
+  badges:
+  - text: Common Reef Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Scattered through the mid-to-upper Reef — no special gear needed beyond patience for all seven.
+  view_box: 210 0 280 251
+  map_caption: Reef, mid-to-upper water column — seven common catches
+  map_alt: Map slice of the Reef showing seven common fish scattered through the mid-to-upper water column
+  map_label: Seven fish is too many for full write-ups on one page, so 1–4 stay with the map and 5–7 continue
+    on the next page.
+  max_entries_with_map: 4
+  shared_gear:
+  - icon: 🪱
+    text: Small to medium bait
+    required: true
+- id: d_reef_general_ii
+  title: Reef General II
+  tier: D
+  layout: cluster
+  subtitle: Common Fish · Five Entries
+  badges:
+  - text: Common Reef Fish
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: More of the same easy Reef fish, spread from the shallows down to the deeper stretch.
+  view_box: 210 0 250 251
+  map_caption: Reef, shallow to deep — five common catches
+  map_alt: Map slice of the Reef showing five common fish at varying depths
+  map_label: Numbers on the map match the entries below.
+  shared_gear:
+  - icon: 🪱
+    text: Small to medium bait
+    required: true
+- id: d_reef_depths
+  title: Reef Depths
+  tier: D
+  layout: cluster
+  subtitle: Mixed Category · Four Entries
+  badges:
+  - text: Reef Depths
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: The deepest stretch of the Reef, from schooling common fish down to one very large hammerhead.
+  view_box: 230 0 200 251
+  map_caption: Reef floor and deep water — four fish
+  map_alt: Map slice of the deep Reef floor showing four fish, including a large hammerhead shark
+  map_label: Numbers on the map match the entries below.
+  shared_gear:
+  - icon: 🪱
+    text: Medium to large bait
+    required: true
+  - icon: 🪝
+    text: Huge hook — needed for Hamahed only
+- id: d_queenfish
+  title: Queenfish & the Kingfish Swarm
+  tier: D
+  layout: feature
+  subtitle: Large Fish · The Kingfish Swarm
+  badges:
+  - text: Swarm Fish
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Open ocean and off-shore water, wherever a swarm of Kingfish is circling.
+  view_box: 60 0 260 251
+  map_caption: Open Ocean / Off-Shore — center of the Kingfish swarm
+  map_alt: Map slice of the open ocean showing the Queenfish's spot at the center of a Kingfish swarm
+  special_instructions: Look for a moving cluster of Kingfish out in the open ocean or off-shore water
+    — Queenfish sits at the middle of the swarm. Equip large bait and the Bait Guard attachment before
+    casting so a Kingfish doesn't grab the hook first. Landing Queenfish sets every nearby Kingfish following
+    your boat from then on.
+  shared_gear:
+  - icon: 🪱
+    text: Large bait
+    required: true
+  - icon: 🎣
+    text: Bait Guard attachment
+    required: true
+- id: d_bleaper
+  title: Bleaper
+  tier: D
+  layout: feature
+  subtitle: Small Fish · Night Roamer
+  badges:
+  - text: Night Roamer
+    kind: cat
+  - text: Moderate
+    kind: diff-mod
+  cast: Open water at night, wherever a pack of Bleaper is trailing your boat.
+  view_box: 40 0 260 251
+  map_caption: Open Ocean at night — a typical Bleaper patrol spot
+  map_alt: Map slice of the open ocean at night showing a typical Bleaper patrol spot
+  special_instructions: Bleaper only shows up after dark, patrolling in small packs close to the boat.
+    Cast medium bait out and coax it gently in front of one — they're quick to leap up and steal a line
+    the moment it lands, so expect a few tries before one actually takes the hook instead of snatching
+    it.
+  shared_gear:
+  - icon: 🪱
+    text: Medium bait
+    required: true
+  - icon: 🌙
+    text: Night only
+    required: true
+- id: d_goldfish
+  title: Goldfish
+  tier: D
+  layout: feature
+  subtitle: Small Fish · The Empty
+  badges:
+  - text: Follow Conpas
+    kind: cat
+  - text: Easy
+    kind: diff-easy
+  cast: Low in The Empty, and possibly the Labyrinth, wherever Conpas's nose is pointing.
+  view_box: 440 0 260 251
+  map_caption: The Empty, lower reaches — follow Conpas's nose
+  map_alt: Map slice of the lower Empty near Conpas showing the Goldfish's typical spot
+  shared_gear:
+  - icon: 🪱
+    text: Any bait works
+    required: false

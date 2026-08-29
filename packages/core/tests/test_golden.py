@@ -1,5 +1,9 @@
-"""Whitespace-normalized diff of the rendered book against the approved
-mockup (reference/design_preview.html), page for page.
+"""Whitespace-normalized diff of the rendered book's 5 original demo
+group pages against the approved mockup (reference/design_preview.html),
+page for page. The book now has the full 178-fish roster (Phase 3), so
+this only checks the pages the mockup actually has an opinion about --
+everything else (the other 59 groups, the overview page, the full
+index) is unreviewed new content this test doesn't touch.
 
 Not a pixel screenshot diff (PLAN.md's original Phase 1 acceptance
 criterion) -- that needs a browser; this compares the actual HTML
@@ -11,20 +15,8 @@ as intentional, not bugs:
 - `&` vs `&amp;` in two titles: both parse to the same DOM text node;
   the data model stores plain text and doesn't HTML-escape (nothing
   else in the pipeline does either -- see render.py's docstring).
-- The mockup tags Huge-Fish Predators as "Page ★" for its own preview
-  framing ("Largest Group in the Book"); the real index uses the
-  fish's actual tier letter ("Page D"), which is what generalizes once
-  Phase 2 adds real page numbers.
-- The book adds a full-map overview page up front and moves the index
-  to right after it (the mockup, being a preview of 5 sample pages,
-  has neither); index rows are `<a href="#group-...">` instead of
-  `<div>` so the index is clickable, which the mockup never needed to
-  be for a static 5-page preview.
-- The index's page tag shows the destination group's title ("Silo
-  Depths I") instead of a tier letter ("Page B") -- more useful once
-  the tag is also the link text for a clickable row. The tag's
-  *content* is intentionally different; this test still checks that
-  every fish, size grouping, and marker color matches.
+- Every group's own page now carries a `id="group-..."` anchor (so the
+  index can link to it) that the mockup has no reason to have.
 - Portraits: a fish with a downloaded wiki picture (packages/wiki)
   renders an `<img>` instead of the mockup's procedural `art.fish()`
   SVG -- real art beats a placeholder. Picture markup is blanked out
@@ -36,6 +28,10 @@ as intentional, not bugs:
   in `stroke=`/`border-left-color:` are blanked out before comparing
   for the same reason the portrait markup is -- deliberately different
   content, not a regression in anything structural around it.
+
+The index itself is no longer byte-compared against the mockup's
+19-fish preview at all (see test_matches_approved_mockup) -- only
+checked for being internally sane (right total, a known fish present).
 """
 
 from __future__ import annotations
@@ -65,19 +61,20 @@ def _pages(html: str) -> list[str]:
 
 
 def _normalize(html: str) -> str:
-    html = html.replace("&amp;", "&").replace("★", "D")
+    html = html.replace("&amp;", "&")
     # Each group's own page carries a `id="group-..."` anchor the
     # mockup has no reason to -- it's a single 5-page preview, not a
     # book with an index that jumps to sections.
     html = re.sub(r'<div class="page" id="group-[^"]*">', '<div class="page">', html)
-    # The index's clickable <a class="index-row" href="#..."> is the
-    # only anchor tag anywhere in the book -- fold it back to the
-    # mockup's plain <div> so the row's *content* still gets compared.
-    html = re.sub(r'<a class="index-row" href="[^"]*"', '<div class="index-row"', html)
-    html = html.replace("</a>", "</div>")
-    # Tag text is title-vs-tier-letter by design (see module docstring);
-    # blank it out so the rest of the row still gets compared exactly.
-    html = re.sub(r'(<div class="index-page-tag">)[^<]*(</div>)', r"\1\2", html)
+    # Duo/feature map-frames now get an explicit inline aspect-ratio
+    # (computed from the group's own view_box, like cluster layout
+    # already did) instead of relying on a fixed CSS class value that
+    # only happened to match Trick & Treat's/Underfin's own crops --
+    # a real bug an early Phase 3 group (a mismatched aspect ratio
+    # crops the map via preserveAspectRatio="slice") exposed. A no-op
+    # for these two mockup groups, but still a byte-level attribute
+    # difference.
+    html = re.sub(r'<div class="map-frame" style="[^"]*">', '<div class="map-frame">', html)
     # Portrait markup (procedural SVG vs a real wiki <img>) is exactly
     # as different by design; neither has a nested </div> inside it.
     html = re.sub(r'(<div class="fish-pic"[^>]*>).*?(</div>)', r"\1PIC\2", html)
@@ -92,30 +89,52 @@ def _normalize(html: str) -> str:
 
 
 def test_matches_approved_mockup():
-    """Book page order is [overview, index, ...groups]; the mockup's is
-    [...groups, index] with no overview at all. Compare the index and
-    the group pages against their mockup counterparts independently of
-    where each one sits in the page list."""
+    """The book now has the full 178-fish roster (Phase 3), not just the
+    5 demo groups the mockup shows -- so instead of assuming a fixed
+    total page count, find each of those 5 groups' pages (plus the
+    overview and index) by their known `id="group-..."` anchors and
+    compare only those against the mockup's corresponding pages."""
     mockup_pages = [_normalize(p) for p in _pages(MOCKUP.read_text())]
-    book_pages = [
-        _normalize(p)
-        for p in _pages(
-            render.build_book(
-                data_dir=REPO_ROOT / "data",
-                templates_dir=REPO_ROOT / "templates",
-                assets_dir=REPO_ROOT / "assets",
-            )
-        )
-    ]
     assert len(mockup_pages) == 7
-    assert len(book_pages) == 8
+    mockup_group_pages = mockup_pages[:-1]
 
-    overview, index_page, *group_pages = book_pages
-    mockup_group_pages, mockup_index_page = mockup_pages[:-1], mockup_pages[-1]
+    raw_pages = _pages(
+        render.build_book(
+            data_dir=REPO_ROOT / "data",
+            templates_dir=REPO_ROOT / "templates",
+            assets_dir=REPO_ROOT / "assets",
+        )
+    )
+    book_pages = [_normalize(p) for p in raw_pages]
 
+    overview = book_pages[0]
     assert "<h2>The World</h2>" in overview
     assert 'viewBox="0 0 1450 251"' in overview
-    assert index_page == mockup_index_page
 
-    for i, (mock, book) in enumerate(zip(mockup_group_pages, group_pages, strict=True)):
+    # The index now covers the full 178-fish roster (Phase 3), not the
+    # mockup's 19-fish preview -- byte-equality against it stopped
+    # meaning anything once real content superseded the demo. Check
+    # the index is internally sane instead of matching frozen content.
+    index_page = next(p for p in book_pages if "<h2>Fish Index</h2>" in p)
+    assert "178 of 178 Entries Shown" in index_page
+    assert index_page.count('class="index-row"') == 178
+    assert "Bitterfish" in index_page and "Silo Depths I" in index_page
+
+    demo_group_ids = [
+        "a_trick_and_treat",
+        "b_silo_depths_i",
+        "c_underfin",
+        "d_dragon_area_the_empty",
+        "d_huge_fish_predators",
+    ]
+    demo_pages = []
+    for gid in demo_group_ids:
+        i = next(i for i, p in enumerate(book_pages) if f'id="group-{gid}"' in raw_pages[i])
+        demo_pages.append(book_pages[i])
+        if gid == "d_huge_fish_predators":
+            # Its continuation page carries no id -- it's the very next
+            # page in document order, right before d_dragon's successor.
+            demo_pages.append(book_pages[i + 1])
+
+    for i, (mock, book) in enumerate(zip(mockup_group_pages, demo_pages, strict=True)):
         assert book == mock, f"group page {i} does not match the approved mockup"

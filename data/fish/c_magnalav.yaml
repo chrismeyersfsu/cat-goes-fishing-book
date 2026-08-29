@@ -1,0 +1,13 @@
+- key: magnalav
+  name: Magnalav
+  size: huge
+  coords: [[40, 190]]
+  about: >-
+    A large, purple, movement-shy fish first spotted slithering at the
+    Reef Barrier under sonar. Coaxing it home takes patience — retreat
+    toward shore in tiny steps, then finish the job on foot once
+    you're close enough to leave the boat behind.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Huge Fish" }
+    - { icon: "📍", label: "Zone", value: "Reef Barrier, retreating to Shore" }
+    - { icon: "⚠️", label: "Caution", value: "Scares at any boat movement or lost sonar" }

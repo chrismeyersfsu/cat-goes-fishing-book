@@ -1,0 +1,11 @@
+- key: goldfish
+  name: Goldfish
+  size: small
+  coords: [[575, 210]]
+  about: >-
+    A sparkling gold fish tucked into the lower reaches of The Empty,
+    and possibly the Labyrinth as well. No special gear needed — just
+    follow the direction Conpas's red nose is pointing to find one.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any" }
+    - { icon: "📍", value: "Lower Empty / Labyrinth, near Conpas" }

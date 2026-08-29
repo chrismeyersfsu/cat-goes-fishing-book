@@ -1,0 +1,23 @@
+- key: forebearer
+  name: Forebearer
+  size: secret
+  coords: [[1500, 140]]
+  about: >-
+    A secret, metallic, robotic-looking fish that never appears in the
+    catalog at all — reeled in only after a Conpas-carrying Powerfin
+    drags your line clear across the map to the distant waters near
+    Problematicus.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Secret Fish" }
+    - { icon: "📍", label: "Zone", value: "Far right edge of the map, past Problematicus" }
+    - { icon: "🔗", label: "Chain", value: "Conpas → Powerfin → Forebearer" }
+  portrait:
+    body_color: "#8a97a0"
+    shape: diamond
+    tail: fork
+    dorsal: spiky
+    eye: glow
+    mouth: flat
+    tail_color: "#5c6670"
+    belly: "#c3cdd4"
+    snout: sword

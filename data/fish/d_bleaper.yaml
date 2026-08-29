@@ -1,0 +1,13 @@
+- key: bleaper
+  name: Bleaper
+  size: small
+  coords: [[150, 70]]
+  about: >-
+    Roams at night in small packs that trail your boat. Cast near one
+    and it'll often leap straight out of the water to snatch the bait
+    the instant it lands, which makes hooking one a little more
+    fiddly than it should be.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "🌙", value: "Night only" }
+    - { icon: "📍", value: "Patrols near your boat" }

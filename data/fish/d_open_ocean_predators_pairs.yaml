@@ -1,0 +1,63 @@
+- key: turgeon
+  name: Turgeon
+  size: large
+  coords: [[320, 60]]
+  pin_dy: 16
+  about: >-
+    A big, fast, red predator that spends its time chasing down
+    Sibilfin in the off-shore shallows — a sturdier rod helps you keep
+    up with it.
+  stats:
+    - { icon: "🐟", value: "Chases Sibilfin" }
+    - { icon: "🪝", value: "Sturdy rod recommended" }
+
+- key: sibilfin
+  name: Sibilfin
+  size: medium
+  coords: [[300, 75]]
+  pin_dy: 16
+  about: >-
+    A quick pink fish caught between the open ocean and off-shore
+    zones, always one step ahead of a hunting Turgeon — a fast reel
+    helps land one intact.
+  stats:
+    - { icon: "🎣", value: "Fast reel helps" }
+    - { icon: "📍", value: "Open Ocean / Off-Shore border" }
+
+- key: bagu
+  name: Bagu
+  size: medium
+  coords: [[240, 55]]
+  pin_dy: 16
+  about: >-
+    A big-headed, dark-green striped fish that travels in a fast,
+    aggressive pair just short of the Reef wall.
+  stats:
+    - { icon: "🐟", value: "Travels in a pair" }
+    - { icon: "📍", value: "Just before the Reef wall" }
+
+- key: bullfish
+  name: Bullfish
+  size: medium
+  coords: [[150, 90]]
+  pin_dy: 16
+  about: >-
+    Patrols back and forth right under the boat out at the Reef wall
+    and open ocean, making it one of the easiest predators here to
+    hook.
+  stats:
+    - { icon: "📍", value: "Reef wall / Open Ocean" }
+    - { icon: "🐟", value: "Easy, predictable pattern" }
+
+- key: sizzer
+  name: Sizzer
+  size: large
+  coords: [[110, 150]]
+  pin_dy: 16
+  about: >-
+    Holds a fixed spot in the open ocean, surrounded by a swarm of
+    baby sizzer that will try to cut your line and steal the catch
+    back.
+  stats:
+    - { icon: "📍", value: "Stationary, Open Ocean" }
+    - { icon: "🐟", value: "Guarded by baby sizzer" }

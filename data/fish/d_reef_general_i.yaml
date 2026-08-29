@@ -1,0 +1,90 @@
+- key: clownfish
+  name: Clownfish
+  size: small
+  coords: [[255, 95]]
+  pin_dy: 16
+  about: >-
+    A common reef fish that shuttles back and forth in a loose school
+    between the mid-ocean shallows and the darker water beyond, often
+    mixed in with schools of Puff. One of the easier reef catches, and
+    it pays out well for the effort.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small" }
+    - { icon: "📍", value: "Mid-Reef, mixed with Puff schools" }
+
+- key: angle
+  name: Angle
+  size: small
+  coords: [[430, 160]]
+  pin_dy: 16
+  about: >-
+    Shaped like a dull brown Bulbfish without any of the glow, Angle
+    keeps to the deeper stretch of the Reef where the light barely
+    reaches.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small" }
+    - { icon: "📍", value: "Deep Reef" }
+
+- key: sassy
+  name: Sassy
+  size: small
+  coords: [[300, 205]]
+  pin_dy: 16
+  about: >-
+    Bobs almost in place just above the pink life tree near the Reef's
+    drop-off into the basin, barely bothering to swim away. One of the
+    easiest bites in the whole area.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small" }
+    - { icon: "📍", value: "Above the life tree, basin drop-off" }
+
+- key: skiggle
+  name: Skiggle
+  size: small
+  coords: [[235, 100]]
+  pin_dy: 16
+  about: >-
+    Tiny white-and-yellow fish that look more like drifting worms than
+    anything with fins. Found hovering in the Reef just above the
+    passage down into the reef caves.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small" }
+    - { icon: "📍", value: "Above the reef-cave entrance" }
+
+- key: diretrillow
+  name: Dire Trillow
+  size: medium
+  coords: [[340, 130]]
+  pin_dy: 16
+  about: >-
+    A larger cousin of the common Trillow, tracing the same slow, wide
+    circle through the mid-Reef instead of the open ocean.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "📍", value: "Mid-Reef, circling" }
+
+- key: purdy
+  name: Purdy
+  size: medium
+  coords: [[400, 190]]
+  pin_dy: 16
+  about: >-
+    Cruises the Reef floor in the deeper sections. Reel carefully once
+    it's hooked — a bigger fish nearby will happily take a bite out of
+    your catch before you land it.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "🐟", value: "Watch for scavengers while reeling up" }
+
+- key: hue
+  name: Hue
+  size: medium
+  coords: [[370, 150]]
+  pin_dy: 16
+  about: >-
+    A hot pink-and-purple fish that turns up in several corners of the
+    Reef at once — deep water, the reef wall, and along the floor.
+    Scope around any of those spots until one shows up.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "📍", value: "Deep Reef, reef wall, or Reef floor" }

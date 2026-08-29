@@ -1,0 +1,25 @@
+- key: rana
+  name: Rana
+  size: small
+  coords: [[222, 90]]
+  pin_dy: 16
+  about: >-
+    Sits in the water directly above the opening that drops down into the
+    Reef caves. Easy to spot once you've located exactly where that hole
+    is on the floor.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+    - { icon: "📍", value: "Directly above the cave-entrance hole" }
+
+- key: gnawer
+  name: Gnawer
+  size: small
+  coords: [[200, 115]]
+  pin_dy: 16
+  about: >-
+    A Reef-floor regular found just to the left of the hole leading down
+    into the Reef caves. No special tricks needed — just track down the
+    hole and work a little to its left.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+    - { icon: "📍", value: "Reef floor, left of the cave-entrance hole" }

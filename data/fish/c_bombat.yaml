@@ -1,0 +1,13 @@
+- key: bombat
+  name: Bombat
+  size: small
+  coords: [[205, 100]]
+  about: >-
+    A small, bat-like fish that clings to the tops and edges of cave
+    walls, and to anything round it can grab — including your bombs.
+    Reaching one means clearing round rocks off the seafloor before
+    the Reef until a hole down into the caves opens up.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Small Fish" }
+    - { icon: "📍", label: "Zone", value: "Caves, via the offshore seafloor" }
+    - { icon: "⚠️", label: "Hazard", value: "Latches onto bombs and detonates them" }

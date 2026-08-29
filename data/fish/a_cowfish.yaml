@@ -1,0 +1,10 @@
+- key: cowfish
+  name: Cowfish
+  size: large
+  coords: [[170, 45], [670, 45]]
+  about: >-
+    Orange-spotted and friendly-looking, with two easy pairs spawning in
+    the shallows — one nearest the open ocean, one further off-shore.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium/Large" }
+    - { icon: "📍", value: "Easy to find, easy to catch" }

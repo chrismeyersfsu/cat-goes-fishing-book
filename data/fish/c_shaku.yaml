@@ -1,0 +1,13 @@
+- key: shaku
+  name: Shaku
+  size: huge
+  coords: [[610, 205]]
+  about: >-
+    A shark that spawns asleep on the Dragon Area's sea floor, past
+    the cave mouth just beyond The Empty, and only on certain dates.
+    Its aggressive-looking false eye is a decoy — the real one, pale
+    blue, only opens once you've swum down and woken it.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Huge Fish" }
+    - { icon: "📍", label: "Zone", value: "Dragon Area sea floor" }
+    - { icon: "📅", label: "Availability", value: "Specific dates only" }

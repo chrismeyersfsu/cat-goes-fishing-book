@@ -1,0 +1,50 @@
+- key: twohead
+  name: Twohead
+  size: large
+  coords: [[1100, 190]]
+  pin_dy: 16
+  about: >-
+    A big red fish with a heavy underbite, drooping whisker-like
+    barbels, and orange highlights. Completely still in the farthest
+    reaches of the Kelp — just drop bait straight into its mouth.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any" }
+    - { icon: "📍", value: "Stationary, far Kelp" }
+
+- key: mossy
+  name: Mossy
+  size: medium
+  coords: [[1150, 165]]
+  pin_dy: 16
+  about: >-
+    Green and red, blending into the surrounding kelp so well it's
+    easy to miss. Give it a moment to notice your bait before it
+    lunges.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+
+- key: volteen
+  name: Volteen
+  size: medium
+  coords: [[1190, 145]]
+  pin_dy: 16
+  about: >-
+    A glowing blue-and-yellow fish that spooks down into a rockbed
+    pocket the first time you approach. Ease a bait down slowly
+    afterward and it'll come back up to strike.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "💡", value: "Glows" }
+
+- key: eldercheesefin
+  name: Elder Cheesefin
+  size: medium
+  coords: [[1230, 180]]
+  pin_dy: 16
+  about: >-
+    A bigger, moldy-green-bellied version of the common Cheesefin,
+    holding court in the Kelp's rare-fruit patch with a crowd of Lil'
+    Cheesefin. Large bait seals the deal.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Rare-fruit patch" }

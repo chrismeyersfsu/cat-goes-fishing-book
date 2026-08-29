@@ -1,0 +1,23 @@
+- key: chompy
+  name: Chompy
+  size: large
+  coords: [[220, 80]]
+  about: >-
+    A large gray fish patrolling the open water just before the Reef wall,
+    trailed everywhere by a wary Crayfin. Hooks like any other large fish —
+    the trick is what you do with it once it's on your line.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "🪝", value: "Huge hook" }
+
+- key: crayfin
+  name: Crayfin
+  size: medium
+  coords: [[240, 95]]
+  about: >-
+    Blue with a yellow belly, and one of the fussier medium fish in the
+    game. It won't come near your bait until it's watched you set its
+    Chompy free.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "📍", label: "Requires", value: "Chompy released first" }

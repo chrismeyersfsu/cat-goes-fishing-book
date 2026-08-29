@@ -1,0 +1,24 @@
+- key: maskfish
+  name: Mask Fish
+  size: secret
+  coords: [[680, 70]]
+  about: >-
+    This huge, black, angler-like fish trails a ghostly Tim from the
+    end of its line instead of a glowing bulb. It takes the place of a
+    normal Tim spawn above the Silo, and the only tell is a Tim that
+    flickers in and out of view instead of swimming normally.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Secret Fish" }
+    - { icon: "📍", label: "Zone", value: "Above the Silo, Tim spawn column" }
+    - { icon: "👁️", label: "Tell", value: "Flickers in and out like a glitch" }
+  portrait:
+    body_color: "#111114"
+    shape: elongated
+    tail: crescent
+    dorsal: spiky
+    eye: glow
+    mouth: open
+    tail_color: "#0a0a0d"
+    belly: "#2b2b30"
+    snout: point
+    glow: true

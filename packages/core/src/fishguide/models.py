@@ -76,4 +76,4 @@ class Group:
     special_instructions: str | None = None
     about: str | None = None  # duo layout's group-level "About" paragraph
     map_label: str | None = None  # cluster layout's note below the map frame
-    map_max_width: int | None = None  # cluster layout only; widens the default 340px frame
+    map_max_width: int | None = None  # widens a layout's default map-frame width, if needed

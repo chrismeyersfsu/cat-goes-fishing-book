@@ -1,0 +1,13 @@
+- key: problematicus
+  name: Problematicus
+  size: huge
+  coords: [[1540, 35]]
+  about: >-
+    A huge fish modeled on the real-world Leedsichthys, lurking so far
+    out in the Very Distant Sea that it only barely peeks onto the
+    screen after a fully rocketed cast. Storms pull it noticeably
+    closer to the Labyrinth, which helps close the distance.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Huge Fish" }
+    - { icon: "📍", label: "Zone", value: "Far edge of the Very Distant Sea" }
+    - { icon: "⛈️", label: "Tip", value: "Comes closer to shore during storms" }

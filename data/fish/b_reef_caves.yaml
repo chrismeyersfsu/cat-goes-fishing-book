@@ -1,0 +1,52 @@
+- key: santu
+  name: Santu
+  size: small
+  coords: [[185, 100]]
+  pin_dy: 16
+  about: >-
+    A pale, orangish-red fish that looks a lot like a carp. Turns up in
+    the first pockets of the Reef caves as you come down from the top, and
+    sometimes right out on the open Reef floor.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+    - { icon: "📍", value: "First cave pockets, near the top" }
+
+- key: jackfish
+  name: Jackfish
+  size: small
+  coords: [[230, 125]]
+  pin_dy: 16
+  about: >-
+    One of the few fish that actually spawns down in the tangled depths of
+    the Reef caves. Look to the right of the Lemonback pockets, above the
+    Crystal cave and the Elf-leg landmark.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+    - { icon: "📍", value: "Right of the Lemonback pockets, above the Crystal cave" }
+
+- key: crystalfish
+  name: Crystalfish
+  size: small
+  coords: [[200, 150]]
+  pin_dy: 16
+  about: >-
+    An elusive fish tucked inside the Crystal cave marked on the map.
+    Plenty of hazards crowd the same space, so take it slow lining this
+    one up.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+    - { icon: "📍", value: "Inside the Crystal cave" }
+
+- key: lemonback
+  name: Lemonback
+  size: large
+  coords: [[165, 185]]
+  pin_dy: 16
+  about: >-
+    One of the toughest large fish in the book to land — pale yellow and
+    white, hugging the walls just inside the Reef caves and the deep
+    basin. Coax it out of the tiny cracks marked Lemonback cave 1 and 2
+    rather than trying to hook it in place.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "🎣", value: "Lure out of the wall cracks before hooking — very wall-huggy" }

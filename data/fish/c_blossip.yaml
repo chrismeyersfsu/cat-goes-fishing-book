@@ -1,0 +1,12 @@
+- key: blossip
+  name: Blossip
+  size: medium
+  coords: [[190, 45]]
+  about: >-
+    A lily-pad-like fish with a mottled light-and-dark green body and a
+    small flower on its head, found skimming the open surface water
+    almost anywhere on the map.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Medium Fish" }
+    - { icon: "📍", label: "Zone", value: "Open Ocean surface (found broadly)" }
+    - { icon: "🎣", label: "Technique", value: "Flick timed to the bottom of its dip" }

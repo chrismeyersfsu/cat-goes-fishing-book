@@ -1,0 +1,56 @@
+- key: beakfish
+  name: Beakfish
+  size: medium
+  coords: [[870, 110]]
+  pin_dy: 16
+  about: >-
+    A purple fish sitting in the mid-ocean band between the open ocean
+    and off-shore water, just beneath where the farthest Cowfish
+    swim.
+  stats:
+    - { icon: "📍", value: "Mid-ocean, under the far Cowfish" }
+
+- key: garump
+  name: Garump
+  size: medium
+  coords: [[900, 90]]
+  pin_dy: 16
+  about: >-
+    A shark-shaped fish in green and orange, sharing water with the
+    farthest pair of Cowfish and easy to pick out by its coloring.
+  stats:
+    - { icon: "📍", value: "Near the far Cowfish pair" }
+
+- key: leofish
+  name: Leofish
+  size: medium
+  coords: [[930, 140]]
+  pin_dy: 16
+  about: >-
+    Purple-striped and mostly motionless, sitting just above the deep
+    water to the right of the farthest Cowfish.
+  stats:
+    - { icon: "📍", value: "Above the deep water" }
+    - { icon: "🐟", value: "Stationary" }
+
+- key: gawker
+  name: Gawker
+  size: medium
+  coords: [[960, 120]]
+  pin_dy: 16
+  about: >-
+    A green fish resting above the lower mid-ocean band, tucked
+    beneath the farthest Cowfish — medium bait is all it takes.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+
+- key: curby
+  name: Curby
+  size: medium
+  coords: [[990, 100]]
+  pin_dy: 16
+  about: >-
+    Dark green and striped, Curby keeps mostly still and startles
+    easily, only drifting a little when spooked.
+  stats:
+    - { icon: "🐟", value: "Skittish, barely moves" }

@@ -1,0 +1,25 @@
+- key: primitive
+  name: Primitive
+  size: large
+  coords: [[1055, 205]]
+  pin_dy: 16
+  about: >-
+    A tusked, orange-hued fish tucked into the third Plateau cave
+    pocket, past King's Cave. The way in needs to be cracked open
+    first, but large bait is all it takes after that.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", value: "Behind King's Cave" }
+
+- key: spec
+  name: Spec
+  size: small
+  coords: [[1090, 195]]
+  pin_dy: 16
+  about: >-
+    A tiny, clear-blue fish hiding in the very last cave pocket behind
+    the Kingfish's old spot. Opening that pocket takes some doing, but
+    Spec itself is an easy bite.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any" }
+    - { icon: "📍", value: "Final cave pocket" }

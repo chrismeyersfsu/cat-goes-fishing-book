@@ -1,0 +1,69 @@
+- key: georgian
+  name: Georgian
+  size: medium
+  coords: [[850, 100]]
+  pin_dy: 16
+  about: >-
+    Orange with white spots, Georgian swims alone and slowly through
+    the Open Ocean's mid-depth — worth taking your time to feel out.
+  stats:
+    - { icon: "📍", value: "Mid-ocean, Open Ocean" }
+    - { icon: "🐟", value: "Solitary, slow" }
+
+- key: felish
+  name: Felish
+  size: small
+  coords: [[880, 190]]
+  pin_dy: 16
+  about: >-
+    A plain, pale-brown fish that stays just above the seafloor of the
+    Open Ocean — a straightforward catch once you're down at depth.
+  stats:
+    - { icon: "📍", value: "Just above the seafloor" }
+
+- key: trumble
+  name: Trumble
+  size: medium
+  coords: [[910, 160]]
+  pin_dy: 16
+  about: >-
+    Blue-striped and found in the lower mid-ocean band, roughly where
+    the Tiger Shark patrols overhead.
+  stats:
+    - { icon: "📍", value: "Lower mid-ocean" }
+
+- key: spallow
+  name: Spallow
+  size: medium
+  coords: [[940, 60]]
+  pin_dy: 16
+  about: >-
+    Blue-and-orange striped and quick on its feet, Spallow stays just
+    below the surface through the open ocean and off-shore water.
+  stats:
+    - { icon: "🐟", value: "Fast swimmer" }
+    - { icon: "📍", value: "Just below the surface" }
+
+- key: snoutfish
+  name: Snoutfish
+  size: medium
+  coords: [[970, 45]]
+  pin_dy: -16
+  about: >-
+    Yellow and blue with a spotted, oversized snout — usually found in
+    an upper cave pocket, though it sometimes tags along with bigger
+    open-ocean fish.
+  stats:
+    - { icon: "📍", value: "Upper cave pocket" }
+
+- key: stormy
+  name: Stormy
+  size: medium
+  coords: [[1000, 205]]
+  pin_dy: 16
+  about: >-
+    Brown and yellow, and mostly stationary by day just above the
+    seafloor — look beneath where the Tiger Shark swims, near the edge
+    of your sonar range.
+  stats:
+    - { icon: "📍", value: "Seafloor, under the Tiger Shark's path" }

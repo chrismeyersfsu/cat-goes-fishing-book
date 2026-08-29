@@ -1,0 +1,87 @@
+- key: mudback
+  name: Mudback
+  size: medium
+  coords:
+  - - 1290
+    - 190
+  pin_dy: 16
+  about: A brown, spiny fish just inside the Labyrinth's mouth, near where the Buffalo Fish territory
+    ends. Medium bait, no complications.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+- key: maize
+  name: Maize
+  size: small
+  coords:
+  - - 1310
+    - 100
+  pin_dy: 16
+  about: A small gray-striped fish that only ever spawns one at a time, wandering a random route through
+    the Labyrinth tunnels. You may just need to wait for it to pass; it doesn't lunge far, so keep your
+    bait close.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any
+  - icon: 🐟
+    value: Short lunge range
+- key: remi
+  name: Remi
+  size: small
+  coords:
+  - - 1335
+    - 140
+  pin_dy: 16
+  about: Little purple-striped fish that travel the Labyrinth in a fixed line of three. Whichever one
+    you meet first, it's an easy catch.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any
+  - icon: 🐟
+    value: Travels in a line of 3
+- key: feen
+  name: Feen
+  size: small
+  coords:
+  - - 1355
+    - 70
+  pin_dy: 16
+  about: A colorful little fish swimming loose circuits through the Labyrinth caves. No special approach
+    needed.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any
+- key: centy
+  name: Centy
+  size: small
+  coords:
+  - - 1375
+    - 180
+  pin_dy: 16
+  about: Purple, with a mohawk-like dorsal fin that gives it the look of a Roman helmet, marching through
+    the Labyrinth in a long single-file line. Simple to pick off.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any
+  - icon: 🐟
+    value: Marches in a long line
+- key: flash
+  name: Flash
+  size: small
+  coords:
+  - - 1395
+    - 210
+  pin_dy: -16
+  about: A small ancestor of the Swordfish that steals fish straight off your hook. Bait a huge hook with
+    a small fish and let Flash spear it — the same trick that works on the full-grown Swordfish.
+  stats:
+  - icon: 🪝
+    label: Gear
+    value: Huge hook + small fish
+  - icon: 🐟
+    value: Spears bait like a Swordfish

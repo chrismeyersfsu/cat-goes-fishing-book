@@ -1,0 +1,40 @@
+- key: smarty
+  name: Smarty
+  size: medium
+  coords: [[895, 110]]
+  pin_dy: 16
+  about: >-
+    A pale orange fish with red fins, found just above Dunkan's spot on
+    the far-left edge of the Plateau, under the pod of Young and Blue
+    Cuspers. It won't hook until the bait is right down near the sea
+    floor.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "🎣", value: "Flick helps if it snaps toward the seafloor" }
+
+- key: newk
+  name: Newk
+  size: small
+  coords: [[900, 150]]
+  pin_dy: 16
+  about: >-
+    A colorful fish hidden away alone in a tiny pocket on the Plateau's
+    left edge. Simple enough to catch on its own, but Dunkan guards the
+    spot fiercely, so it's worth dealing with Dunkan first.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+    - { icon: "🐟", value: "Deal with Dunkan first — it guards this pocket" }
+
+- key: dunkan
+  name: Dunkan
+  size: huge
+  coords: [[890, 190]]
+  pin_dy: 16
+  about: >-
+    A large, armored fish built like a dunkleosteus, holed up at the very
+    far-left edge of the Plateau. Break its armor with bomb-stacking and a
+    detonator, then swap to large bait and a huge hook the instant it
+    cracks and lunges.
+  stats:
+    - { icon: "🪝", label: "Hook", value: "Huge" }
+    - { icon: "🎣", value: "Bomb stacker + Detonator to break the armor first" }

@@ -1,0 +1,12 @@
+- key: torby
+  name: Torby
+  size: large
+  coords: [[290, 200], [370, 190]]
+  about: >-
+    A plump orange-and-white fish found deep near the Basin and again just
+    before the Reef wall — the same species in both spots. Land both on one
+    save and the pair goes permanently extinct there, so reload between
+    catches unless you're chasing 100%.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "📍", value: "Catch only one per reload to avoid extinction" }

@@ -1,0 +1,39 @@
+- key: rodi
+  name: Rodi
+  size: small
+  coords: [[1150, 70]]
+  pin_dy: 16
+  about: >-
+    A little orange-red youngling that drifts sporadically alongside its
+    parent and sibling above the Labyrinth. Wait until it strays alone,
+    lure it toward the surface, and hook it just before it breaks water.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small" }
+    - { icon: "📍", label: "Requires", value: "Lure away from Rodilav first" }
+
+- key: lav
+  name: Lav
+  size: small
+  coords: [[1190, 85]]
+  pin_dy: 16
+  about: >-
+    The pinkish-red sibling, caught the same patient way as Rodi — wait
+    until Rodilav isn't hovering nearby, then lead it up toward the surface
+    before hooking.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small" }
+    - { icon: "📍", label: "Requires", value: "Lure away from Rodilav first" }
+
+- key: rodilav
+  name: Rodilav
+  size: large
+  coords: [[1250, 60]]
+  pin_dy: 16
+  about: >-
+    The parent, a larger pinkish-orange echo of its children, watching over
+    them as they wander the Plateau and Kelp waters. It won't take bait
+    until at least one child has been caught first — and it flees entirely
+    if both children are sold before it is.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "📍", label: "Requires", value: "Catch a child first" }

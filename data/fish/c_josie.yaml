@@ -1,0 +1,22 @@
+- key: josie
+  name: Josie
+  size: large
+  coords: [[830, 150]]
+  about: >-
+    A pretty, solid-purple fish that relocated after the "Edge" update —
+    now sitting at a lower mid-ocean depth on the far-right side of the
+    open water above the Silo, instead of near the Reef where it used
+    to be.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Large Fish" }
+    - { icon: "📍", label: "Zone", value: "Above the Silo, far-right side" }
+    - { icon: "⭐", label: "Bonus", value: "Catch-and-release is a fast way to level up" }
+  portrait:
+    body_color: "#8e5fd6"
+    shape: oval
+    tail: fan
+    dorsal: triangle
+    eye: cute
+    mouth: smile
+    tail_color: "#6f42b8"
+    belly: "#c9aef0"

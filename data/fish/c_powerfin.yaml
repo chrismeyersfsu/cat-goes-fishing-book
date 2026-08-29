@@ -1,0 +1,11 @@
+- key: powerfin
+  name: Powerfin
+  size: medium
+  coords: [[585, 175]]
+  about: >-
+    A quick, yellow, lightning-patterned fish that darts around the
+    opening to Mamo's Den, just above the rockbed of the Dragon zone.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Medium Fish" }
+    - { icon: "📍", label: "Zone", value: "Dragon Area, near Mamo's Den" }
+    - { icon: "🔦", label: "Bait", value: "Large bait + a light equipped" }

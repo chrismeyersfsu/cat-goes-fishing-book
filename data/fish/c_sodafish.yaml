@@ -1,0 +1,14 @@
+- key: sodafish
+  name: Sodafish
+  size: medium
+  coords: [[250, 110]]
+  about: >-
+    One of the toughest medium fish to land — Sodafish patrols the
+    mid-ocean depths right at the edge of how far a starting boat can
+    travel. Distract it with bait until you can flip it upside down
+    and knock the soda can loose, then grab the can before it swims
+    back for it.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Medium Fish" }
+    - { icon: "📍", label: "Zone", value: "Mid-ocean, boat's furthest reach" }
+    - { icon: "🥤", label: "Gimmick", value: "Flip it to knock the soda can loose" }

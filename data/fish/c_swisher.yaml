@@ -1,0 +1,12 @@
+- key: swisher
+  name: Swisher
+  size: small
+  coords: [[445, 35]]
+  about: >-
+    A fast fish that spawns briefly at the top-left edge of The Empty's
+    cave entrance, day or night, before vanishing again for an
+    unpredictable stretch of time.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Small Fish" }
+    - { icon: "📍", label: "Zone", value: "The Empty, top-left entrance" }
+    - { icon: "⏱️", label: "Timing", value: "Very short spawn window" }

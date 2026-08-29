@@ -1,0 +1,13 @@
+- key: queenfish
+  name: Queenfish
+  size: large
+  coords: [[180, 110]]
+  about: >-
+    Drifts through the open ocean and off-shore water at the center of
+    a swarm of Kingfish. Land it with large bait and the Bait Guard
+    attachment so the swarm doesn't steal your hook first — once it's
+    in your boat, every nearby Kingfish starts following you for good.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "🎣", value: "Bait Guard attachment recommended" }
+    - { icon: "🐟", value: "Catch brings the whole Kingfish swarm along" }

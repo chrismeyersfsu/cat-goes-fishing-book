@@ -1,0 +1,76 @@
+- key: tiktik
+  name: Tik Tik
+  size: large
+  coords:
+  - - 375
+    - 20
+  pin_dy: 16
+  about: A fast, almost golden-yellow fish that's often seen leaping clear of the water above the Reef
+    wall. It sticks to the very highest shallows, which makes it a little bit of a pain to keep hooked
+    once it's on.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Highest shallows of the Reef wall
+- key: seajeepy
+  name: Sea Jeepy
+  size: small
+  coords:
+  - - 400
+    - 25
+  pin_dy: 16
+  about: A pale, almost bleached-white fish that sits right on top of the Reef wall. Nothing tricky about
+    the catch itself — the challenge is mostly getting your line up there.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Top of the Reef wall
+- key: lionfish
+  name: Lionfish
+  size: medium
+  coords:
+  - - 425
+    - 35
+  pin_dy: -16
+  about: Perches on top of the Reef wall and won't take ordinary bait at all. Rig a huge hook, catch a
+    small fish with it, and Lionfish will strike the catch on your line instead.
+  stats:
+  - icon: 🪝
+    label: Hook
+    value: Huge
+  - icon: 🐟
+    value: Hook a small fish first — it bites the catch, not the bait
+- key: yellowjack
+  name: Yellowjack
+  size: medium
+  coords:
+  - - 450
+    - 45
+  pin_dy: -16
+  about: A stationary yellow fish holding just past the Reef wall in the shallow reef. It doesn't move
+    around much, so once you've spotted it, landing it is straightforward.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 📍
+    value: Just past the Reef wall, shallow reef
+- key: casper
+  name: Casper
+  size: small
+  coords:
+  - - 390
+    - 75
+  pin_dy: 16
+  about: White with a pale-teal tint and an odd boomerang-shaped body. Mostly a deep-reef fish, though
+    it wanders up onto the Reef wall itself often enough to be worth checking here first.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Deep reef, occasionally the Reef wall

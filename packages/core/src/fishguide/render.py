@@ -75,9 +75,14 @@ def legend_x(color: str) -> str:
 
 
 def _duo_map(group: Group) -> str:
-    parts = [markers.dashed_path(group.path.points, group.path.start_gap, group.path.end_gap)]
+    parts = []
+    if group.path:
+        parts.append(
+            markers.dashed_path(group.path.points, group.path.start_gap, group.path.end_gap)
+        )
     for f in group.fish:
-        parts.append(markers.x_mark(*f.coords[0], color=f.color))
+        for x, y in f.coords:
+            parts.append(markers.x_mark(x, y, color=f.color))
     return "".join(parts)
 
 
@@ -89,7 +94,8 @@ def _feature_map(group: Group) -> str:
         )
         parts.append(markers.start_dot(*group.path.points[0]))
     f = group.fish[0]
-    parts.append(markers.x_mark(*f.coords[0], color=f.color))
+    for x, y in f.coords:
+        parts.append(markers.x_mark(x, y, color=f.color))
     return "".join(parts)
 
 
@@ -125,12 +131,23 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic) -> str:
     for page in pages:
         if group.layout == "duo":
             tmpl = jinja_env.get_template("page_duo.html.j2")
-            out.append(tmpl.render(group=group, map_markers=_duo_map(group), **globals_))
+            out.append(
+                tmpl.render(
+                    group=group,
+                    map_markers=_duo_map(group),
+                    map_frame_style=_map_frame_style(group),
+                    **globals_,
+                )
+            )
         elif group.layout == "feature":
             tmpl = jinja_env.get_template("page_feature.html.j2")
             out.append(
                 tmpl.render(
-                    group=group, f=group.fish[0], map_markers=_feature_map(group), **globals_
+                    group=group,
+                    f=group.fish[0],
+                    map_markers=_feature_map(group),
+                    map_frame_style=_map_frame_style(group),
+                    **globals_,
                 )
             )
         else:  # cluster

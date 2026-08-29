@@ -1,0 +1,23 @@
+- key: tart
+  name: Tart
+  size: large
+  coords: [[1325, 150]]
+  about: >-
+    A large green-striped fish with orange fins and odd purple and red
+    splotches, hovering guard above the Labyrinth's far-right cave
+    entrance. It snaps your line the instant you go for Lindfin first.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+    - { icon: "🎣", value: "Flick to trigger the lunge" }
+
+- key: lindfin
+  name: Lindfin
+  size: medium
+  coords: [[1350, 142]]
+  about: >-
+    A strange purple, green, and red fish swimming just above the rockbed
+    where a cat-ears hat sits. It won't hook until Tart is gone and your
+    bait is hovering right over that hat.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "📍", label: "Requires", value: "Tart caught first" }

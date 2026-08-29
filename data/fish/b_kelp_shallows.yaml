@@ -1,0 +1,87 @@
+- key: dijon
+  name: Dijon
+  size: medium
+  coords:
+  - - 1110
+    - 70
+  pin_dy: 16
+  about: A brown fish that looks like an oversized Mustardfish, holding a stationary post in the Kelp
+    shallows. Medium bait brings it in without a fight.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+- key: youngcusper
+  name: Young Cusper
+  size: small
+  coords:
+  - - 1140
+    - 55
+  pin_dy: 16
+  about: Small pink cousins of the Cuspers, drifting together in a loose pod through the Very Distant
+    Sea's shallows. Medium bait, minimal fuss.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 🐟
+    value: Travels in a pod
+- key: cuda
+  name: Cuda
+  size: medium
+  coords:
+  - - 1175
+    - 40
+  pin_dy: -16
+  about: A green, barracuda-shaped fish that strikes fast and can saw through your line just as fast.
+    Rig four Improved Cranks and a Rising Lure so your retrieve can outrun it toward the surface before
+    it bites through.
+  stats:
+  - icon: 🎣
+    label: Rig
+    value: 4x Improved Crank + Rising Lure
+  - icon: 🐟
+    value: Aggressive, fast strike
+- key: fin
+  name: Fin
+  size: medium
+  coords:
+  - - 1210
+    - 35
+  pin_dy: -16
+  about: A quick, dolphin-shaped purple fish darting through the upper Kelp water. Nothing fancy needed
+    — just medium bait and fast reflexes.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+- key: garm
+  name: Garm
+  size: medium
+  coords:
+  - - 1250
+    - 60
+  pin_dy: 16
+  about: Shaped like a fish-sized orange, sitting nearly still right where the Labyrinth begins. Easiest
+    to find by lowering your line into the same spot as the Young and Blue Cusper pod.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 📍
+    value: Edge of the Labyrinth
+- key: eldermustardfish
+  name: Elder Mustardfish
+  size: large
+  coords:
+  - - 1290
+    - 25
+  pin_dy: 16
+  about: An oversized Mustardfish parked high above the glow bulbs and the Labyrinth — visible on sonar
+    before you even cast. Stationary and simple to reel in.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 📍
+    value: Visible on sonar

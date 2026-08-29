@@ -1,0 +1,45 @@
+- key: seraph
+  name: Seraph
+  size: large
+  coords: [[880, 60]]
+  pin_dy: 16
+  about: >-
+    Yellow and streamlined, Seraph darts through the shallow-to-mid
+    off-shore water fast enough to give some trouble landing.
+  stats:
+    - { icon: "🐟", value: "Fast swimmer" }
+    - { icon: "📍", value: "Shallow to mid-ocean" }
+
+- key: catfin
+  name: Catfin
+  size: large
+  coords: [[910, 48]]
+  pin_dy: -16
+  about: >-
+    Orange-striped and big enough to spot at a distance, Catfin
+    patrols the open ocean's shallow-to-mid water.
+  stats:
+    - { icon: "📍", value: "Shallow to mid-ocean" }
+
+- key: brimble
+  name: Brimble
+  size: large
+  coords: [[950, 150]]
+  pin_dy: 16
+  about: >-
+    An odd, orange-striped fish that hangs facing up and down rather
+    than level, easy to spot once you know the silhouette.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+
+- key: conga
+  name: Conga
+  size: large
+  coords: [[985, 100]]
+  pin_dy: 16
+  about: >-
+    Pinkish-purple and prone to moving in a long conga line just short
+    of the Reef wall, drifting from mid-ocean up to the shallows.
+  stats:
+    - { icon: "🐟", value: "Travels in a line" }
+    - { icon: "📍", value: "Mid-ocean to shallow" }

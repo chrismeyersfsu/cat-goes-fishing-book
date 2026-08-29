@@ -170,13 +170,20 @@ build in slices so the book always compiles.
 (cover, "how to read this book" page explaining tiers/markers/colors, credits page).
 *Acceptance: a print-ready PDF where every `.page` is one sheet and maps are legible at size.*
 
-## Known open items (carry these into Phase 3)
+## Known open items (Phase 3 status)
 
-- 8 fish are provisionally placed and need coordinate re-verification against the guide before
-  their pages are finalized: Lionfish, Gnawer, Rana, Garm, Flash, Elder Mustardfish, Primal
-  Turgeon, Maw.
+Phase 3 is done in the sense that all 178 fish are in `data/` with coordinates, descriptions,
+and gear notes — but none of it is verified against the actual game, only against
+`fish_grouping_scheme.md` and `guide_text.txt`. Treat every coordinate as provisional until
+someone checks it in-game; the specific "8 fish need re-verification" list from the original
+plan no longer means anything narrower than that.
+
 - Size categories for the Dragon Area roundup fish (Dragonfish/Carver/Conpas/Ghast) were
   inferred from bait size, not stated by the guide — verify.
-- Forebearer's description was cut off at a page boundary in the source text — re-extract.
-- Fish portraits exist for only 19 species; the other ~159 need `portrait:` params (the
-  generator in `art.py` is flexible enough — body shape × fins × colors × patterns).
+- Fish portraits: most fish use a real picture from `assets/wiki_fish/` (the `fishguide-wiki`
+  package) instead of `art.fish()` params now — that need is mostly gone. A handful the wiki
+  has no picture for (Treat, Underfin, Maw, Kernel, Noxius, Mask Fish, Elder Orwellian, Airy,
+  Bird, Josie, Forebearer) got a hand-picked procedural `portrait:` fallback instead.
+- Two pin placements inherited from the original 5-group demo sit right at the map's bottom
+  edge (Conpas, Maw) — left as-is to match the approved mockup byte-for-byte; every other
+  fish's numbered pin was checked to stay on-screen.

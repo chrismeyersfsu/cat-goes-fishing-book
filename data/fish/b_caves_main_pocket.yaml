@@ -1,0 +1,76 @@
+- key: stankfin
+  name: Stankfin
+  size: large
+  coords:
+  - - 190
+    - 110
+  pin_dy: 16
+  about: Looks like a salmon with unusually sharp teeth. Easiest to find just under the caves' first entrance
+    — lure it out into open water before hooking, since it likes to jet straight upward the instant it's
+    caught.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 🎣
+    value: Lure clear of the cave first — jets upward hard once hooked
+- key: cavefish
+  name: Cavefish
+  size: large
+  coords:
+  - - 230
+    - 140
+  pin_dy: 16
+  about: A pale brown, salmon-shaped fish with yellow eyes that shows up in almost any part of the caves.
+    A little sifting around is usually all it takes to find one.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Anywhere in the caves
+- key: thresher
+  name: Thresher
+  size: large
+  coords:
+  - - 210
+    - 165
+  pin_dy: 16
+  about: A dark, red-orange fish with a look as aggressive as its bite. Found in the caves' larger pocket
+    — the one marked CAVES on the map.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: The main CAVES pocket
+- key: spotter
+  name: Spotter
+  size: large
+  coords:
+  - - 245
+    - 190
+  pin_dy: 16
+  about: An orange fish with a texture that looks almost like sponge. Best odds are right on the sea floor,
+    next to the pink tree landmark down there.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Sea floor, beside the pink tree
+- key: nightfishsire
+  name: Nightfish Sire
+  size: large
+  coords:
+  - - 270
+    - 210
+  pin_dy: -16
+  about: A big, spiky purple fish tucked into the deeper cave pocket behind the cave shark's den, usually
+    trailed by a few ordinary Nightfish.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Deep pocket behind the cave shark's den

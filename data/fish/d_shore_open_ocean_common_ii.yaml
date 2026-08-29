@@ -1,0 +1,82 @@
+- key: sourfish
+  name: Sourfish
+  size: medium
+  coords: [[50, 90]]
+  pin_dy: 16
+  about: >-
+    Ranges from the open ocean clear out to the map's edge, staying
+    shallow to mid-depth — its unusually wide aggro range means it
+    usually finds your bait first.
+  stats:
+    - { icon: "🐟", value: "Huge aggro range" }
+    - { icon: "📍", value: "Open Ocean to the Edge" }
+
+- key: stalker
+  name: Stalker
+  size: medium
+  coords: [[90, 70]]
+  pin_dy: 16
+  about: >-
+    A long, purple-and-white striped fish that's tricky to track down
+    on its own — land whatever it's tailing first, and Stalker follows
+    your boat right into range.
+  stats:
+    - { icon: "🐟", value: "Follows another fish" }
+    - { icon: "📍", value: "Open Ocean" }
+
+- key: nightfish
+  name: Nightfish
+  size: medium
+  coords: [[150, 180]]
+  pin_dy: 16
+  about: >-
+    Stays in the deeper open ocean by day but rises higher and roams
+    further after dark; a separate population in the caves trails
+    behind Nightfish Sire.
+  stats:
+    - { icon: "🌙", value: "Rises higher at night" }
+    - { icon: "📍", value: "Deep open ocean" }
+
+- key: lumina
+  name: Lumina
+  size: medium
+  coords: [[200, 195]]
+  pin_dy: 16
+  about: >-
+    Glows a bright blue, which makes it easy to pick out in the deeper
+    water off-shore and through the open ocean.
+  stats:
+    - { icon: "💡", value: "Glowing blue" }
+    - { icon: "📍", value: "Deep off-shore / Open Ocean" }
+
+- key: kernel
+  name: Kernel
+  size: small
+  coords: [[225, 122]]
+  pin_dy: 16
+  about: >-
+    A dull, greenish-brown fish that blends into the weeded rock-bed
+    around the coral tree just off-shore, above the caves.
+  stats:
+    - { icon: "📍", value: "Weeded rock-bed, above the caves" }
+  portrait:
+    body_color: "#6b7a4a"
+    shape: oval
+    tail: small
+    dorsal: triangle
+    eye: flat
+    mouth: flat
+    belly: "#8a9468"
+    tail_color: "#54613a"
+
+- key: koin
+  name: Koin
+  size: medium
+  coords: [[130, 40]]
+  pin_dy: -16
+  about: >-
+    Yellow with a small, coin-like gold mark on its forehead, Koin
+    swims in a pair that loops across nearly the whole Open Ocean.
+  stats:
+    - { icon: "🐟", value: "Swims in a pair" }
+    - { icon: "📍", value: "Wide loop across Open Ocean" }

@@ -1,0 +1,22 @@
+- key: noxius
+  name: Noxius
+  size: secret
+  coords: [[715, 205]]
+  about: >-
+    A brown fish with green frills crowning its head, spotted bumbling
+    along the seabed just right of the Silo door. Noxius never turns up
+    in a normal catalog run — you have to clear the water above the
+    Silo, then swim all the way down after it and grab it by hand.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Secret Fish" }
+    - { icon: "📍", label: "Zone", value: "Above/inside the Silo, seabed" }
+    - { icon: "🎚️", label: "Requirement", value: "Level 90, for oxygen capacity" }
+  portrait:
+    body_color: "#7a5c3e"
+    shape: round
+    tail: small
+    dorsal: spiky
+    eye: sharp
+    mouth: open
+    tail_color: "#4f8a52"
+    belly: "#c9a877"

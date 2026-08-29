@@ -1,0 +1,71 @@
+- key: minute
+  name: Minute
+  size: small
+  coords:
+  - - 886
+    - 170
+  pin_dy: 16
+  about: A porcelain-white fish with swirling blue patterns, tucked into the second Plateau cave pocket.
+    Bites readily on medium bait no matter how you pronounce its name.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+- key: swoosher
+  name: Swoosher
+  size: medium
+  coords:
+  - - 900
+    - 205
+  pin_dy: 16
+  about: A blue-toned fish resting at the very bottom of the second Plateau cave. An easy catch once you're
+    down that deep.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 📍
+    value: Cave floor
+- key: lumos
+  name: Lumos
+  size: small
+  coords:
+  - - 915
+    - 185
+  pin_dy: 16
+  about: A small fish with a noticeably bright glow, sharing the second Plateau cave pocket with Minute
+    and Swoosher. Medium bait is all it takes.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 💡
+    value: Glows in the dark
+- key: paladin
+  name: Paladin
+  size: large
+  coords:
+  - - 930
+    - 160
+  pin_dy: 16
+  about: An odd-looking gray fish that turns up in the same second cave pocket. No tricks involved — just
+    drop large bait and wait.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Large
+- key: greatcarver
+  name: Great Carver
+  size: medium
+  coords:
+  - - 960
+    - 210
+  pin_dy: -16
+  about: A larger cousin of the common Carver, patrolling the inner walls of both the second cave pocket
+    and King's Cave once the kingfish has been dealt with. Straightforward to hook.
+  stats:
+  - icon: 🐟
+    label: Related to
+    value: Carver
+  - icon: 📍
+    value: Also seen in King's Cave

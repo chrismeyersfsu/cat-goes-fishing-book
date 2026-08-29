@@ -1,0 +1,12 @@
+- key: abyssal
+  name: Abyssal
+  size: huge
+  coords: [[700, 195]]
+  about: >-
+    A huge, green, segmented fish patrolling the deep water above the
+    Silo. It's fast and a little feisty, but its giant size makes it
+    easy to spot once it swims into view.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Huge Fish" }
+    - { icon: "📍", label: "Zone", value: "Deep water above the Silo" }
+    - { icon: "⚡", label: "Behavior", value: "Fast and feisty" }
