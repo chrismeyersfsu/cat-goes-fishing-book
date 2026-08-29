@@ -20,3 +20,7 @@ ci-release).
 - Module docstrings state each module's contract: what it owns, what it
   never does, what callers rely on.
 - `CHANGELOG.md` entry with every user-facing change, same commit.
+- Push independent work out to background subagents on Sonnet rather
+  than doing it serially. Give each agent a disjoint set of files —
+  `data/` and `templates/` are separate lanes — and tell every one of
+  them about the five golden-test-frozen groups.
