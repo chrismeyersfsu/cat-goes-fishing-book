@@ -26,6 +26,12 @@ SIZE_LABELS = {
 }
 TOTAL_ROSTER = 178
 
+# The full world map's extent in the 1568x251 coordinate space every
+# group's cropped viewBox is a slice of (PLAN.md's data model comment;
+# confirmed against assets/map_terrain_defs.html's own path/label
+# bounds -- everything drawn stays within y<=238).
+FULL_MAP_VIEW_BOX = "0 0 1568 251"
+
 
 def env(templates_dir: Path = TEMPLATES_DIR) -> jinja2.Environment:
     return jinja2.Environment(
@@ -141,6 +147,12 @@ def render_group(jinja_env: jinja2.Environment, group: Group) -> str:
     return "\n".join(out)
 
 
+def render_overview(jinja_env: jinja2.Environment) -> str:
+    _x, _y, w, _h = (float(v) for v in FULL_MAP_VIEW_BOX.split())
+    tmpl = jinja_env.get_template("page_overview.html.j2")
+    return tmpl.render(view_box=FULL_MAP_VIEW_BOX, view_box_w=f"{w:g}")
+
+
 def render_index(jinja_env: jinja2.Environment, groups: list[Group], size_pills: dict) -> str:
     by_size = paginate.build_index(groups)
     total = sum(len(v) for v in by_size.values())
@@ -170,7 +182,8 @@ def build_book(
     validate_or_raise(groups)
 
     jinja_env = env(templates_dir)
-    content = "\n".join(render_group(jinja_env, g) for g in groups)
+    content = render_overview(jinja_env)
+    content += "\n" + "\n".join(render_group(jinja_env, g) for g in groups)
     content += "\n" + render_index(jinja_env, groups, palette["size_pills"])
 
     base = jinja_env.get_template("base.html.j2")

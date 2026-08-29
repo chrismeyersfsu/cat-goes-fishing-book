@@ -50,6 +50,9 @@ def _normalize(html: str) -> str:
 
 
 def test_matches_approved_mockup():
+    """The book leads with a full-map overview page the mockup doesn't
+    have (added after the mockup was approved) -- everything from the
+    second page on should still match it exactly."""
     mockup_pages = [_normalize(p) for p in _pages(MOCKUP.read_text())]
     book_pages = [
         _normalize(p)
@@ -61,6 +64,12 @@ def test_matches_approved_mockup():
             )
         )
     ]
-    assert len(book_pages) == len(mockup_pages) == 7
-    for i, (mock, book) in enumerate(zip(mockup_pages, book_pages, strict=True)):
+    assert len(mockup_pages) == 7
+    assert len(book_pages) == 8
+
+    overview, *group_pages = book_pages
+    assert "<h2>The World</h2>" in overview
+    assert 'viewBox="0 0 1568 251"' in overview
+
+    for i, (mock, book) in enumerate(zip(mockup_pages, group_pages, strict=True)):
         assert book == mock, f"page {i} does not match the approved mockup"

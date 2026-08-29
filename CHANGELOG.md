@@ -25,3 +25,5 @@ All notable user-facing changes to this project. Format follows
   into `data/`; a golden test confirms the render matches the approved
   mockup page-for-page. The other 173 fish (Phase 3) still aren't in
   `data/` yet.
+- The book now opens with a full, uncropped map page (the whole
+  1568x251 world, not a per-group slice) before the group pages.
