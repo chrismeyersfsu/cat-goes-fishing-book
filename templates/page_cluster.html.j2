@@ -1,0 +1,30 @@
+{% import "partials/badges.html.j2" as m %}
+{% import "partials/entry_card.html.j2" as c with context %}
+<div class="page">
+  <div class="tape"></div>
+  <div class="banner">
+    <div><h2>{{ group.title }}</h2><div class="sub">{{ group.subtitle }}</div></div>
+    <div class="badge-col">{{ m.badges(group) }}</div>
+  </div>
+  <div class="cast-strip">🎯 <b>Cast:</b>&nbsp; {{ group.cast }}</div>
+  <div class="l3-body">
+    <div class="l3-map"><div class="map-frame" style="{{ map_frame_style }}">
+      <svg class="map-crop" viewBox="{{ group.view_box }}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{{ group.map_alt }}">
+<use href="#mapTerrain"/>
+{{ map_markers }}
+</svg>
+      <div class="cap">{{ group.map_caption }}</div>
+    </div></div>
+    <div class="l3-maplabel">{{ group.map_label }}</div>
+    <div class="{{ grid_class }}">
+      {% for f in fish %}{{ c.entry_card(f, start_index + loop.index0) }}{% endfor %}
+    </div>
+    {% if show_gear %}
+    <div class="dex-footer">
+      <ul class="gear-list" style="flex:1; min-width:200px;">
+        {{ m.gear_list(group.shared_gear) }}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</div>

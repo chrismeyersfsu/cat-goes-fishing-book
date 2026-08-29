@@ -1,0 +1,22 @@
+- key: underfin
+  name: Underfin
+  size: secret
+  coords: [[516, 198]]
+  color: "#1a1a1a"
+  about: >-
+    A sleek, all-black fish hiding beneath the map itself, at the very
+    bottom of The Empty cave. It doesn't strike at a normal drop — it
+    has to be coaxed out with a dragging motion along the cave floor.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Secret Fish" }
+    - { icon: "📍", label: "Zone", value: "The Empty, floor" }
+    - { icon: "👁️", label: "Spotted", value: "rarely, easy to miss entirely" }
+  portrait:
+    body_color: "#2b2b33"
+    shape: torpedo
+    tail: fork
+    dorsal: spiky
+    eye: sharp
+    mouth: flat
+    tail_color: "#161619"
+    belly: "#454550"

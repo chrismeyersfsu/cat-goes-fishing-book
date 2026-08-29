@@ -1,0 +1,150 @@
+# Pin offsets alternate sign here (unlike every other cluster group,
+# which is a uniform +16): TigerShark/PrimalTurgeon/Swordfish sit near
+# the top of this map's viewBox, so their number pin goes above the X
+# instead of below. Reproduced from the mockup's exact pin positions,
+# not derived from a general rule.
+- key: shark
+  name: Shark
+  size: huge
+  coords: [[110, 195]]
+  pin_dy: 16
+  about: >-
+    Patrols the lower mid-ocean and deep water off-shore. Won't touch
+    bait — only live or freshly-caught fish will do.
+  stats:
+    - { icon: "🐟", value: "Live fish only" }
+    - { icon: "🪝", value: "Huge hook" }
+  portrait:
+    body_color: "#8b98a3"
+    shape: torpedo
+    tail: crescent
+    dorsal: triangle
+    eye: sharp
+    mouth: open
+    tail_color: "#6c7a86"
+
+- key: tigershark
+  name: Tiger Shark
+  size: huge
+  coords: [[185, 105]]
+  pin_dy: -16
+  about: >-
+    Gray and striped, cruising the mid-ocean range. One of the more
+    forgiving huge fish to land.
+  stats:
+    - { icon: "🪱", value: "Large bait" }
+    - { icon: "🪝", value: "Huge hook" }
+  portrait:
+    body_color: "#9aa6ab"
+    shape: torpedo
+    tail: crescent
+    dorsal: triangle
+    eye: sharp
+    mouth: open
+    stripes: { color: "#4a545a", n: 4 }
+    tail_color: "#79868c"
+
+- key: primalturgeon
+  name: Primal Turgeon
+  size: huge
+  coords: [[145, 80]]
+  pin_dy: -16
+  about: >-
+    A leaner, spikier relative of the off-shore Turgeon, marked with
+    green stripes. Holds out for live bait only, same as Shark.
+  stats:
+    - { icon: "🐟", value: "Live fish only" }
+    - { icon: "🪝", value: "Huge hook" }
+  portrait:
+    body_color: "#5c8a4a"
+    shape: diamond
+    tail: fork
+    dorsal: spiky
+    eye: sharp
+    mouth: open
+    stripes: { color: "#3a6030", n: 3 }
+    tail_color: "#3d6030"
+
+- key: swordfish
+  name: Swordfish
+  size: huge
+  coords: [[300, 85]]
+  pin_dy: -16
+  about: >-
+    Big, blue, with a long spear-like nose in the shallows before the
+    Reef wall. No bait needed — just a Puff on the hook for it to
+    spear.
+  stats:
+    - { icon: "🎣", value: "Puff only" }
+  portrait:
+    body_color: "#3b6ea5"
+    shape: torpedo
+    tail: crescent
+    dorsal: triangle
+    eye: sharp
+    mouth: flat
+    snout: sword
+    tail_color: "#2c5480"
+
+- key: noctis
+  name: Noctis
+  size: huge
+  coords: [[230, 195]]
+  pin_dy: 16
+  about: >-
+    Only surfaces at night or during storms, swooping along the deep
+    water in a steady up-and-down pattern. Fast, with a tiny aggro
+    range, and prone to snapping at your line while you're busy landing
+    something else.
+  stats:
+    - { icon: "🪱", value: "Large bait" }
+    - { icon: "🌙", value: "Night/storms only" }
+  portrait:
+    body_color: "#3a3560"
+    shape: torpedo
+    tail: fork
+    dorsal: spiky
+    eye: glow
+    mouth: flat
+    tail_color: "#26224a"
+
+- key: moga
+  name: Moga
+  size: huge
+  coords: [[270, 205]]
+  pin_dy: 16
+  about: >-
+    Quick and elusive, sticking to the darkest depths of the Open Ocean
+    — but only shows itself if your hook has no light attached.
+  stats:
+    - { icon: "🪱", value: "Large bait" }
+    - { icon: "💡", value: "No lightbulb" }
+  portrait:
+    body_color: "#2f4a45"
+    shape: elongated
+    tail: fork
+    dorsal: spiky
+    eye: sharp
+    mouth: flat
+    tail_color: "#1e332f"
+
+- key: maw
+  name: Maw
+  size: huge
+  coords: [[90, 215]]
+  pin_dy: 16
+  about: >-
+    Usually found stuck mid-bite on a bulbfish at the very bottom of
+    the bulbfish layer. Hook the bulbfish it's chasing and Maw follows
+    along for an easy catch.
+  stats:
+    - { icon: "🪱", value: "Hook the bulbfish" }
+  portrait:
+    body_color: "#8a7358"
+    shape: round
+    tail: fan
+    dorsal: triangle
+    eye: sharp
+    mouth: open
+    belly: "#b5a37e"
+    tail_color: "#6c583f"

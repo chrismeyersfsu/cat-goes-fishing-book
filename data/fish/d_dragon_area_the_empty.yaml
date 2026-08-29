@@ -1,0 +1,81 @@
+- key: dragonfish
+  name: Dragonfish
+  size: large
+  coords: [[455, 62]]
+  pin_dy: 16
+  about: >-
+    Shaped like a dragon's head, facing out toward the Dragon Area from
+    the right side of the Reef.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Large" }
+  portrait:
+    body_color: "#7a3b3b"
+    shape: diamond
+    tail: fan
+    dorsal: spiky
+    eye: sharp
+    mouth: open
+    snout: dragon
+    tail_color: "#5c2626"
+
+- key: carver
+  name: Carver
+  size: small
+  coords: [[495, 150]]
+  pin_dy: 16
+  about: >-
+    The default catch of The Empty — drop a hook straight down into the
+    basin and Carver is usually the only thing that bites.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any" }
+  portrait:
+    body_color: "#8a9a7a"
+    shape: oval
+    tail: fan
+    dorsal: triangle
+    eye: cute
+    mouth: smile
+    belly: "#b8c7a4"
+
+- key: conpas
+  name: Conpas
+  size: small
+  coords: [[590, 218]]
+  pin_dy: 16
+  about: >-
+    Gray-bodied with a shiny, pointed nose like a compass needle —
+    fittingly, Conpas points toward Goldfish. Sits stationary on the
+    Dragon-zone rockbed.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small" }
+    - { icon: "⚓", value: "Sinker + Flick helps" }
+  portrait:
+    body_color: "#9aa5ac"
+    shape: elongated
+    tail: small
+    dorsal: triangle
+    eye: sharp
+    mouth: flat
+    snout: point
+    tail_color: "#7c8890"
+
+- key: ghast
+  name: Ghast
+  size: medium
+  coords: [[625, 195]]
+  pin_dy: 16
+  about: >-
+    Found on the far right edge of the Dragon Area, just short of the
+    Silo dropoff. Hugs the seafloor — some re-casting may be needed.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+  portrait:
+    body_color: "#8fd6c9"
+    shape: round
+    tail: fan
+    dorsal: none
+    eye: closed
+    mouth: flat
+    glow: true
+    tail_color: "#69b5a7"
+    pectoral: false

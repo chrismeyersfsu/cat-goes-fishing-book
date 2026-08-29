@@ -1,0 +1,8 @@
+{% import "partials/badges.html.j2" as m %}
+{% macro entry_card(f, n) -%}
+<div class="entry-card">
+  <div class="fish-pic">{{ fish_pic(f) }}</div><div class="head"><div class="pin">{{ n }}</div>{{ legend_x(f.color) }}<h5>{{ f.name }}</h5></div>
+  <p>{{ f.about }}</p>
+  <div class="stat-row">{{ m.stat_row(f.stats) }}</div>
+</div>
+{%- endmacro %}

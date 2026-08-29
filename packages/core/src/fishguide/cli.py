@@ -5,23 +5,20 @@ and file I/O here; keep the importable modules pure.
 """
 
 import argparse
-import shutil
 from pathlib import Path
 
-MOCKUP = Path("reference/design_preview.html")
+from . import render
+
 BOOK = Path("build/book.html")
 
 
 def build() -> Path:
-    """Write build/book.html. Until the data-driven renderer in PLAN.md
-    Phase 1 exists, this republishes the approved mockup — the only
-    thing that currently qualifies as "the book" — so CI has something
-    real to hand back as an artifact. Swap this for render.py's output
-    once Phase 1 lands."""
-    if not MOCKUP.exists():
-        raise FileNotFoundError(f"{MOCKUP} not found; run from the repo root")
+    """Write build/book.html from data/ + templates/ (see render.py).
+    Phase 1 has only the 5 demo groups from PLAN.md; Phase 3 adds the
+    rest of the 178-fish roster to data/."""
+    html = render.build_book()
     BOOK.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(MOCKUP, BOOK)
+    BOOK.write_text(html)
     return BOOK
 
 

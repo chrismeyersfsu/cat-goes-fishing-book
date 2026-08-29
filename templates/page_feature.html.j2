@@ -1,0 +1,38 @@
+{% import "partials/badges.html.j2" as m %}
+<div class="page">
+  <div class="tape"></div>
+  <div class="banner">
+    <div><h2>{{ group.title }}</h2><div class="sub">{{ group.subtitle }}</div></div>
+    <div class="badge-col">{{ m.badges(group) }}</div>
+  </div>
+  <div class="cast-strip">🎯 <b>Cast:</b>&nbsp; {{ group.cast }}</div>
+  <div class="l1-body">
+    <div class="l1-map"><div class="map-frame">
+      <svg class="map-crop" viewBox="{{ group.view_box }}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{{ group.map_alt }}">
+<use href="#mapTerrain"/>
+{{ map_markers }}
+</svg>
+      <div class="cap">{{ group.map_caption }}</div>
+    </div></div>
+    <div class="l1-text">
+      <div class="fish-pic" style="max-width:220px;">{{ fish_pic(f) }}</div>
+      <div>
+        <h3 class="section-h">About</h3>
+        <p class="desc">{{ f.about }}</p>
+      </div>
+      {% if group.special_instructions %}
+      <div>
+        <h3 class="section-h">Special Instructions</h3>
+        <p class="instr">{{ group.special_instructions }}</p>
+      </div>
+      {% endif %}
+      <div>
+        <h3 class="section-h">Gear Up</h3>
+        <ul class="gear-list">
+          {{ m.gear_list(group.shared_gear) }}
+        </ul>
+      </div>
+      <div class="stat-row" style="margin-top:2px;">{{ m.stat_row(f.stats) }}</div>
+    </div>
+  </div>
+</div>

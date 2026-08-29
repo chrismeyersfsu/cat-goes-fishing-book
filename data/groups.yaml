@@ -1,0 +1,128 @@
+# The book's groups, in reading order. Phase 1 has only the 5 demo
+# groups from reference/design_preview.html, hand-transcribed for
+# parity; Phase 3 adds the rest of fish_grouping_scheme.md's ~64.
+#
+# path.points/start_gap/end_gap and every fish coords/pin_dy value
+# below were reverse-engineered from the mockup's rendered marker SVG
+# (not eyeballed) -- see the golden test for the check that they still
+# reproduce it byte-for-byte.
+
+- id: a_trick_and_treat
+  title: "Trick & Treat"
+  tier: A
+  layout: duo
+  subtitle: "Large Fish · Halloween Pair"
+  badges:
+    - { text: "Large Fish", kind: cat }
+    - { text: "Hard", kind: diff-hard }
+  cast: "Hook Trick above the Reef wall on Halloween night, then lead it across to the surface above the Silo."
+  view_box: "365 0 380 251"
+  map_caption: "Reef wall (Trick) — dashed lure path — Above Silo (Treat)"
+  map_alt: "Map slice showing the path from the Reef wall (Trick) across to above the Silo (Treat)"
+  about: >-
+    Trick only appears on Halloween night — set your clock to 12:00 AM,
+    October 31st, and watch for the "Happy Halloween!" prompt. Treat
+    doesn't exist at all until you personally deliver Trick to the
+    right patch of water above the Silo.
+  special_instructions: >-
+    Catch Trick with medium bait, but don't bank it yet. Lure it the
+    whole way across the map to the upper sea above the Silo — right
+    where your sonar zooms in, under the big surface cluster. Treat
+    only appears once Trick arrives there. Clearing out the larger
+    surface fish first makes the trip a lot less chaotic.
+  shared_gear:
+    - { icon: "🪱", text: "Medium bait", required: true }
+    - { icon: "🪝", text: "Flick attachment" }
+    - { icon: "📅", text: "Date set to Oct 31, 12:00 AM", required: true }
+  path:
+    points: [[400, 25], [480, 45], [560, 35], [630, 25], [695, 20]]
+    start_gap: 11
+    end_gap: 11
+
+- id: b_silo_depths_i
+  title: "Silo Depths I"
+  tier: B
+  layout: cluster
+  subtitle: "Medium Fish · Five Entries"
+  badges:
+    - { text: "Medium Fish", kind: cat }
+    - { text: "Easy", kind: diff-easy }
+  cast: "Position over the Silo and work your line from mid-depth down to the very bottom."
+  view_box: "640 0 200 251"
+  map_caption: "Above the Silo — shallow to very deep"
+  map_alt: "Map slice of the water column above the Silo showing five fish at different depths"
+  map_label: "Numbers on the map match the entries below, shallowest to deepest."
+  max_entries_with_map: 5
+  shared_gear:
+    - { icon: "🪱", text: "Medium bait", required: true }
+    - { icon: "⚓", text: "Sinker attachment — helps reach depth fast" }
+
+- id: c_underfin
+  title: "Underfin"
+  tier: C
+  layout: feature
+  subtitle: "Secret Fish · The Empty"
+  badges:
+    - { text: "Secret Fish", kind: cat }
+    - { text: "Hard", kind: diff-hard }
+  cast: "Bottom of The Empty cave, hugging the Cuddlecanth fossil."
+  view_box: "420 0 220 251"
+  map_caption: "Fossil corner (start) → drag right → Underfin bites"
+  map_alt: "Map slice of the bottom of The Empty cave showing the drag path from the fossil to where Underfin bites"
+  special_instructions: >-
+    Hook a small fish on medium bait with a huge hook and Flick
+    equipped. Lower it beside the Cuddlecanth fossil, hugging the left
+    wall near the very bottom of the map. Without reeling up, move your
+    boat left until your sonar shows the line near the far-left corner,
+    then Flick right to free the bait toward the cave's center. If your
+    bait settles mid-cave, you should hear Underfin take the small
+    fish. Re-try if it snaps on the rock instead.
+  shared_gear:
+    - { icon: "🪱", text: "Medium bait + small fish", required: true }
+    - { icon: "🪝", text: "Huge hook", required: true }
+    - { icon: "🎣", text: "Flick attachment", required: true }
+  path:
+    points: [[462, 205], [485, 203], [503, 200], [516, 198]]
+    start_gap: 8
+    end_gap: 10
+
+- id: d_dragon_area_the_empty
+  title: "Dragon Area & The Empty"
+  tier: D
+  layout: cluster
+  subtitle: "Mixed Category · Four Entries"
+  badges:
+    - { text: "Mixed", kind: cat }
+    - { text: "Moderate", kind: diff-mod }
+  cast: "Anywhere between the Reef's far side and the Silo dropoff — each fish keeps to its own corner."
+  view_box: "430 0 260 251"
+  map_caption: "Dragon Area → The Empty basin → Silo dropoff"
+  map_alt: "Map slice of the Dragon Area and The Empty showing four loosely-scattered fish"
+  map_label: "Loosely scattered, not a tight cluster — grouped here for page economy."
+  map_max_width: 420
+  shared_gear:
+    - { icon: "🪱", text: "Large bait", required: true }
+    - { icon: "⚓", text: "Sinker + Flick — recommended for Conpas" }
+
+- id: d_huge_fish_predators
+  title: "Huge-Fish Predators"
+  tier: D
+  layout: cluster
+  subtitle: "Huge Fish · Seven Entries"
+  badges:
+    - { text: "Huge Fish", kind: cat }
+    - { text: "Moderate", kind: diff-mod }
+  cast: "The open ocean and off-shore waters, shallow down to deep — a huge hook covers all seven."
+  view_box: "30 0 320 251"
+  map_caption: "Open Ocean & Off-Shore — full depth range"
+  map_alt: "Wide map slice of the open ocean and off-shore area showing seven huge predator fish at various depths"
+  map_label: >-
+    The widest crop in the book — this whole stretch of open water is
+    one page. Seven fish is too many for full write-ups here, so 1–4
+    stay with the map and 5–7 continue on the next page.
+  map_max_width: 520
+  max_entries_with_map: 4
+  shared_gear:
+    - { icon: "🪱", text: "Large bait", required: true }
+    - { icon: "🪝", text: "Huge hook", required: true }
+    - { icon: "💡", text: "No lightbulb — for Moga only" }

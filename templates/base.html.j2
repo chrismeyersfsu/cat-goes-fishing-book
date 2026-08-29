@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cat Goes Fishing — Field Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f0e1; --paper2: #efe6d0; --ink: #17241a; --ink-soft: #3c4a3d;
+    --deep: #0c3a20; --deep2: #0f4d29; --kelp: #2fae4a; --seafoam: #d9f5d4;
+    --gold: #cf9a3d; --gold-soft: #eddcb3; --coral: #e0512f; --navy: #12496b;
+    --line: rgba(23,36,26,0.14);
+    --shadow: 0 18px 40px -14px rgba(12,58,32,0.35), 0 2px 8px rgba(12,58,32,0.12);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#dcd3ba;
+    background-image: radial-gradient(circle at 15% 10%, rgba(255,255,255,0.35), transparent 45%), radial-gradient(circle at 85% 90%, rgba(255,255,255,0.25), transparent 45%);
+    font-family:'Nunito Sans',sans-serif; color:var(--ink); padding:36px 16px 80px; }
+  .wrap { max-width:900px; margin:0 auto; }
+  .intro { text-align:center; margin-bottom:34px; }
+  .intro .kicker { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#6b5a3a; margin-bottom:8px; }
+  .intro h1 { font-family:'Baloo 2',sans-serif; font-size:32px; color:var(--deep); margin:0 0 10px; }
+  .intro p { max-width:620px; margin:0 auto; font-size:14.5px; line-height:1.6; color:var(--ink-soft); }
+  .layout-tag { font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--deep); margin: 44px 0 6px; display:flex; align-items:center; gap:9px; }
+  .layout-tag .n { background:var(--deep); color:#fff; width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:11px; }
+  .layout-sub { font-size:12.5px; color:var(--ink-soft); font-style:italic; margin:0 0 14px; }
+  .page { background:var(--paper); border-radius:14px; box-shadow:var(--shadow); position:relative; overflow:hidden; border:1px solid rgba(23,36,26,0.08); margin-bottom:28px; }
+  .page::before { content:""; position:absolute; inset:0; background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(23,36,26,0.025) 27px, rgba(23,36,26,0.025) 28px); pointer-events:none; }
+  .tape { position:absolute; top:-10px; left:28px; width:74px; height:26px; background:linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.28)); border:1px solid rgba(255,255,255,0.5); transform:rotate(-4deg); box-shadow:0 4px 10px rgba(0,0,0,0.12); }
+  .banner { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:18px 24px; background:linear-gradient(100deg, var(--deep), var(--deep2) 60%, var(--kelp)); position:relative; z-index:1; }
+  .banner::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:7px; background:repeating-linear-gradient(-45deg, var(--gold) 0 8px, var(--gold-soft) 8px 16px); }
+  .banner h2 { font-family:'Baloo 2',sans-serif; color:#fff; font-size:28px; margin:0; letter-spacing:0.01em; text-shadow:0 2px 0 rgba(0,0,0,0.15); }
+  .banner .sub { font-family:'Space Mono',monospace; color:var(--seafoam); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin-top:3px; opacity:0.9; }
+  .badge-col { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+  .badge { font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap; }
+  .badge.cat { background:var(--seafoam); color:var(--deep); }
+  .badge.diff-easy { background:#cdeccd; color:#1f5c2c; }
+  .badge.diff-mod { background:#f6e2ad; color:#7a5a12; }
+  .badge.diff-hard { background:#f3c3b9; color:#8a2c17; }
+  .cast-strip { display:flex; align-items:center; gap:10px; background:var(--gold-soft); border-top:1px dashed var(--gold); border-bottom:1px dashed var(--gold); padding:9px 24px; font-family:'Space Mono',monospace; font-size:12.5px; color:#6b4e14; position:relative; z-index:1; }
+  .cast-strip b { color:#4a3305; text-transform:uppercase; letter-spacing:0.05em; }
+  .map-crop { width:100%; height:100%; display:block; background:#0c3a20; font-family:'Trebuchet MS','Segoe UI',Verdana,sans-serif; transform:scale(1.045); transform-origin:center; }
+  .map-frame { border:3px solid var(--deep); border-radius:10px; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15); position:relative; background:#0c3a20; line-height:0; }
+  .map-frame .cap { position:absolute; bottom:0; left:0; right:0; background:rgba(12,58,32,0.82); color:var(--seafoam); font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.05em; padding:5px 10px; text-transform:uppercase; }
+  .gear-list { list-style:none; margin:0; padding:0; display:grid; gap:7px; }
+  .gear-list li { display:flex; align-items:center; gap:9px; font-size:13.5px; background:rgba(23,36,26,0.05); border-radius:8px; padding:7px 10px; }
+  .gear-list .ic { font-size:16px; width:20px; text-align:center; }
+  .gear-list .must { margin-left:auto; font-family:'Space Mono',monospace; font-size:9.5px; background:var(--coral); color:#fff; padding:2px 7px; border-radius:999px; letter-spacing:0.04em; }
+  h3.section-h { font-family:'Baloo 2',sans-serif; font-size:14.5px; color:var(--deep); text-transform:uppercase; letter-spacing:0.04em; margin:0 0 9px; display:flex; align-items:center; gap:7px; }
+  h3.section-h::before { content:""; width:16px; height:3px; background:var(--gold); border-radius:2px; display:inline-block; }
+  p.desc { font-size:14px; line-height:1.6; color:var(--ink); margin:0 0 14px; }
+  p.instr { font-size:13.5px; line-height:1.6; color:var(--ink-soft); margin:0; background:rgba(47,174,74,0.08); border-left:3px solid var(--kelp); padding:10px 12px; border-radius:0 8px 8px 0; }
+  .l1-body { position:relative; z-index:1; padding:22px 24px 26px; display:grid; grid-template-columns:1.05fr 0.95fr; gap:26px; }
+  .l1-map .map-frame { aspect-ratio:220/251; }
+  .l1-text { display:flex; flex-direction:column; gap:16px; }
+  @media (max-width:640px) { .l1-body { grid-template-columns:1fr; } }
+  .l2-body { position:relative; z-index:1; padding:22px 24px 26px; }
+  .l2-map .map-frame { aspect-ratio:380/251; max-width:640px; margin:0 auto; }
+  .l2-map { margin-bottom:18px; }
+  .duo-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .duo-card { background:rgba(255,255,255,0.5); border-radius:10px; padding:14px 16px; border:1px solid var(--line); }
+  .duo-card .who { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .duo-x { width:18px; height:18px; display:inline-block; flex-shrink:0; overflow:visible; }
+  .duo-card h4 { font-family:'Baloo 2',sans-serif; margin:0; font-size:16px; color:var(--deep); }
+  .duo-card p { font-size:12.8px; line-height:1.5; margin:0; color:var(--ink-soft); }
+  .shared-gear { margin-top:16px; }
+  @media (max-width:640px) { .duo-grid { grid-template-columns:1fr; } }
+  .l3-body { position:relative; z-index:1; padding:22px 24px 26px; }
+  .l3-map .map-frame { max-width:340px; margin:0 auto 6px; }
+  .l3-maplabel { text-align:center; font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-soft); margin-bottom:18px; }
+  .dex-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .dex-grid.cols4 { grid-template-columns:repeat(4,1fr); }
+  .dex-card { background:rgba(255,255,255,0.55); border:1px solid var(--line); border-radius:10px; padding:10px 8px; text-align:center; }
+  .dex-card .pin { width:22px; height:22px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto 6px; font-family:'Space Mono',monospace; font-size:11px; font-weight:700; border:2px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,0.15); }
+  .dex-card h5 { font-family:'Baloo 2',sans-serif; font-size:12.5px; margin:0 0 4px; color:var(--deep); line-height:1.15; }
+  .dex-card p { font-size:10.8px; line-height:1.35; color:var(--ink-soft); margin:0; }
+  .dex-footer { margin-top:16px; display:flex; gap:18px; flex-wrap:wrap; }
+  @media (max-width:700px) { .dex-grid { grid-template-columns:repeat(2,1fr); } }
+
+  /* ---------- Fuller entry cards (fish write-ups on the same page) ---------- */
+  .entry-card { background:rgba(255,255,255,0.55); border:1px solid var(--line); border-radius:10px; padding:13px 14px; text-align:left; }
+  .entry-card .head { display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+  .entry-card .pin { width:24px; height:24px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Space Mono',monospace; font-size:11px; font-weight:700; border:2px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,0.15); flex-shrink:0; }
+  .entry-card h5 { font-family:'Baloo 2',sans-serif; font-size:14.5px; margin:0; color:var(--deep); }
+  .entry-card p { font-size:11.8px; line-height:1.5; color:var(--ink-soft); margin:0 0 7px; }
+  .entry-card .tip-label { font-family:'Space Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.05em; color:#1f7a3d; font-weight:700; display:block; margin-bottom:2px; }
+  .stat-row { display:flex; gap:10px; flex-wrap:wrap; font-family:'Space Mono',monospace; font-size:9.5px; color:var(--ink-soft); margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); }
+  .stat-row b { color:var(--deep); }
+  .entry-grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media (max-width:700px) { .entry-grid3 { grid-template-columns:repeat(2,1fr); } .dex-grid.cols4 { grid-template-columns:repeat(2,1fr); } }
+  .duo-card .stat-row { font-size:10px; }
+
+  /* ---------- Continuation page (no map, spillover entries) ---------- */
+  .cont-banner { display:flex; align-items:center; gap:10px; padding:16px 24px; background:linear-gradient(100deg, var(--deep), var(--deep2) 60%, var(--kelp)); position:relative; z-index:1; }
+  .cont-banner::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:7px; background:repeating-linear-gradient(-45deg, var(--gold) 0 8px, var(--gold-soft) 8px 16px); }
+  .cont-banner .arrow { font-size:20px; color:var(--seafoam); }
+  .cont-banner h2 { font-family:'Baloo 2',sans-serif; color:#fff; font-size:20px; margin:0; }
+  .cont-banner .sub { font-family:'Space Mono',monospace; color:var(--seafoam); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; opacity:0.9; margin-top:2px; }
+  .l4-body { position:relative; z-index:1; padding:22px 24px 26px; }
+
+  /* ---------- Fish portraits (consistent 4:3 frame everywhere) ---------- */
+  .fish-pic { width:100%; aspect-ratio:4/3; background:linear-gradient(160deg, rgba(255,255,255,0.7), rgba(217,207,176,0.45)); border:1px solid var(--line); border-radius:8px; margin-bottom:9px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .fish-pic svg { width:100%; height:100%; display:block; }
+  .swatch { width:14px; height:14px; flex-shrink:0; display:inline-block; overflow:visible; }
+
+  /* ---------- Fish Index ---------- */
+  .index-body { position:relative; z-index:1; padding:22px 24px 26px; }
+  .index-size-head { display:flex; align-items:center; gap:9px; margin:22px 0 10px; }
+  .index-size-head:first-child { margin-top:0; }
+  .index-size-pill { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; padding:4px 12px; border-radius:999px; font-weight:700; }
+  .index-size-count { font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-soft); }
+  .index-list { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  @media (max-width:640px) { .index-list { grid-template-columns:1fr; } }
+  .index-row { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.55); border:1px solid var(--line); border-radius:8px; padding:6px 10px 6px 6px; border-left:4px solid var(--line); }
+  .index-thumb { width:50px; height:37.5px; flex-shrink:0; border-radius:6px; overflow:hidden; background:linear-gradient(160deg, rgba(255,255,255,0.7), rgba(217,207,176,0.45)); border:1px solid var(--line); }
+  .index-thumb svg { width:100%; height:100%; display:block; }
+  .index-name { font-family:'Baloo 2',sans-serif; font-size:14px; color:var(--deep); flex:1; }
+  .index-page-tag { font-family:'Space Mono',monospace; font-size:10px; background:var(--navy); color:#fff; padding:3px 9px; border-radius:999px; letter-spacing:0.03em; white-space:nowrap; }
+  .tier-flag { position:absolute; top:14px; right:16px; z-index:2; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; background:rgba(255,255,255,0.85); color:var(--deep); padding:4px 10px; border-radius:999px; border:1px solid var(--line); }
+  .footnote { text-align:center; font-size:12px; color:var(--ink-soft); margin-top:46px; padding-top:18px; border-top:1px dashed rgba(23,36,26,0.25); line-height:1.6; }
+  .footnote a { color:var(--deep); }
+</style>
+</head>
+<body>
+<div class="wrap">
+{{ content }}
+  <div class="footnote">
+    Map data traced from the community world map &amp; fishing notes for <i>Cat Goes Fishing</i>.<br>
+    Marker placement is illustrative until checked page-by-page against the full guide before print.
+  </div>
+</div>
+
+{{ map_defs }}
+</body>
+</html>

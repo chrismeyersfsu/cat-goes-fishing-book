@@ -1,0 +1,18 @@
+# Marker color cycle (layout.assign_colors uses this, in fish order,
+# for cluster/roundup groups) and the index's per-size pill styles.
+# Verified against src_seed/color_assign.json.
+marker_colors:
+  - "#e8462c"
+  - "#2b6cd4"
+  - "#d99a1b"
+  - "#7a4fb0"
+  - "#1f9e6d"
+  - "#d94f96"
+  - "#1fa7c9"
+
+size_pills:
+  small: { background: "#d9f5d4", color: "#1f5c2c" }
+  medium: { background: "#eddcb3", color: "#7a5a12" }
+  large: { background: "#cfe0ee", color: "#1d3d5c" }
+  huge: { background: "#12496b", color: "#ffffff" }
+  secret: { background: "#e3d6f2", color: "#4a2a6b" }

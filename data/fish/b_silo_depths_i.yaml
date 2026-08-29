@@ -1,0 +1,102 @@
+- key: bitterfish
+  name: Bitterfish
+  size: medium
+  coords: [[665, 75]]
+  pin_dy: 16
+  about: >-
+    Pale pink and shaped like a gulper eel, drifting through the
+    mid-to-shallow water above the Silo. Bites so readily you'll often
+    hook one without meaning to.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+  portrait:
+    body_color: "#e8b6c4"
+    shape: elongated
+    tail: small
+    dorsal: triangle
+    eye: cute
+    mouth: open
+    tail_color: "#d494a8"
+
+- key: furrow
+  name: Furrow
+  size: medium
+  coords: [[685, 88]]
+  pin_dy: 16
+  about: >-
+    Pale yellow-brown, sharing the same shallow-to-mid band as
+    Bitterfish. Straightforward to spot and land.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+  portrait:
+    body_color: "#c9a86a"
+    shape: oval
+    tail: fan
+    dorsal: triangle
+    eye: cute
+    mouth: smile
+    belly: "#e3cd9c"
+
+- key: tim
+  name: Tim
+  size: medium
+  coords: [[705, 128]]
+  pin_dy: 16
+  about: >-
+    A small, ghostly-white fish that glows faintly in the dark — easy
+    to pick out even at a distance. Sits in the open water just above
+    the Silo.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small" }
+  portrait:
+    body_color: "#f2f7f5"
+    shape: round
+    tail: small
+    dorsal: none
+    eye: glow
+    mouth: flat
+    glow: true
+    tail_color: "#dce8e4"
+    pectoral: false
+
+- key: slimey
+  name: Slimey
+  size: medium
+  coords: [[700, 192]]
+  pin_dy: 16
+  about: >-
+    Pale teal-green, a homebody of the deepest water above the Silo.
+    Head to the very edge of that stretch and drop straight down.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small/Med" }
+    - { icon: "⚓", value: "Sinker helps" }
+  portrait:
+    body_color: "#6fb89a"
+    shape: elongated
+    tail: fork
+    dorsal: triangle
+    eye: sharp
+    mouth: flat
+    tail_color: "#4d9678"
+
+- key: lamby
+  name: Lamby
+  size: medium
+  coords: [[722, 203]]
+  pin_dy: 16
+  about: >-
+    Recognizable by a subtle yellow glow. Swims deep alongside Slimey —
+    just a little further down.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Small/Med" }
+    - { icon: "⚓", value: "Sinker helps" }
+  portrait:
+    body_color: "#e8d477"
+    shape: round
+    tail: small
+    dorsal: none
+    eye: glow
+    mouth: flat
+    glow: true
+    tail_color: "#d1bc55"
+    pectoral: false

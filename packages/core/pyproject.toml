@@ -1,9 +1,9 @@
 [project]
 name = "fishguide"
 version = "0.1.0"
-description = "One-line description of what this package owns"
+description = "Field guide build engine for Cat Goes Fishing"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["jinja2>=3.1", "pyyaml>=6"]
 
 [project.scripts]
 fishguide = "fishguide.cli:main"

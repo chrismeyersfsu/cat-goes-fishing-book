@@ -1,0 +1,45 @@
+- key: trick
+  name: Trick
+  size: large
+  coords: [[400, 25]]
+  color: "#e8462c"
+  about: >-
+    A seasonal fish that only exists on Halloween night. Found just
+    above the Coral Reef wall once the clock strikes midnight on
+    October 31st — the game marks the night with a "Happy Halloween!"
+    pop-up if you're not sure it registered.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Medium" }
+    - { icon: "📅", label: "Timing", value: "Oct 31, 12 AM" }
+  portrait:
+    body_color: "#e8813a"
+    shape: round
+    tail: small
+    dorsal: triangle
+    eye: cute
+    mouth: smile
+    belly: "#f5b26b"
+    tail_color: "#c9601e"
+
+- key: treat
+  name: Treat
+  size: large
+  coords: [[695, 20]]
+  color: "#7a4fb0"
+  about: >-
+    Doesn't spawn on its own. Treat only appears in the surface water
+    above the Silo, and only after Trick has been personally delivered
+    there — a ghostly reward for finishing the trip.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "none, auto-spawns" }
+    - { icon: "📍", label: "Requires", value: "Trick delivered first" }
+  portrait:
+    body_color: "#b79bd6"
+    shape: oval
+    tail: fan
+    dorsal: triangle
+    eye: closed
+    mouth: flat
+    glow: true
+    tail_color: "#9b7ac9"
+    belly: "#dcd0ee"

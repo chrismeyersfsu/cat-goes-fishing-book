@@ -1,0 +1,15 @@
+{% import "partials/badges.html.j2" as m %}
+{% import "partials/entry_card.html.j2" as c with context %}
+<div class="page">
+  <div class="cont-banner"><span class="arrow">↳</span><div><h2>{{ group.title }}</h2><div class="sub">continued · entries {{ range_text }} of {{ total }}</div></div></div>
+  <div class="l4-body">
+    <div class="{{ grid_class }}">
+      {% for f in fish %}{{ c.entry_card(f, start_index + loop.index0) }}{% endfor %}
+    </div>
+    <div class="dex-footer">
+      <ul class="gear-list" style="flex:1; min-width:200px;">
+        {{ m.gear_list(group.shared_gear) }}
+      </ul>
+    </div>
+  </div>
+</div>

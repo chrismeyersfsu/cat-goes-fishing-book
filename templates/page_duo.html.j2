@@ -1,0 +1,39 @@
+{% import "partials/badges.html.j2" as m %}
+<div class="page">
+  <div class="tape"></div>
+  <div class="banner">
+    <div><h2>{{ group.title }}</h2><div class="sub">{{ group.subtitle }}</div></div>
+    <div class="badge-col">{{ m.badges(group) }}</div>
+  </div>
+  <div class="cast-strip">🎯 <b>Cast:</b>&nbsp; {{ group.cast }}</div>
+  <div class="l2-body">
+    <div class="l2-map"><div class="map-frame">
+      <svg class="map-crop" viewBox="{{ group.view_box }}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{{ group.map_alt }}">
+<use href="#mapTerrain"/>
+{{ map_markers }}
+</svg>
+      <div class="cap">{{ group.map_caption }}</div>
+    </div></div>
+    <h3 class="section-h">About</h3>
+    <p class="desc" style="margin-bottom:14px;">{{ group.about }}</p>
+    <div class="duo-grid">
+      {% for f in group.fish %}
+      <div class="duo-card">
+        <div class="fish-pic">{{ fish_pic(f) }}</div><div class="who">{{ legend_x(f.color) }}<h4>{{ f.name }}</h4></div>
+        <p>{{ f.about }}</p>
+        <div class="stat-row">{{ m.stat_row(f.stats) }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% if group.special_instructions %}
+    <h3 class="section-h" style="margin-top:16px;">Special Instructions</h3>
+    <p class="instr">{{ group.special_instructions }}</p>
+    {% endif %}
+    <div class="shared-gear">
+      <h3 class="section-h">Gear Up (shared)</h3>
+      <ul class="gear-list">
+        {{ m.gear_list(group.shared_gear) }}
+      </ul>
+    </div>
+  </div>
+</div>
