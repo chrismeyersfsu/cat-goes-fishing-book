@@ -7,6 +7,7 @@ our own YAML.
 
 from __future__ import annotations
 
+import base64
 from pathlib import Path
 
 import jinja2
@@ -45,8 +46,28 @@ def env(templates_dir: Path = TEMPLATES_DIR) -> jinja2.Environment:
     )
 
 
-def fish_pic(f: Fish) -> str:
-    return art.fish(**f.portrait)
+def _picture_uri(key: str, assets_dir: Path) -> str | None:
+    path = assets_dir / "wiki_fish" / f"{key}.png"
+    if not path.exists():
+        return None
+    b64 = base64.b64encode(path.read_bytes()).decode("ascii")
+    return f"data:image/png;base64,{b64}"
+
+
+def make_fish_pic(assets_dir: Path = ASSETS_DIR):
+    """A real wiki picture (see packages/wiki) beats the procedural
+    portrait when one was downloaded for that fish -- embedded as a
+    data URI so book.html stays a single self-contained file, same as
+    the map defs. Falls back to art.fish() for the few fish the wiki
+    had no picture for (e.g. Treat, Underfin, Maw)."""
+
+    def fish_pic(f: Fish) -> str:
+        uri = _picture_uri(f.key, assets_dir)
+        if uri:
+            return f'<img src="{uri}" alt="{f.name}" loading="lazy">'
+        return art.fish(**f.portrait)
+
+    return fish_pic
 
 
 def legend_x(color: str) -> str:
@@ -97,7 +118,7 @@ def _map_frame_style(group: Group) -> str:
     return style
 
 
-def render_group(jinja_env: jinja2.Environment, group: Group) -> str:
+def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic) -> str:
     globals_ = {"fish_pic": fish_pic, "legend_x": legend_x}
     pages = layout.split_group(group)
     out = []
@@ -156,7 +177,9 @@ def render_overview(jinja_env: jinja2.Environment) -> str:
     return tmpl.render(view_box=FULL_MAP_VIEW_BOX, view_box_w=f"{w:g}")
 
 
-def render_index(jinja_env: jinja2.Environment, groups: list[Group], size_pills: dict) -> str:
+def render_index(
+    jinja_env: jinja2.Environment, groups: list[Group], size_pills: dict, fish_pic
+) -> str:
     by_size = paginate.build_index(groups)
     total = sum(len(v) for v in by_size.values())
     sizes = [
@@ -184,10 +207,11 @@ def build_book(
 
     validate_or_raise(groups)
 
+    fish_pic = make_fish_pic(assets_dir)
     jinja_env = env(templates_dir)
     content = render_overview(jinja_env)
-    content += "\n" + render_index(jinja_env, groups, palette["size_pills"])
-    content += "\n" + "\n".join(render_group(jinja_env, g) for g in groups)
+    content += "\n" + render_index(jinja_env, groups, palette["size_pills"], fish_pic)
+    content += "\n" + "\n".join(render_group(jinja_env, g, fish_pic) for g in groups)
 
     base = jinja_env.get_template("base.html.j2")
     map_defs = (assets_dir / "map_terrain_defs.html").read_text()

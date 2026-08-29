@@ -53,3 +53,8 @@ All notable user-facing changes to this project. Format follows
 - Index page tags now show the destination group's title ("Silo
   Depths I") instead of a tier letter ("Page B"), since the tag is
   also the clickable row's link text.
+- Fish portraits now use the real picture from `assets/wiki_fish/`
+  (see the `fishguide-wiki` package) when one was downloaded for that
+  fish, embedded as a data URI so `book.html` stays one self-contained
+  file. Falls back to the procedural `art.fish()` portrait for the few
+  fish with no wiki picture (currently Treat, Underfin, Maw).

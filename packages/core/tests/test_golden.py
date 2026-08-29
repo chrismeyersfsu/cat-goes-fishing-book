@@ -25,6 +25,11 @@ as intentional, not bugs:
   the tag is also the link text for a clickable row. The tag's
   *content* is intentionally different; this test still checks that
   every fish, size grouping, and marker color matches.
+- Portraits: a fish with a downloaded wiki picture (packages/wiki)
+  renders an `<img>` instead of the mockup's procedural `art.fish()`
+  SVG -- real art beats a placeholder. Picture markup is blanked out
+  before comparing so everything *around* the portrait (name, stats,
+  gear, colors, layout) still gets checked exactly.
 """
 
 from __future__ import annotations
@@ -67,6 +72,10 @@ def _normalize(html: str) -> str:
     # Tag text is title-vs-tier-letter by design (see module docstring);
     # blank it out so the rest of the row still gets compared exactly.
     html = re.sub(r'(<div class="index-page-tag">)[^<]*(</div>)', r"\1\2", html)
+    # Portrait markup (procedural SVG vs a real wiki <img>) is exactly
+    # as different by design; neither has a nested </div> inside it.
+    html = re.sub(r'(<div class="fish-pic"[^>]*>).*?(</div>)', r"\1PIC\2", html)
+    html = re.sub(r'(<div class="index-thumb">).*?(</div>)', r"\1PIC\2", html)
     html = re.sub(r">\s+<", "><", html)
     return re.sub(r"\s+", " ", html).strip()
 
