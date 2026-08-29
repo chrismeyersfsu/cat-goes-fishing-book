@@ -122,4 +122,19 @@ All notable user-facing changes to this project. Format follows
 - The "back to top" link now returns you to wherever you jumped from --
   usually the index row you clicked -- and only falls back to the top
   of the document when there's nowhere to go back to.
+- Sinker, Bomb Stacker, Detonator, and Flick badges/gear now show the
+  game's own black-and-white icon instead of a generic emoji, fetched
+  from the wiki and recolored to the book's ink so they sit with the
+  surrounding text rather than as bright colored tiles (see
+  `assets/game_icons/fetch_game_icons.py`). A fifth icon, Diving Lure,
+  is fetched too but nothing in `data/` uses that emoji yet. These five
+  are the only equipment the wiki draws as one clean, reusable icon;
+  bait, hook, net, and hat emoji are unchanged because the wiki only
+  has per-fish-variant art for those, and an emoji still reads better
+  than a guess.
+- Fish pictures now declare their real image type in the data URI.
+  Fandom serves many of its `.png` files as WebP and `fishwiki
+  download` keeps the wiki's own filename, so every embedded picture
+  was announcing `image/png` over WebP bytes and relying on the
+  browser to sniff past it.
 

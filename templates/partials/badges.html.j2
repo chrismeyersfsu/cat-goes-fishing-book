@@ -3,9 +3,9 @@
 {%- endmacro %}
 
 {% macro gear_list(items) -%}
-{% for g in items %}<li><span class="ic">{{ g.icon }}</span> {{ g.text }}{% if g.required %} <span class="must">required</span>{% endif %}</li>{% endfor %}
+{% for g in items %}<li><span class="ic">{{ icon_html(g.icon) }}</span> {{ g.text }}{% if g.required %} <span class="must">required</span>{% endif %}</li>{% endfor %}
 {%- endmacro %}
 
 {% macro stat_row(stats) -%}
-{% for s in stats %}<span>{{ s.icon }} {% if s.label %}<b>{{ s.label }}:</b> {% endif %}{{ s.value }}</span>{% endfor %}
+{% for s in stats %}<span>{{ icon_html(s.icon) }} {% if s.label %}<b>{{ s.label }}:</b> {% endif %}{{ s.value }}</span>{% endfor %}
 {%- endmacro %}

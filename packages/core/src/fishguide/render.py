@@ -38,21 +38,76 @@ TOTAL_ROSTER = 178
 FULL_MAP_VIEW_BOX = "0 0 1450 251"
 
 
-def env(templates_dir: Path = TEMPLATES_DIR) -> jinja2.Environment:
-    return jinja2.Environment(
+# Emoji -> the real game icon that replaces it (assets/game_icons/<name>.png,
+# see assets/game_icons/fetch_game_icons.py). The wiki only has one clean,
+# reusable icon per upgrade -- not per fish-encounter variant -- for these
+# five pieces of equipment; everything else (bait, hook, net, hat) only has
+# per-variant art, so it stays emoji rather than an approximation. A future
+# fish or group record just uses the emoji as always -- no per-record edits
+# needed for it to pick up the real icon here.
+ICON_MAP = {
+    "⚓": "sinker",
+    "🧱": "bomb_stack",
+    "💣": "detonator",
+    "💥": "detonator",
+    "🎣": "flick",
+    # diving_lure.png is fetched too (see fetch_game_icons.py) but no emoji
+    # in data/ currently means "diving lure" unambiguously, so it has no
+    # entry here yet -- add one if/when a record needs it.
+}
+
+
+def env(templates_dir: Path = TEMPLATES_DIR, assets_dir: Path = ASSETS_DIR) -> jinja2.Environment:
+    jinja_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(templates_dir),
         autoescape=False,
         trim_blocks=True,
         lstrip_blocks=True,
     )
+    jinja_env.globals["icon_html"] = make_icon_html(assets_dir)
+    return jinja_env
 
 
 def _picture_uri(key: str, assets_dir: Path) -> str | None:
     path = assets_dir / "wiki_fish" / f"{key}.png"
     if not path.exists():
         return None
-    b64 = base64.b64encode(path.read_bytes()).decode("ascii")
-    return f"data:image/png;base64,{b64}"
+    raw = path.read_bytes()
+    # Fandom serves plenty of its `.png` files as WebP, and `fishwiki
+    # download` saves the bytes under the name the wiki gave them --
+    # so the extension says nothing about the format. Sniff it, or the
+    # data URI advertises a type it isn't and only a browser willing to
+    # sniff past the header renders it.
+    kind = "webp" if raw[:4] == b"RIFF" and raw[8:12] == b"WEBP" else "png"
+    b64 = base64.b64encode(raw).decode("ascii")
+    return f"data:image/{kind};base64,{b64}"
+
+
+def make_icon_html(assets_dir: Path = ASSETS_DIR):
+    """A Jinja global (registered on the environment in `env()`, not
+    passed per-render, so it reaches badges.html.j2's macros regardless
+    of how a template imports them) that swaps a badge/gear/stat
+    `icon:` emoji for an `<img>` of the real game icon when ICON_MAP
+    has one, embedded as a data URI like make_fish_pic's pictures so
+    book.html stays self-contained. Anything not in ICON_MAP -- which
+    is most icons -- passes through unchanged as the emoji it already
+    was."""
+    uris = {}
+    for emoji, name in ICON_MAP.items():
+        if emoji in uris:
+            continue
+        path = assets_dir / "game_icons" / f"{name}.png"
+        if path.exists():
+            b64 = base64.b64encode(path.read_bytes()).decode("ascii")
+            uris[emoji] = f"data:image/png;base64,{b64}"
+
+    def icon_html(icon: str) -> str:
+        uri = uris.get(icon)
+        if uri:
+            return f'<img class="game-icon" src="{uri}" alt="">'
+        return icon
+
+    return icon_html
 
 
 def make_fish_pic(assets_dir: Path = ASSETS_DIR):
@@ -92,7 +147,13 @@ def _marker_symbol(f: Fish, assets_dir: Path) -> tuple[str, int, int]:
         vw, vh = (int(v) for v in art.FISH_VB.split()[2:])
         return f'<symbol id="fm-{f.key}" viewBox="{art.FISH_VB}">{inner}</symbol>', vw, vh
 
-    im = Image.open(path).convert("RGBA")
+    try:
+        im = Image.open(path).convert("RGBA")
+    except OSError as e:  # pragma: no cover -- an environment problem, not a data one
+        # assets/wiki_fish/ is Git LFS; without `git lfs install` (or
+        # `lfs: true` on a CI checkout) these are pointer stubs, and
+        # PIL's own "cannot identify image file" says nothing about why.
+        raise OSError(f"{path} is not a readable image -- run `git lfs pull`?") from e
     im.thumbnail((MARKER_THUMB_PX, MARKER_THUMB_PX), Image.LANCZOS)
     buf = io.BytesIO()
     im.save(buf, format="PNG", optimize=True)
@@ -306,7 +367,7 @@ def build_book(
     validate_or_raise(groups, assets_dir)
 
     fish_pic = make_fish_pic(assets_dir)
-    jinja_env = env(templates_dir)
+    jinja_env = env(templates_dir, assets_dir)
     content = render_overview(jinja_env)
     content += "\n" + render_index(jinja_env, groups, palette["size_pills"], fish_pic)
     marker_defs, sizes = make_marker_defs(groups, assets_dir)

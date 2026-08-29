@@ -40,6 +40,17 @@ as intentional, not bugs:
 - The map's caption bar (`.cap`, bottom of the frame) is gone -- it
   covered terrain labels on some Phase 3 crops and mostly repeated the
   group's own title/cast text. Blanked out on both sides.
+- Equipment icons that the game itself draws unambiguously (Sinker,
+  Flick, etc. -- see render.py's ICON_MAP) now render as the real game
+  art instead of a generic emoji; b_silo_depths_i, c_underfin,
+  d_dragon_area_the_empty, and d_huge_fish_predators use `⚓`/`🎣` in
+  gear/stats and so are affected (a_trick_and_treat's own "Flick
+  attachment" line uses `🪝`, which isn't one of the five ICON_MAP
+  covers, so it's untouched). Both the mockup's bare emoji and the
+  book's `<img class="game-icon">` collapse to an ICON placeholder
+  before comparing, since the point being checked here is the
+  surrounding text/layout, not which of the two renders the equipment
+  picture.
 
 The index itself is no longer byte-compared against the mockup's
 19-fish preview at all (see test_matches_approved_mockup) -- only
@@ -92,6 +103,14 @@ def _normalize(html: str) -> str:
     # was mostly redundant with the group's own title/cast text anyway
     # -- removed everywhere, including from these two mockup pages.
     html = re.sub(r'<div class="cap">[^<]*</div>', "", html)
+    # Equipment icons the game itself draws unambiguously (see module
+    # docstring) now render as the real game art, not a generic emoji.
+    # Both sides collapse to an ICON placeholder -- the mockup's bare
+    # emoji and the book's <img class="game-icon"> alike -- since this
+    # test cares about the surrounding text/layout, not which of the
+    # two renders the equipment picture.
+    html = re.sub(r'<img class="game-icon"[^>]*>', "ICON", html)
+    html = html.replace("⚓", "ICON").replace("🎣", "ICON")
     # Portrait markup (procedural SVG vs a real wiki <img>) is exactly
     # as different by design; neither has a nested </div> inside it.
     html = re.sub(r'(<div class="fish-pic"[^>]*>).*?(</div>)', r"\1PIC\2", html)
