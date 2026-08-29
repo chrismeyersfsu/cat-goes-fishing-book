@@ -31,6 +31,10 @@ as intentional, not bugs:
 - The little colored "X" beside a duo-card's fish name (`legend_x`)
   was a legend matching it to its map marker's color; moot once every
   marker became the same fixed red, so it was removed entirely.
+- Map markers are the fish's own picture now, not a red X. Both sides
+  collapse to a MARK placeholder so everything else on the map -- the
+  dashed lure path, the numbered pins, the crop -- still compares
+  exactly.
 - Every group page now ends with a "back to top" link (`#top`, back to
   the very start of the document) the mockup has no reason to have.
 - The map's caption bar (`.cap`, bottom of the frame) is gone -- it
@@ -92,6 +96,12 @@ def _normalize(html: str) -> str:
     # as different by design; neither has a nested </div> inside it.
     html = re.sub(r'(<div class="fish-pic"[^>]*>).*?(</div>)', r"\1PIC\2", html)
     html = re.sub(r'(<div class="index-thumb">).*?(</div>)', r"\1PIC\2", html)
+    # Map markers are the fish's own picture now, not a red X -- an X
+    # told you a fish was here, its picture tells you which one. Both
+    # sides collapse to a MARK placeholder so the rest of the map
+    # (dashed path, numbered pins, crop) still compares exactly.
+    html = re.sub(r'<g class="fish-x">.*?</g>', "MARK", html)
+    html = re.sub(r'<g class="fish-marker"[^>]*>.*?</g>', "MARK", html)
     # Marker color is uniform-red-by-design now, not per-fish/per-group
     # (see module docstring); neutralize every hex color so the two
     # schemes don't fail the comparison for reasons that aren't bugs.

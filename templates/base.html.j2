@@ -147,5 +147,33 @@
 </div>
 
 {{ map_defs }}
+<script>
+// The back link normally returns you to wherever you jumped from --
+// usually the index row you clicked -- rather than the top of the
+// document, which is several hundred entries away from it. Falls back
+// to its plain href="#top" when nothing has been jumped from yet
+// (a direct load, or a reader who scrolled here by hand).
+(function () {
+  var origin = null;
+  var links = function () { return document.querySelectorAll('a[data-back]'); };
+  function relabel(text) {
+    links().forEach(function (a) { a.textContent = text; });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    if (a.hasAttribute('data-back')) {
+      if (origin === null) return;  // let href="#top" happen
+      e.preventDefault();
+      window.scrollTo({ top: origin, behavior: 'smooth' });
+      origin = null;
+      relabel('\u2191 Back to top');
+      return;
+    }
+    origin = window.scrollY;
+    relabel('\u2191 Back');
+  });
+})();
+</script>
 </body>
 </html>

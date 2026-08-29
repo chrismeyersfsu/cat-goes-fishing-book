@@ -113,3 +113,13 @@ All notable user-facing changes to this project. Format follows
   wider than the reference crop (e.g. a cross-map cooldown pair like
   Glacier & Magmer) -- otherwise a fixed-size X becomes nearly
   invisible once zoomed out that far.
+- Map markers are the fish itself now, not a red X -- each marker draws
+  that fish's own wiki picture (or, for the handful the wiki has none
+  of, the same procedural portrait its entry card shows), outlined in
+  white so it reads against the dark water. The pictures are embedded
+  once as `<symbol>`s and `<use>`d per marker, so a fish marked at
+  several coordinates doesn't carry several copies of its art.
+- The "back to top" link now returns you to wherever you jumped from --
+  usually the index row you clicked -- and only falls back to the top
+  of the document when there's nowhere to go back to.
+

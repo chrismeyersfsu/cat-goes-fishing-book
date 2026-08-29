@@ -1,32 +1,25 @@
-"""Map marker SVG fragments: X marks, numbered pins, the start dot, and
-dashed lure paths. Coordinates are in the source map's 1568x251 space;
+"""Map marker SVG fragments: the fish-picture marker, numbered pins,
+the start dot, and dashed lure paths. Coordinates are in the source map's 1568x251 space;
 callers crop a viewBox slice per group."""
 
 import math
 
+# Every fish-picture marker shares one white-outline filter (defined
+# once alongside the picture symbols, see render.make_marker_defs) --
+# without it a dark fish sits invisibly on the dark-green water.
+HALO_FILTER_ID = "fish-marker-halo"
 
-def x_mark(x, y, size=7.5, color="#e8462c"):
-    """Colored X with white halo, matches established map marker style."""
-    d = size
+
+def fish_marker(x, y, symbol_id, pic_w, pic_h, size=26.0):
+    """The fish's own picture as its map marker, fitted inside a `size`
+    box on its longest edge and centered on (x, y). Reads as "this
+    fish, here" far more directly than the X this replaced."""
+    scale = size / max(pic_w, pic_h)
+    w, h = pic_w * scale, pic_h * scale
     return (
-        f'<g class="fish-x">'
-        f'<line x1="{x - d:.1f}" y1="{y - d:.1f}" x2="{x + d:.1f}" y2="{y + d:.1f}" stroke="white" stroke-width="4.2" stroke-linecap="round"/>'
-        f'<line x1="{x - d:.1f}" y1="{y + d:.1f}" x2="{x + d:.1f}" y2="{y - d:.1f}" stroke="white" stroke-width="4.2" stroke-linecap="round"/>'
-        f'<line x1="{x - d:.1f}" y1="{y - d:.1f}" x2="{x + d:.1f}" y2="{y + d:.1f}" stroke="{color}" stroke-width="2.2" stroke-linecap="round"/>'
-        f'<line x1="{x - d:.1f}" y1="{y + d:.1f}" x2="{x + d:.1f}" y2="{y - d:.1f}" stroke="{color}" stroke-width="2.2" stroke-linecap="round"/>'
-        f"</g>"
-    )
-
-
-def small_x_mark(x, y, size=6.2, color="#e8462c"):
-    """Smaller X for dex-grid style pages with many markers."""
-    d = size
-    return (
-        f'<g class="fish-x">'
-        f'<line x1="{x - d:.1f}" y1="{y - d:.1f}" x2="{x + d:.1f}" y2="{y + d:.1f}" stroke="white" stroke-width="3.4" stroke-linecap="round"/>'
-        f'<line x1="{x - d:.1f}" y1="{y + d:.1f}" x2="{x + d:.1f}" y2="{y - d:.1f}" stroke="white" stroke-width="3.4" stroke-linecap="round"/>'
-        f'<line x1="{x - d:.1f}" y1="{y - d:.1f}" x2="{x + d:.1f}" y2="{y + d:.1f}" stroke="{color}" stroke-width="1.8" stroke-linecap="round"/>'
-        f'<line x1="{x - d:.1f}" y1="{y + d:.1f}" x2="{x + d:.1f}" y2="{y - d:.1f}" stroke="{color}" stroke-width="1.8" stroke-linecap="round"/>'
+        f'<g class="fish-marker" filter="url(#{HALO_FILTER_ID})">'
+        f'<use href="#{symbol_id}" x="{x - w / 2:.1f}" y="{y - h / 2:.1f}" '
+        f'width="{w:.1f}" height="{h:.1f}"/>'
         f"</g>"
     )
 

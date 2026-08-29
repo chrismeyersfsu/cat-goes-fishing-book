@@ -8,6 +8,7 @@ our own YAML.
 from __future__ import annotations
 
 import base64
+import io
 from pathlib import Path
 
 import jinja2
@@ -70,12 +71,82 @@ def make_fish_pic(assets_dir: Path = ASSETS_DIR):
     return fish_pic
 
 
-REFERENCE_VIEW_BOX_WIDTH = 380  # Trick & Treat's; x_mark's default size=7.5 reads fine at this zoom
+# Long edge of a marker picture in the embedded <symbol>, in pixels.
+# Markers draw at ~26 map units wide and the page renders the map a few
+# times that; 64px keeps them crisp in print without embedding 178 more
+# full-size pictures (the portraits already carry those).
+MARKER_THUMB_PX = 64
+
+
+def _marker_symbol(f: Fish, assets_dir: Path) -> tuple[str, int, int]:
+    """The fish's picture as an SVG <symbol>, plus the pixel size its
+    viewBox uses. A downscaled copy of the wiki picture when there is
+    one, otherwise the same procedural portrait its entry card shows --
+    so every fish gets a picture on the map, none falls back to a mark."""
+    from PIL import Image
+
+    path = assets_dir / "wiki_fish" / f"{f.key}.png"
+    if not path.exists():
+        svg = art.fish(**f.portrait) if f.portrait else art.fish(body_color="#9aa5ac")
+        inner = svg[svg.index(">") + 1 : -len("</svg>")]
+        vw, vh = (int(v) for v in art.FISH_VB.split()[2:])
+        return f'<symbol id="fm-{f.key}" viewBox="{art.FISH_VB}">{inner}</symbol>', vw, vh
+
+    im = Image.open(path).convert("RGBA")
+    im.thumbnail((MARKER_THUMB_PX, MARKER_THUMB_PX), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.save(buf, format="PNG", optimize=True)
+    uri = "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+    symbol = (
+        f'<symbol id="fm-{f.key}" viewBox="0 0 {im.width} {im.height}">'
+        f'<image href="{uri}" width="{im.width}" height="{im.height}"/></symbol>'
+    )
+    return symbol, im.width, im.height
+
+
+def make_marker_defs(groups: list[Group], assets_dir: Path = ASSETS_DIR):
+    """Builds the one <defs> block every map's fish markers reference by
+    id, plus a per-fish size lookup the marker builders need to keep
+    each picture's aspect ratio. Emitting each picture once and
+    `<use>`-ing it keeps a fish marked at several coordinates from
+    carrying that many copies of its own art."""
+    sizes: dict[str, tuple[int, int]] = {}
+    symbols = []
+    for g in groups:
+        for f in g.fish:
+            if f.key in sizes:
+                continue
+            symbol, w, h = _marker_symbol(f, assets_dir)
+            symbols.append(symbol)
+            sizes[f.key] = (w, h)
+    halo = (
+        f'<filter id="{markers.HALO_FILTER_ID}" x="-30%" y="-30%" width="160%" height="160%">'
+        '<feMorphology in="SourceAlpha" operator="dilate" radius="1.1" result="thick"/>'
+        '<feFlood flood-color="#ffffff" flood-opacity="0.95" result="white"/>'
+        '<feComposite in="white" in2="thick" operator="in" result="outline"/>'
+        '<feMerge><feMergeNode in="outline"/><feMergeNode in="SourceGraphic"/></feMerge>'
+        "</filter>"
+    )
+    defs = (
+        '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>'
+        + halo
+        + "".join(symbols)
+        + "</defs></svg>"
+    )
+    return defs, sizes
+
+
+def _fish_marker(f: Fish, sizes: dict, x: float, y: float, size: float) -> str:
+    w, h = sizes[f.key]
+    return markers.fish_marker(x, y, f"fm-{f.key}", w, h, size=size)
+
+
+REFERENCE_VIEW_BOX_WIDTH = 380  # Trick & Treat's; a size-26 marker reads fine at this zoom
 
 
 def _marker_scale(group: Group) -> float:
     """A duo/feature map's view_box can be much wider than the reference
-    (e.g. a cross-map cooldown pair) -- x_mark's fixed size becomes
+    (e.g. a cross-map cooldown pair) -- a fixed-size marker becomes
     nearly invisible once zoomed out far enough. Scale it up so a
     marker covers roughly the same fraction of the frame regardless of
     how wide the crop is."""
@@ -83,7 +154,7 @@ def _marker_scale(group: Group) -> float:
     return max(1.0, w / REFERENCE_VIEW_BOX_WIDTH)
 
 
-def _duo_map(group: Group) -> str:
+def _duo_map(group: Group, sizes: dict) -> str:
     parts = []
     if group.path:
         parts.append(
@@ -92,11 +163,11 @@ def _duo_map(group: Group) -> str:
     scale = _marker_scale(group)
     for f in group.fish:
         for x, y in f.coords:
-            parts.append(markers.x_mark(x, y, size=7.5 * scale, color=f.color))
+            parts.append(_fish_marker(f, sizes, x, y, 26 * scale))
     return "".join(parts)
 
 
-def _feature_map(group: Group) -> str:
+def _feature_map(group: Group, sizes: dict) -> str:
     parts = []
     if group.path:
         parts.append(
@@ -106,15 +177,17 @@ def _feature_map(group: Group) -> str:
     scale = _marker_scale(group)
     f = group.fish[0]
     for x, y in f.coords:
-        parts.append(markers.x_mark(x, y, size=7.5 * scale, color=f.color))
+        parts.append(_fish_marker(f, sizes, x, y, 26 * scale))
     return "".join(parts)
 
 
-def _cluster_map(fish: list[Fish], start_index: int) -> str:
+def _cluster_map(fish: list[Fish], start_index: int, sizes: dict) -> str:
+    # Smaller than a duo/feature marker: a cluster map carries up to a
+    # dozen of these plus their numbered pins on one crop.
     parts = []
     for i, f in enumerate(fish, start=start_index):
         x, y = f.coords[0]
-        parts.append(markers.small_x_mark(x, y, color=f.color))
+        parts.append(_fish_marker(f, sizes, x, y, 20))
         parts.append(markers.numbered_pin(x, y + f.pin_dy, i))
     return "".join(parts)
 
@@ -135,7 +208,7 @@ def _map_frame_style(group: Group) -> str:
     return style
 
 
-def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic) -> str:
+def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: dict) -> str:
     globals_ = {"fish_pic": fish_pic}
     pages = layout.split_group(group)
     out = []
@@ -145,7 +218,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic) -> str:
             out.append(
                 tmpl.render(
                     group=group,
-                    map_markers=_duo_map(group),
+                    map_markers=_duo_map(group, sizes),
                     map_frame_style=_map_frame_style(group),
                     **globals_,
                 )
@@ -156,7 +229,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic) -> str:
                 tmpl.render(
                     group=group,
                     f=group.fish[0],
-                    map_markers=_feature_map(group),
+                    map_markers=_feature_map(group, sizes),
                     map_frame_style=_map_frame_style(group),
                     **globals_,
                 )
@@ -167,7 +240,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic) -> str:
             # The map is shared by the whole group, not just this page's
             # chunk -- a continuation page's later fish still have their
             # numbered pins on the one map that sits on the main page.
-            map_markers = "" if page.is_continuation else _cluster_map(group.fish, 1)
+            map_markers = "" if page.is_continuation else _cluster_map(group.fish, 1, sizes)
             if page.is_continuation:
                 start, end = page.continued_range
                 tmpl = jinja_env.get_template("page_continuation.html.j2")
@@ -236,8 +309,9 @@ def build_book(
     jinja_env = env(templates_dir)
     content = render_overview(jinja_env)
     content += "\n" + render_index(jinja_env, groups, palette["size_pills"], fish_pic)
-    content += "\n" + "\n".join(render_group(jinja_env, g, fish_pic) for g in groups)
+    marker_defs, sizes = make_marker_defs(groups, assets_dir)
+    content += "\n" + "\n".join(render_group(jinja_env, g, fish_pic, sizes) for g in groups)
 
     base = jinja_env.get_template("base.html.j2")
-    map_defs = (assets_dir / "map_terrain_defs.html").read_text()
+    map_defs = (assets_dir / "map_terrain_defs.html").read_text() + marker_defs
     return base.render(content=content, map_defs=map_defs)
