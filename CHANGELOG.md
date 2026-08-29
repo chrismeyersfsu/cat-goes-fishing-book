@@ -79,3 +79,9 @@ All notable user-facing changes to this project. Format follows
   off-screen via `preserveAspectRatio="slice"`. Map captions also
   truncate with an ellipsis instead of wrapping and overlapping when
   they're too long for a narrow crop.
+- Removed the small colored "X" that sat next to a fish's name on
+  duo/entry cards -- it used to match a fish to its map marker's
+  color, which stopped meaning anything once every marker became one
+  fixed red.
+- Every group page now ends with a "↑ Back to top" link back to the
+  start of the document.

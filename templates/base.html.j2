@@ -62,7 +62,6 @@
   .duo-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
   .duo-card { background:rgba(255,255,255,0.5); border-radius:10px; padding:14px 16px; border:1px solid var(--line); }
   .duo-card .who { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-  .duo-x { width:18px; height:18px; display:inline-block; flex-shrink:0; overflow:visible; }
   .duo-card h4 { font-family:'Baloo 2',sans-serif; margin:0; font-size:16px; color:var(--deep); }
   .duo-card p { font-size:12.8px; line-height:1.5; margin:0; color:var(--ink-soft); }
   .shared-gear { margin-top:16px; }
@@ -124,6 +123,9 @@
   .tier-flag { position:absolute; top:14px; right:16px; z-index:2; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; background:rgba(255,255,255,0.85); color:var(--deep); padding:4px 10px; border-radius:999px; border:1px solid var(--line); }
   .footnote { text-align:center; font-size:12px; color:var(--ink-soft); margin-top:46px; padding-top:18px; border-top:1px dashed rgba(23,36,26,0.25); line-height:1.6; }
   .footnote a { color:var(--deep); }
+  .back-to-top { text-align:right; margin-top:14px; }
+  .back-to-top a { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none; }
+  .back-to-top a:hover { color:var(--deep); text-decoration:underline; }
 
   /* ---------- Print: one .page per sheet, no screen-only chrome ---------- */
   @media print {
@@ -131,12 +133,12 @@
     .wrap { max-width:none; }
     .page { break-after:page; box-shadow:none; border:none; border-radius:0; margin-bottom:0; }
     .page::before, .tape { display:none; }
-    .footnote { display:none; }
+    .footnote, .back-to-top { display:none; }
     .entry-card, .duo-card, .dex-card, .index-row { break-inside:avoid; }
   }
 </style>
 </head>
-<body>
+<body id="top">
 <div class="wrap">
 {{ content }}
   <div class="footnote">

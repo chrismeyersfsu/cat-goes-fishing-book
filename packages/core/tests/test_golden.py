@@ -28,6 +28,11 @@ as intentional, not bugs:
   in `stroke=`/`border-left-color:` are blanked out before comparing
   for the same reason the portrait markup is -- deliberately different
   content, not a regression in anything structural around it.
+- The little colored "X" beside a duo-card's fish name (`legend_x`)
+  was a legend matching it to its map marker's color; moot once every
+  marker became the same fixed red, so it was removed entirely.
+- Every group page now ends with a "back to top" link (`#top`, back to
+  the very start of the document) the mockup has no reason to have.
 
 The index itself is no longer byte-compared against the mockup's
 19-fish preview at all (see test_matches_approved_mockup) -- only
@@ -84,6 +89,16 @@ def _normalize(html: str) -> str:
     # schemes don't fail the comparison for reasons that aren't bugs.
     html = re.sub(r'stroke="#[0-9a-fA-F]{6}"', 'stroke="#COLOR"', html)
     html = re.sub(r"border-left-color:#[0-9a-fA-F]{6}", "border-left-color:#COLOR", html)
+    # The little colored "X" beside a duo-card's name was a legend
+    # matching it to its map marker's color -- moot now that every
+    # marker is the same fixed red, so it was removed. Strip it from
+    # the mockup side (the book never emits it anymore).
+    html = re.sub(r'<svg class="duo-x"[^>]*>.*?</svg>', "", html)
+    # Every group page now ends with a "back to top" link the mockup
+    # has no reason to have (a 5-page preview needs no such nav).
+    # Feature layout wraps it to span both grid columns; strip both.
+    html = re.sub(r'<div class="back-to-top">.*?</div>', "", html)
+    html = re.sub(r'<div style="grid-column:1/-1;"></div>', "", html)
     html = re.sub(r">\s+<", "><", html)
     return re.sub(r"\s+", " ", html).strip()
 

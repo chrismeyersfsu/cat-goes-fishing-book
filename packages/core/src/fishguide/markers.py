@@ -72,14 +72,3 @@ def dashed_path(points, start_gap=0, end_gap=0):
     halo = f'<path d="{d}" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>'
     dash = f'<path d="{d}" fill="none" stroke="#000000" stroke-width="2.1" stroke-dasharray="5 4.5" stroke-linecap="round" stroke-linejoin="round"/>'
     return halo + dash
-
-
-def legend_x(color, size=18):
-    return (
-        f'<svg class="duo-x" viewBox="0 0 20 20" aria-hidden="true">'
-        f'<line x1="4" y1="4" x2="16" y2="16" stroke="white" stroke-width="5" stroke-linecap="round"/>'
-        f'<line x1="4" y1="16" x2="16" y2="4" stroke="white" stroke-width="5" stroke-linecap="round"/>'
-        f'<line x1="4" y1="4" x2="16" y2="16" stroke="{color}" stroke-width="2.6" stroke-linecap="round"/>'
-        f'<line x1="4" y1="16" x2="16" y2="4" stroke="{color}" stroke-width="2.6" stroke-linecap="round"/>'
-        f"</svg>"
-    )

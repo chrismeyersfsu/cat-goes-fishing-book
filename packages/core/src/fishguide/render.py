@@ -70,10 +70,6 @@ def make_fish_pic(assets_dir: Path = ASSETS_DIR):
     return fish_pic
 
 
-def legend_x(color: str) -> str:
-    return markers.legend_x(color)
-
-
 def _duo_map(group: Group) -> str:
     parts = []
     if group.path:
@@ -125,7 +121,7 @@ def _map_frame_style(group: Group) -> str:
 
 
 def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic) -> str:
-    globals_ = {"fish_pic": fish_pic, "legend_x": legend_x}
+    globals_ = {"fish_pic": fish_pic}
     pages = layout.split_group(group)
     out = []
     for page in pages:

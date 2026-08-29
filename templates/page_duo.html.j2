@@ -19,7 +19,7 @@
     <div class="duo-grid">
       {% for f in group.fish %}
       <div class="duo-card">
-        <div class="fish-pic">{{ fish_pic(f) }}</div><div class="who">{{ legend_x(f.color) }}<h4>{{ f.name }}</h4></div>
+        <div class="fish-pic">{{ fish_pic(f) }}</div><div class="who"><h4>{{ f.name }}</h4></div>
         <p>{{ f.about }}</p>
         <div class="stat-row">{{ m.stat_row(f.stats) }}</div>
       </div>
@@ -35,5 +35,6 @@
         {{ m.gear_list(group.shared_gear) }}
       </ul>
     </div>
+    {% include "partials/back_to_top.html.j2" %}
   </div>
 </div>
