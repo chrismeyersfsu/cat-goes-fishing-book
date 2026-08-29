@@ -1,38 +1,36 @@
-# python-monorepo-template
+# cat-goes-fishing-book
 
-A uv workspace monorepo, stubbed and ready for a new Python project:
-one lockfile, one virtualenv, small installable packages under
-`packages/`, each owning a single concern. Structure follows the
-portable patterns in `caseworkflow/docs/patterns/` (workspace layout,
-conventions, ci-release); the heavier patterns attach later as the
-project earns them.
+A printed, Pokémon-handbook-style field guide for the game *Cat Goes
+Fishing*: 178 fish organized onto themed map pages, each with the
+world-map crop marking every fish, per-fish entries with generated
+portrait art, and a size-organized index. See `PLAN.md` for the full
+build plan (data model, layouts, validation rules, phases).
+
+uv workspace monorepo — one lockfile, one virtualenv, small installable
+packages under `packages/`. Structure follows the portable patterns in
+`caseworkflow/docs/patterns/` (workspace layout, conventions,
+ci-release).
+
+## Layout
+
+| Piece | Where |
+|---|---|
+| Build plan | `PLAN.md` |
+| Approved mockup, fish grouping data, source guide text | `reference/` |
+| World-map SVG defs | `assets/` |
+| Working prototypes for portrait art + map markers (to be ported into `packages/core/src/fishguide/`) | `src_seed/` |
+| The `fishguide` package (build engine + CLI) | `packages/core/` |
 
 ## Use it
 
 ```
-gh repo create <name> --private --template chrismeyersfsu/python-monorepo-template --clone
-cd <name>
-./rename.sh <name>          # replaces the myproj placeholder, locks, hooks, self-deletes
-./packages/core/ci.sh       # green from the first commit
+uv sync
+./packages/core/ci.sh       # ruff + pytest
+uv run fishguide            # CLI stub — see PLAN.md for the intended commands
 ```
-
-## What's stubbed
-
-| Piece | Where |
-|---|---|
-| Workspace root: members, dev group, ruff config | `pyproject.toml` |
-| One package, src layout, hatchling, CLI via `[project.scripts]` | `packages/core/` |
-| Per-package CI script (sync, ruff over all packages, pytest) | `packages/core/ci.sh` |
-| Per-package release script (tag `core-vX.Y.Z` → wheel → GitHub release) | `packages/core/release.sh` |
-| Thin path-filtered workflows calling the scripts | `.github/workflows/` |
-| Pre-commit hook (fast half of ci.sh) | `.githooks/pre-commit` |
-| Test stub showing the HTTP-at-one-seam faking convention | `packages/core/tests/` |
-| Changelog (Keep a Changelog) and scoped agent instructions | `CHANGELOG.md`, `CLAUDE.md` |
 
 ## Conventions baked in
 
-- Distribution names use dashes (`myproj-core`), import names use
-  underscores (`myproj_core`).
 - Test-only dependencies go in `[dependency-groups] dev`, never in
   `dependencies` — runtime metadata stays honest.
 - CLIs are `[project.scripts]` entries; `uv run <name>` is the only
@@ -46,7 +44,5 @@ cd <name>
 Add a package per new concern (`packages/<concern>/`, copy `core`'s
 shape, add it to the new package's workflow paths). When the import
 graph needs enforcing, add a devtools package with import-linter
-contracts; when orchestrators need extensions, use entry points; see
-the pattern docs for storage (single-file SQLite Store), telemetry
-(fail-safe OTel leaf package), and deployment (one image, systemd
-quadlets).
+contracts; see the pattern docs for storage, telemetry, and deployment
+conventions as those needs arise.

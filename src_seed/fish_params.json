@@ -1,0 +1,195 @@
+{
+ "trick": {
+  "body_color": "#e8813a",
+  "shape": "round",
+  "tail": "small",
+  "dorsal": "triangle",
+  "eye": "cute",
+  "mouth": "smile",
+  "belly": "#f5b26b",
+  "tail_color": "#c9601e"
+ },
+ "treat": {
+  "body_color": "#b79bd6",
+  "shape": "oval",
+  "tail": "fan",
+  "dorsal": "triangle",
+  "eye": "closed",
+  "mouth": "flat",
+  "glow": true,
+  "tail_color": "#9b7ac9",
+  "belly": "#dcd0ee"
+ },
+ "bitterfish": {
+  "body_color": "#e8b6c4",
+  "shape": "elongated",
+  "tail": "small",
+  "dorsal": "triangle",
+  "eye": "cute",
+  "mouth": "open",
+  "tail_color": "#d494a8"
+ },
+ "furrow": {
+  "body_color": "#c9a86a",
+  "shape": "oval",
+  "tail": "fan",
+  "dorsal": "triangle",
+  "eye": "cute",
+  "mouth": "smile",
+  "belly": "#e3cd9c"
+ },
+ "tim": {
+  "body_color": "#f2f7f5",
+  "shape": "round",
+  "tail": "small",
+  "dorsal": "none",
+  "eye": "glow",
+  "mouth": "flat",
+  "glow": true,
+  "tail_color": "#dce8e4",
+  "pectoral": false
+ },
+ "slimey": {
+  "body_color": "#6fb89a",
+  "shape": "elongated",
+  "tail": "fork",
+  "dorsal": "triangle",
+  "eye": "sharp",
+  "mouth": "flat",
+  "tail_color": "#4d9678"
+ },
+ "lamby": {
+  "body_color": "#e8d477",
+  "shape": "round",
+  "tail": "small",
+  "dorsal": "none",
+  "eye": "glow",
+  "mouth": "flat",
+  "glow": true,
+  "tail_color": "#d1bc55",
+  "pectoral": false
+ },
+ "underfin": {
+  "body_color": "#2b2b33",
+  "shape": "torpedo",
+  "tail": "fork",
+  "dorsal": "spiky",
+  "eye": "sharp",
+  "mouth": "flat",
+  "tail_color": "#161619",
+  "belly": "#454550"
+ },
+ "dragonfish": {
+  "body_color": "#7a3b3b",
+  "shape": "diamond",
+  "tail": "fan",
+  "dorsal": "spiky",
+  "eye": "sharp",
+  "mouth": "open",
+  "snout": "dragon",
+  "tail_color": "#5c2626"
+ },
+ "carver": {
+  "body_color": "#8a9a7a",
+  "shape": "oval",
+  "tail": "fan",
+  "dorsal": "triangle",
+  "eye": "cute",
+  "mouth": "smile",
+  "belly": "#b8c7a4"
+ },
+ "conpas": {
+  "body_color": "#9aa5ac",
+  "shape": "elongated",
+  "tail": "small",
+  "dorsal": "triangle",
+  "eye": "sharp",
+  "mouth": "flat",
+  "snout": "point",
+  "tail_color": "#7c8890"
+ },
+ "ghast": {
+  "body_color": "#8fd6c9",
+  "shape": "round",
+  "tail": "fan",
+  "dorsal": "none",
+  "eye": "closed",
+  "mouth": "flat",
+  "glow": true,
+  "tail_color": "#69b5a7",
+  "pectoral": false
+ },
+ "shark": {
+  "body_color": "#8b98a3",
+  "shape": "torpedo",
+  "tail": "crescent",
+  "dorsal": "triangle",
+  "eye": "sharp",
+  "mouth": "open",
+  "tail_color": "#6c7a86"
+ },
+ "tigershark": {
+  "body_color": "#9aa6ab",
+  "shape": "torpedo",
+  "tail": "crescent",
+  "dorsal": "triangle",
+  "eye": "sharp",
+  "mouth": "open",
+  "stripes": {
+   "color": "#4a545a",
+   "n": 4
+  },
+  "tail_color": "#79868c"
+ },
+ "primalturgeon": {
+  "body_color": "#5c8a4a",
+  "shape": "diamond",
+  "tail": "fork",
+  "dorsal": "spiky",
+  "eye": "sharp",
+  "mouth": "open",
+  "stripes": {
+   "color": "#3a6030",
+   "n": 3
+  },
+  "tail_color": "#3d6030"
+ },
+ "swordfish": {
+  "body_color": "#3b6ea5",
+  "shape": "torpedo",
+  "tail": "crescent",
+  "dorsal": "triangle",
+  "eye": "sharp",
+  "mouth": "flat",
+  "snout": "sword",
+  "tail_color": "#2c5480"
+ },
+ "noctis": {
+  "body_color": "#3a3560",
+  "shape": "torpedo",
+  "tail": "fork",
+  "dorsal": "spiky",
+  "eye": "glow",
+  "mouth": "flat",
+  "tail_color": "#26224a"
+ },
+ "moga": {
+  "body_color": "#2f4a45",
+  "shape": "elongated",
+  "tail": "fork",
+  "dorsal": "spiky",
+  "eye": "sharp",
+  "mouth": "flat",
+  "tail_color": "#1e332f"
+ },
+ "maw": {
+  "body_color": "#8a7358",
+  "shape": "round",
+  "tail": "fan",
+  "dorsal": "triangle",
+  "eye": "sharp",
+  "mouth": "open",
+  "belly": "#b5a37e",
+  "tail_color": "#6c583f"
+ }
+}

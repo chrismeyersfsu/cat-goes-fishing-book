@@ -1,4 +1,4 @@
-"""Core package for myproj.
+"""Core package for fishguide.
 
 Module docstrings state the module's contract: what it owns, what it
 never does, and the conventions callers rely on. Replace this one when

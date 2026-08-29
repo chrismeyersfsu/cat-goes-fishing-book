@@ -5,9 +5,9 @@ _get/_post) against fixture files; keep parsers pure so they test
 without I/O.
 """
 
-from myproj_core import cli
+from fishguide import cli
 
 
 def test_cli_runs(capsys):
     cli.main([])
-    assert "myproj" in capsys.readouterr().out
+    assert "fishguide" in capsys.readouterr().out

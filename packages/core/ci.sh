@@ -8,5 +8,5 @@ cd "$(dirname "$0")/../.."
 uv sync -q
 uv run ruff check packages/
 uv run ruff format --check packages/
-uv sync -q --package myproj-core
-uv run --package myproj-core pytest packages/core/tests -q
+uv sync -q --package fishguide
+uv run --package fishguide pytest packages/core/tests -q

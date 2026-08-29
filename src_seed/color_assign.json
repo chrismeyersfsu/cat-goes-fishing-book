@@ -1,0 +1,24 @@
+{
+ "silo": {
+  "bitterfish": "#e8462c",
+  "furrow": "#2b6cd4",
+  "tim": "#d99a1b",
+  "slimey": "#7a4fb0",
+  "lamby": "#1f9e6d"
+ },
+ "dragon": {
+  "dragonfish": "#e8462c",
+  "carver": "#2b6cd4",
+  "conpas": "#d99a1b",
+  "ghast": "#7a4fb0"
+ },
+ "huge": {
+  "shark": "#e8462c",
+  "tigershark": "#2b6cd4",
+  "primalturgeon": "#d99a1b",
+  "swordfish": "#7a4fb0",
+  "noctis": "#1f9e6d",
+  "moga": "#d94f96",
+  "maw": "#1fa7c9"
+ }
+}

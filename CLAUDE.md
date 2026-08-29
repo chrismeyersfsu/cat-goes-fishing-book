@@ -1,4 +1,11 @@
-# myproj
+# fishguide
+
+Printed field guide for *Cat Goes Fishing*, built from YAML data +
+Jinja2 templates. Read `PLAN.md` first — it has the data model, the
+four page layouts, the validation rules, and the phase plan this
+project is built in. `reference/` and `src_seed/` are starter
+material (approved mockup, fish roster, prototype art/marker code) to
+port into `packages/core/src/fishguide/`, not the final shape.
 
 uv workspace monorepo; structure follows the patterns in
 `caseworkflow/docs/patterns/` (workspace layout, conventions,
