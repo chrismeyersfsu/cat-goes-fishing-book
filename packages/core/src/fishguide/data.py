@@ -29,6 +29,7 @@ def _fish(d: dict) -> Fish:
         stats=[_stat(s) for s in d.get("stats", [])],
         color=d.get("color", MARKER_COLOR),
         pin_dy=d.get("pin_dy", 16),
+        on_land=d.get("on_land", False),
     )
 
 
@@ -62,6 +63,8 @@ def load_groups(data_dir: Path = DATA_DIR) -> list[Group]:
                 about=d.get("about"),
                 map_label=d.get("map_label"),
                 map_max_width=d.get("map_max_width"),
+                label_crop_ok=d.get("label_crop_ok", False),
+                path_crosses_land_ok=d.get("path_crosses_land_ok", False),
             )
         )
     return groups

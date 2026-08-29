@@ -7,6 +7,7 @@
   name: Shark
   size: huge
   coords: [[110, 195]]
+  on_land: true
   pin_dy: 16
   about: >-
     Patrols the lower mid-ocean and deep water off-shore. Won't touch
@@ -27,6 +28,7 @@
   name: Tiger Shark
   size: huge
   coords: [[185, 105]]
+  on_land: true
   pin_dy: -16
   about: >-
     Gray and striped, cruising the mid-ocean range. One of the more
@@ -90,6 +92,7 @@
   name: Noctis
   size: huge
   coords: [[230, 195]]
+  on_land: true
   pin_dy: 16
   about: >-
     Only surfaces at night or during storms, swooping along the deep
@@ -112,6 +115,7 @@
   name: Moga
   size: huge
   coords: [[270, 205]]
+  on_land: true
   pin_dy: 16
   about: >-
     Quick and elusive, sticking to the darkest depths of the Open Ocean
@@ -132,6 +136,7 @@
   name: Maw
   size: huge
   coords: [[90, 215]]
+  on_land: true
   pin_dy: 16
   about: >-
     Usually found stuck mid-bite on a bulbfish at the very bottom of

@@ -1,21 +1,26 @@
 - key: luifin
   name: Luifin
   size: large
-  coords: [[235, 60]]
-  about: >-
-    The pink half of the Reef's dancing pair, forever looping around
-    Mizifin in a slow, circling courtship.
+  coords:
+  - - 235
+    - 61
+  about: The pink half of the Reef's dancing pair, forever looping around Mizifin in a slow, circling
+    courtship.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Large" }
-
+  - icon: 🪱
+    label: Bait
+    value: Large
 - key: mizifin
   name: Mizifin
   size: large
-  coords: [[255, 68]]
-  about: >-
-    The blue half of the pair. Catch either fish first and the other's
-    dance breaks — it slumps into a slow, sad drift, though it's still
-    catchable afterward.
+  coords:
+  - - 255
+    - 68
+  about: The blue half of the pair. Catch either fish first and the other's dance breaks — it slumps into
+    a slow, sad drift, though it's still catchable afterward.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Large" }
-    - { icon: "📍", value: "Still catchable once its partner is gone" }
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Still catchable once its partner is gone

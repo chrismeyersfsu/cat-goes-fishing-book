@@ -1,13 +1,19 @@
 - key: phase
   name: Phase
   size: small
-  coords: [[548, 188]]
-  about: >-
-    A small, blue-finned, spotted fish that exists as two transparent,
-    hologram-like halves — one red, one blue — drifting separately
-    through the reef and Empty caves until they happen to meet and fuse
-    into a single solid fish.
+  coords:
+  - - 545
+    - 186
+  about: A small, blue-finned, spotted fish that exists as two transparent, hologram-like halves — one
+    red, one blue — drifting separately through the reef and Empty caves until they happen to meet and
+    fuse into a single solid fish.
   stats:
-    - { icon: "🐟", label: "Category", value: "Small Fish" }
-    - { icon: "📍", label: "Zone", value: "The Empty, lower-right side" }
-    - { icon: "👁️", label: "Behavior", value: "Only bites once both halves meet" }
+  - icon: 🐟
+    label: Category
+    value: Small Fish
+  - icon: 📍
+    label: Zone
+    value: The Empty, lower-right side
+  - icon: 👁️
+    label: Behavior
+    value: Only bites once both halves meet

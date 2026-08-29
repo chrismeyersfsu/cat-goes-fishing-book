@@ -1,9 +1,3 @@
-# The book's groups. Phase 1 seeded 5 demo groups by hand for
-# parity with reference/design_preview.html; the rest (Phase 3) were
-# authored against reference/fish_grouping_scheme.md and
-# reference/guide_text.txt. Coordinates are provisional pending
-# re-verification against the actual game, same as PLAN.md always
-# expected for a first content pass.
 - id: a_trick_and_treat
   title: Trick & Treat
   tier: A
@@ -17,6 +11,7 @@
   cast: Hook Trick above the Reef wall on Halloween night, then lead it across to the surface above the
     Silo.
   view_box: 365 0 380 251
+  path_crosses_land_ok: true
   map_caption: Reef wall (Trick) — dashed lure path — Above Silo (Treat)
   map_alt: Map slice showing the path from the Reef wall (Trick) across to above the Silo (Treat)
   about: Trick only appears on Halloween night — set your clock to 12:00 AM, October 31st, and watch for
@@ -83,6 +78,8 @@
     kind: diff-hard
   cast: Bottom of The Empty cave, hugging the Cuddlecanth fossil.
   view_box: 420 0 220 251
+  label_crop_ok: true
+  path_crosses_land_ok: true
   map_caption: Fossil corner (start) → drag right → Underfin bites
   map_alt: Map slice of the bottom of The Empty cave showing the drag path from the fossil to where Underfin
     bites
@@ -125,6 +122,7 @@
     kind: diff-mod
   cast: Anywhere between the Reef's far side and the Silo dropoff — each fish keeps to its own corner.
   view_box: 430 0 260 251
+  label_crop_ok: true
   map_caption: Dragon Area → The Empty basin → Silo dropoff
   map_alt: Map slice of the Dragon Area and The Empty showing four loosely-scattered fish
   map_label: Loosely scattered, not a tight cluster — grouped here for page economy.
@@ -196,10 +194,16 @@
     points:
     - - 120
       - 110
+    - - 174
+      - 114
     - - 180
-      - 140
-    - - 240
-      - 175
+      - 150
+    - - 264
+      - 150
+    - - 294
+      - 144
+    - - 312
+      - 174
     - - 310
       - 205
     start_gap: 10
@@ -215,7 +219,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Work the open water just before the Reef wall — hook Chompy first, then earn Crayfin's trust.
-  view_box: 160 0 200 251
+  view_box: 150 0 210 251
   map_caption: Open Ocean, just before the Reef wall
   map_alt: Map slice of the open water before the Reef wall showing Chompy and its trailing Crayfin
   about: Crayfin follows its Chompy everywhere and won't trust your bait while they're together. Hook
@@ -243,7 +247,7 @@
     kind: diff-mod
   cast: Scan the Very Distant Sea and Kelp waters above the Labyrinth for the family drifting together
     in a loose, sporadic pattern.
-  view_box: 1080 0 300 251
+  view_box: 1092 0 303 251
   map_caption: Very Distant Sea & Kelp, above the Labyrinth
   map_alt: Map slice above the Labyrinth showing the Rodi/Lav/Rodilav family trio
   map_label: 'Catch order matters: lure a child away from Rodilav first, and don''t sell both children
@@ -265,7 +269,7 @@
   - text: Easy
     kind: diff-easy
   cast: Find the reef pair mid-dance and hook whichever one bites first — the other follows along, subdued.
-  view_box: 180 0 200 251
+  view_box: 150 0 230 251
   map_caption: Reef — dancing pair
   map_alt: Map slice of the Reef showing Luifin and Mizifin circling each other
   about: Luifin (pink) and Mizifin (blue) circle each other in a looping courtship dance across the Reef.
@@ -287,7 +291,7 @@
     kind: diff-hard
   cast: Work the Dragon Area with sonar switched off — the whole egg trade happens between the open water
     and Mamo's den just below it.
-  view_box: 480 0 200 251
+  view_box: 460 0 209 251
   map_caption: Dragon Area — dashed lure path down — Mamo's Den
   map_alt: Map slice of the Dragon Area showing the path down into Mamo's den just below it
   about: Mamo guards a single egg in a den just beneath the Dragon's usual spot, snapping any baited line
@@ -314,11 +318,11 @@
   path:
     points:
     - - 560
-      - 35
-    - - 560
-      - 65
-    - - 560
-      - 95
+      - 37
+    - - 552
+      - 84
+    - - 558
+      - 92
     start_gap: 10
     end_gap: 10
 - id: a_lindfin_and_tart
@@ -366,7 +370,7 @@
     kind: diff-mod
   cast: Check both banks of the Basin — deep just before the Reef wall — for the plump orange-and-white
     Torby.
-  view_box: 230 0 220 251
+  view_box: 240 0 210 251
   map_caption: Basin-side spawn — Reef-wall-side spawn
   map_alt: Map slice of the Basin and Reef wall showing Torby's two spawn points
   special_instructions: Only two Torby exist per save, one deep near the Basin and one deep just before
@@ -390,6 +394,7 @@
   cast: Pick up Glacier on the far side of The Empty, then haul it the length of the map to Magmer's lava
     vents in the Labyrinth.
   view_box: 430 0 970 251
+  path_crosses_land_ok: true
   map_caption: The Empty (Glacier) — dashed lure path across the whole map — Labyrinth lava vents (Magmer)
   map_alt: Wide map slice from The Empty across the Silo, Plateau, and Kelp to the Labyrinth, showing
     the cross-map path from Glacier to Magmer
@@ -414,16 +419,36 @@
     text: Explorer hat (recommended)
   path:
     points:
-    - - 450
-      - 110
-    - - 650
-      - 140
-    - - 850
-      - 170
-    - - 1050
-      - 190
-    - - 1250
-      - 200
+    - - 454
+      - 112
+    - - 456
+      - 114
+    - - 456
+      - 102
+    - - 480
+      - 96
+    - - 504
+      - 60
+    - - 1284
+      - 126
+    - - 1237
+      - 176
+    - - 1236
+      - 182
+    - - 1236
+      - 188
+    - - 1249
+      - 197
+    - - 1258
+      - 222
+    - - 1267
+      - 225
+    - - 1291
+      - 224
+    - - 1298
+      - 213
+    - - 1296
+      - 138
     - - 1360
       - 205
     start_gap: 10
@@ -465,12 +490,12 @@
     text: Bomb Stacker (recommended, vs. cave Bombats)
   path:
     points:
+    - - 174
+      - 156
+    - - 180
+      - 150
     - - 215
       - 155
-    - - 260
-      - 120
-    - - 300
-      - 90
     start_gap: 8
     end_gap: 8
 - id: a_buffalo_fish_and_the_royal_court
@@ -514,7 +539,7 @@
     kind: diff-easy
   cast: Check the shallows near the open ocean and again off-shore — friendly, orange-spotted Cowfish
     spawn in both spots.
-  view_box: 140 0 560 251
+  view_box: 140 0 597 251
   map_caption: Open-ocean-side spawn — Off-shore-side spawn
   map_alt: Wide map slice of the shallows from the open ocean out to off-shore, showing Cowfish's two
     spawn points
@@ -532,7 +557,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Work the very top of the Reef wall, right where the reef gives way to open water.
-  view_box: 350 0 220 251
+  view_box: 350 0 171 251
   map_caption: Reef wall — top of the water column, shallow to a little deeper
   map_alt: Map slice of the top of the Reef wall showing five fish clustered near the surface
   map_label: Numbers on the map match the entries below, shallowest to deepest.
@@ -573,7 +598,7 @@
     kind: diff-hard
   cast: Head into the Reef caves proper — the Crystal cave, the Lemonback pockets, and the entrance pockets
     all sit close together.
-  view_box: 140 0 200 251
+  view_box: 140 0 210 251
   map_caption: Inside the Reef caves — Crystal cave and the Lemonback pockets
   map_alt: Map slice inside the Reef caves showing four fish across the Crystal cave and the Lemonback
     pockets
@@ -596,7 +621,7 @@
     kind: diff-mod
   cast: Work the main cave pocket labeled CAVES on the map, from the first entrance down to the deeper
     reaches behind the cave shark's den.
-  view_box: 170 0 220 251
+  view_box: 150 0 240 251
   map_caption: The main Caves pocket — entrance to the deep reaches
   map_alt: Map slice of the main Caves pocket showing five large fish at different depths
   map_label: Numbers on the map match the entries below, shallowest to deepest.
@@ -615,7 +640,7 @@
   - text: Easy
     kind: diff-easy
   cast: Drop into the Basin near the drop-off and the Yin — both fish hold close to the walls there.
-  view_box: 270 0 200 251
+  view_box: 273 0 187 251
   map_caption: The Basin — near the drop-off and the Yin
   map_alt: Map slice of the Basin showing two large fish near the drop-off and the Yin
   map_label: Numbers on the map match the entries below, left to right.
@@ -635,7 +660,7 @@
     kind: diff-mod
   cast: Fish the open surface water directly above the Silo — the whole swarm packs into one tight shallow
     band.
-  view_box: 620 0 200 251
+  view_box: 625 0 195 251
   map_caption: Surface water above the Silo — the swarm's shallow band
   map_alt: Map slice of the surface water above the Silo showing five fish in the swarm
   map_label: Numbers on the map match the entries below, shallowest to deepest.
@@ -683,7 +708,7 @@
     kind: diff-hard
   cast: Head to the very far-left edge of the Plateau — Dunkan's Corner holds all three fish in one tight
     pocket.
-  view_box: 840 0 200 251
+  view_box: 840 0 252 251
   map_caption: Dunkan's Corner — the Plateau's far-left pocket
   map_alt: Map slice of the Plateau's far-left pocket showing three fish, including Dunkan guarding the
     corner
@@ -707,7 +732,7 @@
   - text: Easy
     kind: diff-easy
   cast: Work the second Plateau cave pocket top to bottom — every fish here bites on the first drop.
-  view_box: 860 0 220 251
+  view_box: 860 0 232 251
   map_caption: Second Plateau cave pocket, wall to wall
   map_alt: Map slice of the second Plateau cave pocket showing five fish scattered along its walls and
     floor
@@ -731,7 +756,7 @@
     kind: diff-easy
   cast: Push past King's Cave into the third Plateau pocket — both fish are waiting once that door is
     open.
-  view_box: 1030 0 200 251
+  view_box: 925 0 305 251
   map_caption: Third Plateau cave pocket, behind King's Cave
   map_alt: Map slice of the third Plateau cave pocket showing Primitive and Spec
   map_label: Numbers on the map match the entries below, left to right.
@@ -755,7 +780,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Fish the shallow band of the Kelp / Very Distant Sea, working right toward the Labyrinth's edge.
-  view_box: 1070 0 260 251
+  view_box: 1092 0 227 251
   map_caption: Kelp shallows, working right toward the Labyrinth
   map_alt: Map slice of the Kelp shallows showing six fish spread from open Kelp water to the Labyrinth's
     edge
@@ -779,7 +804,7 @@
   - text: Easy
     kind: diff-easy
   cast: Drop into the deeper Kelp pockets past the shallows — patience matters more than gear here.
-  view_box: 1080 0 240 251
+  view_box: 925 0 394 251
   map_caption: Kelp depths, deeper pockets of the Very Distant Sea
   map_alt: Map slice of the deeper Kelp water showing four fish tucked into rockbed and kelp pockets
   map_label: Numbers on the map match the entries below, left to right.
@@ -802,7 +827,7 @@
     kind: diff-hard
   cast: Work the fossil rockbed between the Plateau and the Kelp — bring extra gear, two of these three
     fish need real setup.
-  view_box: 980 0 220 251
+  view_box: 925 0 275 251
   map_caption: Rockbed between the Plateau and the Kelp
   map_alt: Map slice of the fossil rockbed between the Plateau and Kelp showing three fish
   map_label: Numbers on the map match the entries below, left to right.
@@ -856,7 +881,7 @@
     kind: diff-hard
   cast: Push to the Labyrinth's far right corner, right at the Tech Boat's limit — patience pays for both
     of these.
-  view_box: 1350 0 150 251
+  view_box: 1319 0 181 251
   map_caption: Labyrinth's far right corner, at the Tech Boat's limit
   map_alt: Map slice of the far right edge of the Labyrinth caves showing Yellow Carp and Bombig
   map_label: Numbers on the map match the entries below, left to right.
@@ -879,7 +904,7 @@
     kind: diff-hard
   cast: Hold position in the open water between the Plateau, Kelp, and Silo with sonar open — the whole
     Cusper family answers to patience.
-  view_box: 990 0 200 251
+  view_box: 925 0 265 251
   map_caption: Open water between the Plateau and Kelp
   map_alt: Map slice of the open water between the Plateau and Kelp showing all three Cusper family members
   map_label: Numbers on the map match the entries below, from most to least common.
@@ -905,7 +930,7 @@
     kind: diff-hard
   cast: Down through the Silo door to the seabed, just right of the entrance, after clearing every fish
     above it.
-  view_box: 620 0 200 251
+  view_box: 625 0 195 251
   map_caption: Clear the water above the Silo, then swim down through the door to the seabed
   map_alt: Map slice of the Silo showing the surface staging area above and the seabed pocket below where
     Noxius bumbles past
@@ -936,7 +961,7 @@
   - text: Hard
     kind: diff-hard
   cast: Hovering over the Silo, wherever the ghostly Tims are currently spawning.
-  view_box: 600 0 220 251
+  view_box: 625 0 195 251
   map_caption: Somewhere in the Tim-spawn column above the Silo — watch for one blinking in and out
   map_alt: Map slice of the area above the Silo where Tim usually glows, and where the Mask Fish sometimes
     takes its place
@@ -966,7 +991,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Deep water above the Silo — huge, green, and hard to miss once it's near.
-  view_box: 620 0 210 251
+  view_box: 625 0 205 251
   map_caption: Deep in the Silo's water column — its size makes it hard to miss once it's near
   map_alt: Map slice of the deep water above the Silo where the giant segmented Abyssal cruises
   special_instructions: Rig large bait onto a mega hook — nothing less will hold it. Abyssal patrols the
@@ -990,7 +1015,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Through a rock-hole in the seafloor before the Reef, down into the caves.
-  view_box: 120 0 220 251
+  view_box: 120 0 230 251
   map_caption: Seafloor rockfield (any bait finds the hole) → down into the caves
   map_alt: Map slice showing the seafloor before the Reef where a baited hook can uncover a hole down
     into the caves, and the cave pocket beyond where Bombat waits
@@ -1022,6 +1047,7 @@
     kind: diff-hard
   cast: Spotted at the Reef Barrier under sonar, then coaxed back toward shore on foot.
   view_box: 0 0 280 251
+  path_crosses_land_ok: true
   map_caption: Reef Barrier sighting → retreat toward shore in small steps → land it on foot
   map_alt: Map slice from the Reef Barrier to the shore, showing the path Magnalav is coaxed along as
     the boat retreats
@@ -1137,7 +1163,7 @@
   - text: Hard
     kind: diff-hard
   cast: Mid-ocean, right at the furthest reach of your starting boat.
-  view_box: 120 0 220 251
+  view_box: 120 0 230 251
   map_caption: Mid-depth water at the edge of how far your starting boat can travel
   map_alt: Map slice of the open ocean showing the furthest point a starting boat can reach, where Sodafish
     patrols
@@ -1168,7 +1194,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Sea floor of the Dragon Area, past the cave mouth just beyond The Empty.
-  view_box: 500 0 220 251
+  view_box: 520 0 217 251
   map_caption: Past The Empty's cave mouth, the next cave entrance down — Shaku sleeps on the floor there
   map_alt: Map slice of the Dragon Area sea floor near the cave entrance just past The Empty, where a
     sleeping Shaku waits
@@ -1200,7 +1226,7 @@
   - text: Easy
     kind: diff-easy
   cast: Small pocket just above the fossil, bottom of The Empty cave — date set before release.
-  view_box: 420 0 220 251
+  view_box: 427 0 213 251
   map_caption: Set your date before release, then drop large bait just above the fossil
   map_alt: Map slice of the bottom of The Empty cave showing the small pocket above the Cuddlecanth fossil
   special_instructions: Set your system clock to any date before Cat Goes Fishing's original release —
@@ -1227,7 +1253,7 @@
     kind: diff-hard
   cast: Anywhere you're actively fishing — Airy flies in behind your boat rather than spawning at a fixed
     spot.
-  view_box: 0 0 220 251
+  view_box: 0 0 240 251
   map_caption: Cast behind your boat, then detonate — Airy drops from the air here
   map_alt: Map slice near the shore and open water showing where Airy is knocked down after an aerial
     bomb detonation
@@ -1259,7 +1285,7 @@
   - text: Hard
     kind: diff-hard
   cast: Stand on shore with your boat unequipped and cast a worm so it lands right at your feet.
-  view_box: 0 0 200 251
+  view_box: 0 0 240 251
   map_caption: Shore, boat unequipped — cast the worm so it lands at your feet
   map_alt: Map slice of the shore where Bird is caught by casting a worm underfoot while wearing the Kardinal
     hat
@@ -1315,7 +1341,7 @@
   - text: Easy
     kind: diff-easy
   cast: Just above the rockbed, right at the opening to Mamo's Den in the Dragon Area.
-  view_box: 480 0 220 251
+  view_box: 460 0 209 251
   map_caption: Mouth of Mamo's Den, just above the Dragon zone rockbed
   map_alt: Map slice of the Dragon Area near Mamo's Den where Powerfin darts around
   special_instructions: Drop large bait near the mouth of Mamo's Den, slightly above the Dragon zone's
@@ -1341,7 +1367,7 @@
   - text: Easy
     kind: diff-easy
   cast: Lower mid-ocean depth, on the far-right edge of the open water above the Silo.
-  view_box: 700 0 220 251
+  view_box: 669 0 251 251
   map_caption: Far-right side of the water above the Silo, lower mid-ocean depth
   map_alt: Map slice of the far-right side of the area above the Silo where Josie now swims
   special_instructions: Position over the far-right side of the fish-filled water above the Silo and drop
@@ -1362,7 +1388,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Top-left edge of The Empty cave's entrance — rush there the moment you open the game.
-  view_box: 380 0 220 251
+  view_box: 380 0 245 251
   map_caption: Top-left edge of The Empty's cave entrance — Swisher's brief spawn point
   map_alt: Map slice of the top-left entrance to The Empty cave where Swisher briefly spawns
   special_instructions: Swisher's swim loop is so long that it effectively vanishes from the area for
@@ -1387,7 +1413,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Anywhere along the open surface — wait for Blossip to bob down and flick bait right into its mouth.
-  view_box: 100 0 220 251
+  view_box: 100 0 210 251
   map_caption: Open surface water — flick bait in at the bottom of Blossip's dip
   map_alt: Map slice of open surface water where Blossip skims and bobs
   special_instructions: Blossip skims the surface in a slow up-and-down bobbing pattern and is lazy about
@@ -1412,7 +1438,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Second cave pocket behind the Kingfish's cave, under the Plateau.
-  view_box: 960 0 220 251
+  view_box: 925 0 255 251
   map_caption: Second cave pocket behind the Kingfish's cave, under the Plateau
   map_alt: Map slice of the Plateau's second cave pocket behind King's Cave where Chrono is found
   special_instructions: This cave stays sealed until you've used the Buffalo Fish bomb trick to crack
@@ -1435,7 +1461,7 @@
   - text: Hard
     kind: diff-hard
   cast: Torby's usual spot, deep above the Basin just before the Reef wall, on a stormy night.
-  view_box: 210 0 220 251
+  view_box: 240 0 190 251
   map_caption: Above the Basin, just before the Reef wall — Torby's old spot, on a stormy night
   map_alt: Map slice above the Basin near the Reef wall where Ghost spawns on stormy nights
   special_instructions: Both Torby need to be caught to extinction on your save first. On a stormy night
@@ -1463,7 +1489,7 @@
   - text: Hard
     kind: diff-hard
   cast: The far right edge of the map, out past Problematicus, where the dragged line finally settles.
-  view_box: 1340 0 228 251
+  view_box: 1319 0 249 251
   map_caption: Far right edge of the map, past Problematicus — where the dragged line finally settles
   map_alt: Map slice of the far right edge of the map past Problematicus where Forebearer eventually bites
   special_instructions: Put a huge hook on your line and catch a Conpas with it, then carry that line
@@ -1553,7 +1579,7 @@
     kind: diff-easy
   cast: Head off-shore past the open ocean and work the mid-depths — this pack covers shallow water down
     to the seafloor.
-  view_box: 800 0 260 251
+  view_box: 800 0 292 251
   map_caption: Off-Shore water, shallow to seafloor
   map_alt: Map slice of off-shore water showing six fish scattered across the mid-depth range
   map_label: Loosely scattered off-shore regulars — grouped here for page economy.
@@ -1610,7 +1636,7 @@
   - text: Easy
     kind: diff-easy
   cast: Scattered through the mid-to-upper Reef — no special gear needed beyond patience for all seven.
-  view_box: 210 0 280 251
+  view_box: 150 0 370 251
   map_caption: Reef, mid-to-upper water column — seven common catches
   map_alt: Map slice of the Reef showing seven common fish scattered through the mid-to-upper water column
   map_label: Seven fish is too many for full write-ups on one page, so 1–4 stay with the map and 5–7 continue
@@ -1631,7 +1657,7 @@
   - text: Easy
     kind: diff-easy
   cast: More of the same easy Reef fish, spread from the shallows down to the deeper stretch.
-  view_box: 210 0 250 251
+  view_box: 150 0 310 251
   map_caption: Reef, shallow to deep — five common catches
   map_alt: Map slice of the Reef showing five common fish at varying depths
   map_label: Numbers on the map match the entries below.
@@ -1650,7 +1676,7 @@
   - text: Moderate
     kind: diff-mod
   cast: The deepest stretch of the Reef, from schooling common fish down to one very large hammerhead.
-  view_box: 230 0 200 251
+  view_box: 240 0 190 251
   map_caption: Reef floor and deep water — four fish
   map_alt: Map slice of the deep Reef floor showing four fish, including a large hammerhead shark
   map_label: Numbers on the map match the entries below.
@@ -1671,7 +1697,7 @@
   - text: Moderate
     kind: diff-mod
   cast: Open ocean and off-shore water, wherever a swarm of Kingfish is circling.
-  view_box: 60 0 260 251
+  view_box: 60 0 250 251
   map_caption: Open Ocean / Off-Shore — center of the Kingfish swarm
   map_alt: Map slice of the open ocean showing the Queenfish's spot at the center of a Kingfish swarm
   special_instructions: Look for a moving cluster of Kingfish out in the open ocean or off-shore water
@@ -1721,7 +1747,7 @@
   - text: Easy
     kind: diff-easy
   cast: Low in The Empty, and possibly the Labyrinth, wherever Conpas's nose is pointing.
-  view_box: 440 0 260 251
+  view_box: 440 0 229 251
   map_caption: The Empty, lower reaches — follow Conpas's nose
   map_alt: Map slice of the lower Empty near Conpas showing the Goldfish's typical spot
   shared_gear:

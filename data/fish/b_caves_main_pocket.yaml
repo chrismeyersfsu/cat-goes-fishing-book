@@ -18,8 +18,8 @@
   name: Cavefish
   size: large
   coords:
-  - - 230
-    - 140
+  - - 224
+    - 139
   pin_dy: 16
   about: A pale brown, salmon-shaped fish with yellow eyes that shows up in almost any part of the caves.
     A little sifting around is usually all it takes to find one.
@@ -34,7 +34,7 @@
   size: large
   coords:
   - - 210
-    - 165
+    - 157
   pin_dy: 16
   about: A dark, red-orange fish with a look as aggressive as its bite. Found in the caves' larger pocket
     — the one marked CAVES on the map.
@@ -48,8 +48,8 @@
   name: Spotter
   size: large
   coords:
-  - - 245
-    - 190
+  - - 240
+    - 160
   pin_dy: 16
   about: An orange fish with a texture that looks almost like sponge. Best odds are right on the sea floor,
     next to the pink tree landmark down there.
@@ -63,8 +63,8 @@
   name: Nightfish Sire
   size: large
   coords:
-  - - 270
-    - 210
+  - - 279
+    - 217
   pin_dy: -16
   about: A big, spiky purple fish tucked into the deeper cave pocket behind the cave shark's den, usually
     trailed by a few ordinary Nightfish.

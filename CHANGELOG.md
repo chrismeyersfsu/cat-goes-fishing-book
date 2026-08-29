@@ -92,3 +92,24 @@ All notable user-facing changes to this project. Format follows
   content's width, not 0. `index-list` now uses `minmax(0,1fr)`
   tracks, and the tag/name both truncate with an ellipsis instead of
   forcing the row wider.
+- Removed the map's caption bar (`.cap`) -- it covered terrain labels
+  at the bottom of some crops and mostly repeated the group's own
+  title/cast text.
+- New `fishguide.terrain` module + three `validate.py` checks, backed
+  by `assets/water_mask.png` (a static render of the terrain art) so
+  they run without a browser: a fish's marker must sit on open water,
+  not land (`Fish.on_land: true` is the documented exception for a
+  spot that's genuinely on land/structure by game design); a lure
+  path's straight segments must not cross land; a view_box must not
+  crop a terrain label mid-word (`Group.label_crop_ok`/
+  `path_crosses_land_ok` are the matching exceptions, used only for
+  frozen/approved content that can't be adjusted). `terrain.py` also
+  has `find_water_route()` (grid pathfinding + polyline simplification)
+  and `nearest_water()`, used to fix every violation these checks
+  found across the Phase 3 roster (2 marker-color/placement pairs,
+  5 paths rerouted, 41 crops reshaped) and left in place to catch the
+  same mistakes automatically for any fish added after.
+- Duo/feature map markers now scale up when a group's view_box is far
+  wider than the reference crop (e.g. a cross-map cooldown pair like
+  Glacier & Magmer) -- otherwise a fixed-size X becomes nearly
+  invisible once zoomed out that far.

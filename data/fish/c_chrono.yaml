@@ -1,12 +1,18 @@
 - key: chrono
   name: Chrono
   size: small
-  coords: [[1060, 210]]
-  about: >-
-    A small, pale blue, wispy fish tucked into the second cave pocket
-    behind the Kingfish's cave under the Plateau — an easy catch once
-    that cave has been opened.
+  coords:
+  - - 1061
+    - 210
+  about: A small, pale blue, wispy fish tucked into the second cave pocket behind the Kingfish's cave
+    under the Plateau — an easy catch once that cave has been opened.
   stats:
-    - { icon: "🐟", label: "Category", value: "Small Fish" }
-    - { icon: "📍", label: "Zone", value: "Plateau, second cave behind King's Cave" }
-    - { icon: "🔓", label: "Prerequisite", value: "Cave opened via the Buffalo Fish bomb trick" }
+  - icon: 🐟
+    label: Category
+    value: Small Fish
+  - icon: 📍
+    label: Zone
+    value: Plateau, second cave behind King's Cave
+  - icon: 🔓
+    label: Prerequisite
+    value: Cave opened via the Buffalo Fish bomb trick

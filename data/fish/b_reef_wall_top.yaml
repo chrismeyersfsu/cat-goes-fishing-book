@@ -33,8 +33,8 @@
   name: Lionfish
   size: medium
   coords:
-  - - 425
-    - 35
+  - - 424
+    - 34
   pin_dy: -16
   about: Perches on top of the Reef wall and won't take ordinary bait at all. Rig a huge hook, catch a
     small fish with it, and Lionfish will strike the catch on your line instead.
@@ -63,8 +63,8 @@
   name: Casper
   size: small
   coords:
-  - - 390
-    - 75
+  - - 391
+    - 65
   pin_dy: 16
   about: White with a pale-teal tint and an odd boomerang-shaped body. Mostly a deep-reef fish, though
     it wanders up onto the Reef wall itself often enough to be worth checking here first.

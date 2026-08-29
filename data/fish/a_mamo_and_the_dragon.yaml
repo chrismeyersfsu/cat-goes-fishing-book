@@ -1,24 +1,29 @@
 - key: dragon
   name: Dragon
   size: huge
-  coords: [[560, 35]]
-  about: >-
-    A huge, serpentine creature that patrols the Dragon Area and bolts at
-    the faintest sonar ping. It can't be hooked with ordinary bait — only
-    with the egg it's tricked into abandoning.
+  coords:
+  - - 560
+    - 37
+  about: A huge, serpentine creature that patrols the Dragon Area and bolts at the faintest sonar ping.
+    It can't be hooked with ordinary bait — only with the egg it's tricked into abandoning.
   stats:
-    - { icon: "🪝", label: "Catch", value: "Mega hook + egg" }
-    - { icon: "📍", value: "Sonar must be off" }
-
+  - icon: 🪝
+    label: Catch
+    value: Mega hook + egg
+  - icon: 📍
+    value: Sonar must be off
 - key: mamo
   name: Mamo
   size: large
-  coords: [[560, 95]]
-  about: >-
-    A large, pale brown fish curled protectively around a single egg in a
-    den just below the Dragon's usual spot. Any baited line that enters
-    snaps instantly — the only way in is to scare Mamo off with the Dragon
-    itself.
+  coords:
+  - - 558
+    - 92
+  about: A large, pale brown fish curled protectively around a single egg in a den just below the Dragon's
+    usual spot. Any baited line that enters snaps instantly — the only way in is to scare Mamo off with
+    the Dragon itself.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Large" }
-    - { icon: "📍", value: "Catchable only after the egg trade" }
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Catchable only after the egg trade

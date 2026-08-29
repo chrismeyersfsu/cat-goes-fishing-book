@@ -70,15 +70,29 @@ def make_fish_pic(assets_dir: Path = ASSETS_DIR):
     return fish_pic
 
 
+REFERENCE_VIEW_BOX_WIDTH = 380  # Trick & Treat's; x_mark's default size=7.5 reads fine at this zoom
+
+
+def _marker_scale(group: Group) -> float:
+    """A duo/feature map's view_box can be much wider than the reference
+    (e.g. a cross-map cooldown pair) -- x_mark's fixed size becomes
+    nearly invisible once zoomed out far enough. Scale it up so a
+    marker covers roughly the same fraction of the frame regardless of
+    how wide the crop is."""
+    _x, _y, w, _h = (float(v) for v in group.view_box.split())
+    return max(1.0, w / REFERENCE_VIEW_BOX_WIDTH)
+
+
 def _duo_map(group: Group) -> str:
     parts = []
     if group.path:
         parts.append(
             markers.dashed_path(group.path.points, group.path.start_gap, group.path.end_gap)
         )
+    scale = _marker_scale(group)
     for f in group.fish:
         for x, y in f.coords:
-            parts.append(markers.x_mark(x, y, color=f.color))
+            parts.append(markers.x_mark(x, y, size=7.5 * scale, color=f.color))
     return "".join(parts)
 
 
@@ -89,9 +103,10 @@ def _feature_map(group: Group) -> str:
             markers.dashed_path(group.path.points, group.path.start_gap, group.path.end_gap)
         )
         parts.append(markers.start_dot(*group.path.points[0]))
+    scale = _marker_scale(group)
     f = group.fish[0]
     for x, y in f.coords:
-        parts.append(markers.x_mark(x, y, color=f.color))
+        parts.append(markers.x_mark(x, y, size=7.5 * scale, color=f.color))
     return "".join(parts)
 
 
@@ -215,7 +230,7 @@ def build_book(
     groups = data_mod.load_groups(data_dir)
     palette = data_mod.load_palette(data_dir)
 
-    validate_or_raise(groups)
+    validate_or_raise(groups, assets_dir)
 
     fish_pic = make_fish_pic(assets_dir)
     jinja_env = env(templates_dir)

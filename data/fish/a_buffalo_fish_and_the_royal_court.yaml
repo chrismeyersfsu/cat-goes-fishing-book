@@ -61,8 +61,8 @@
   name: Regina
   size: huge
   coords:
-  - - 985
-    - 195
+  - - 988
+    - 190
   pin_dy: 16
   about: A red-and-yellow, whale-like fish that stays glued to the Kingfish's side and ignores bait entirely
     — until you're actively luring the Kingfish out. Feed her the hooked Bishop and she'll hook herself
@@ -77,7 +77,7 @@
   size: huge
   coords:
   - - 1032
-    - 210
+    - 211
   pin_dy: -16
   about: The crowned yellow ruler of its own cave under the Plateau, guarded by every other fish on this
     page. Once Bishop, Caval, Chook, and Regina are cleared, lure it out and finish it near the surface.

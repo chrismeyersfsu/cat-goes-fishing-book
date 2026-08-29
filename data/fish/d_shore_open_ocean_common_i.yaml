@@ -1,73 +1,87 @@
 - key: cuddlefish
   name: Cuddlefish
   size: small
-  coords: [[40, 140]]
+  coords:
+  - - 16
+    - 138
   pin_dy: 16
-  about: >-
-    One of the very first fish you'll ever hook — plain-looking and
-    plentiful close to shore, with nothing tricky about the catch.
+  about: One of the very first fish you'll ever hook — plain-looking and plentiful close to shore, with
+    nothing tricky about the catch.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Any" }
-    - { icon: "📍", value: "Near shore" }
-
+  - icon: 🪱
+    label: Bait
+    value: Any
+  - icon: 📍
+    value: Near shore
 - key: snobfish
   name: Snobfish
   size: small
-  coords: [[70, 100]]
+  coords:
+  - - 70
+    - 100
   pin_dy: 16
-  about: >-
-    Turns up everywhere on the map, which makes it a dependable source
-    of bait fish once you're working water far from shore.
+  about: Turns up everywhere on the map, which makes it a dependable source of bait fish once you're working
+    water far from shore.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Small" }
-    - { icon: "📍", value: "All over the map" }
-
+  - icon: 🪱
+    label: Bait
+    value: Small
+  - icon: 📍
+    value: All over the map
 - key: mustardfish
   name: Mustardfish
   size: medium
-  coords: [[130, 90]]
+  coords:
+  - - 132
+    - 92
   pin_dy: 16
-  about: >-
-    Sits mostly still anywhere from the shallows to the mid-ocean
-    range, and takes large bait without much of a fight.
+  about: Sits mostly still anywhere from the shallows to the mid-ocean range, and takes large bait without
+    much of a fight.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Large" }
-    - { icon: "📍", value: "Shallow to mid-ocean" }
-
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Shallow to mid-ocean
 - key: grumper
   name: Grumper
   size: medium
-  coords: [[180, 70]]
+  coords:
+  - - 180
+    - 70
   pin_dy: 16
-  about: >-
-    A yellow, short-tempered fish patrolling the open ocean with an
-    unusually wide aggro range — it closes distance fast once it
-    notices your bait.
+  about: A yellow, short-tempered fish patrolling the open ocean with an unusually wide aggro range —
+    it closes distance fast once it notices your bait.
   stats:
-    - { icon: "🐟", value: "Fast, aggressive" }
-    - { icon: "📍", value: "Open Ocean" }
-
+  - icon: 🐟
+    value: Fast, aggressive
+  - icon: 📍
+    value: Open Ocean
 - key: ray
   name: Ray
   size: medium
-  coords: [[220, 190]]
+  coords:
+  - - 233
+    - 160
   pin_dy: 16
-  about: >-
-    Rests on the seafloor across the open ocean and off-shore stretch;
-    a nighttime cast is easier since Ray drifts up off the bottom
-    after dark.
+  about: Rests on the seafloor across the open ocean and off-shore stretch; a nighttime cast is easier
+    since Ray drifts up off the bottom after dark.
   stats:
-    - { icon: "📍", value: "Seafloor" }
-    - { icon: "🌙", value: "Rises at night" }
-
+  - icon: 📍
+    value: Seafloor
+  - icon: 🌙
+    value: Rises at night
 - key: anglerfish
   name: Anglerfish
   size: medium
-  coords: [[260, 200]]
+  coords:
+  - - 279
+    - 217
   pin_dy: 16
-  about: >-
-    Its glow gives it away from a distance, hovering just above the
-    seafloor across the whole off-shore and open ocean stretch.
+  about: Its glow gives it away from a distance, hovering just above the seafloor across the whole off-shore
+    and open ocean stretch.
   stats:
-    - { icon: "💡", value: "Glows — easy to spot" }
-    - { icon: "📍", value: "Just above the seafloor" }
+  - icon: 💡
+    value: Glows — easy to spot
+  - icon: 📍
+    value: Just above the seafloor

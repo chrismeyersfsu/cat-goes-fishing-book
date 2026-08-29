@@ -1,23 +1,29 @@
 - key: glacier
   name: Glacier
   size: medium
-  coords: [[450, 110]]
-  about: >-
-    A faintly glowing blue fish found on the far side of The Empty (and
-    sometimes the Reef caves). Its only real job here is being hauled the
-    length of the map to cool Magmer down.
+  coords:
+  - - 454
+    - 112
+  about: A faintly glowing blue fish found on the far side of The Empty (and sometimes the Reef caves).
+    Its only real job here is being hauled the length of the map to cool Magmer down.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Any, or hook with a huge hook" }
-    - { icon: "📍", label: "Location", value: "The Empty, left side" }
-
+  - icon: 🪱
+    label: Bait
+    value: Any, or hook with a huge hook
+  - icon: 📍
+    label: Location
+    value: The Empty, left side
 - key: magmer
   name: Magmer
   size: large
-  coords: [[1360, 205]]
-  about: >-
-    A super-heated, lava-colored fish hiding above the lava vents deep in
-    the Labyrinth. It melts any line on contact until a Glacier arrives
-    nearby to cool it off.
+  coords:
+  - - 1360
+    - 205
+  about: A super-heated, lava-colored fish hiding above the lava vents deep in the Labyrinth. It melts
+    any line on contact until a Glacier arrives nearby to cool it off.
   stats:
-    - { icon: "🪝", value: "Huge hook" }
-    - { icon: "📍", label: "Requires", value: "A Glacier nearby first" }
+  - icon: 🪝
+    value: Huge hook
+  - icon: 📍
+    label: Requires
+    value: A Glacier nearby first

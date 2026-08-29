@@ -1,64 +1,75 @@
 - key: yellowjaw
   name: Yellowjaw
   size: medium
-  coords: [[680, 45]]
+  coords:
+  - - 680
+    - 45
   pin_dy: -16
-  about: >-
-    A green-and-yellow fish that patrols the very surface above the Silo,
-    oddly reminiscent of a little old man. Babyjaws trail along behind it
-    wherever it goes.
+  about: A green-and-yellow fish that patrols the very surface above the Silo, oddly reminiscent of a
+    little old man. Babyjaws trail along behind it wherever it goes.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Medium" }
-    - { icon: "📍", value: "Surface water above the Silo" }
-
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 📍
+    value: Surface water above the Silo
 - key: babyjaw
   name: Babyjaw
   size: small
-  coords: [[700, 55]]
+  coords:
+  - - 699
+    - 55
   pin_dy: 16
-  about: >-
-    Found in the open water near the surface above the Silo, tagging
-    along behind the larger Yellowjaws. Basic or medium bait takes care of
-    it — the real obstacle is fending off Chaw first.
+  about: Found in the open water near the surface above the Silo, tagging along behind the larger Yellowjaws.
+    Basic or medium bait takes care of it — the real obstacle is fending off Chaw first.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Any/Medium" }
-    - { icon: "🐟", value: "Follows the Yellowjaws" }
-
+  - icon: 🪱
+    label: Bait
+    value: Any/Medium
+  - icon: 🐟
+    value: Follows the Yellowjaws
 - key: chaw
   name: Chaw
   size: small
-  coords: [[720, 65]]
+  coords:
+  - - 720
+    - 65
   pin_dy: 16
-  about: >-
-    Swarms the open surface water above the Silo with one of the most
-    intense aggro ranges around. Bait guard is close to mandatory here, or
-    it'll steal whatever else you're trying to land.
+  about: Swarms the open surface water above the Silo with one of the most intense aggro ranges around.
+    Bait guard is close to mandatory here, or it'll steal whatever else you're trying to land.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Any/Small" }
-    - { icon: "🎣", value: "Bait guard strongly recommended — huge aggro range" }
-
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 🎣
+    value: Bait guard strongly recommended — huge aggro range
 - key: snuggler
   name: Snuggler
   size: small
-  coords: [[660, 80]]
+  coords:
+  - - 660
+    - 80
   pin_dy: 16
-  about: >-
-    Shaped a lot like a Cuddlefish, Snuggler sticks to the mid-ocean band
-    toward the outer edge of the swarm above the Silo — generally wherever
-    Chaw isn't spawning.
+  about: Shaped a lot like a Cuddlefish, Snuggler sticks to the mid-ocean band toward the outer edge of
+    the swarm above the Silo — generally wherever Chaw isn't spawning.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Any/Small" }
-    - { icon: "📍", value: "Outer edge of the swarm, away from Chaw" }
-
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Outer edge of the swarm, away from Chaw
 - key: bulbeater
   name: Bulb Eater
   size: medium
-  coords: [[740, 90]]
+  coords:
+  - - 740
+    - 90
   pin_dy: 16
-  about: >-
-    Thin and grayish-purple with a pale back half — the fish notorious for
-    eating your lightbulb. Rig a huge hook, catch a Tim on it, then lower
-    the Tim carefully until Bulb Eater takes the bait.
+  about: Thin and grayish-purple with a pale back half — the fish notorious for eating your lightbulb.
+    Rig a huge hook, catch a Tim on it, then lower the Tim carefully until Bulb Eater takes the bait.
   stats:
-    - { icon: "🪝", label: "Hook", value: "Huge" }
-    - { icon: "🐟", value: "Hook a Tim first, then lower it slowly" }
+  - icon: 🪝
+    label: Hook
+    value: Huge
+  - icon: 🐟
+    value: Hook a Tim first, then lower it slowly

@@ -1,28 +1,32 @@
 - key: yellowcarp
   name: Yellow Carp
   size: medium
-  coords: [[1380, 45]]
+  coords:
+  - - 1381
+    - 45
   pin_dy: -16
-  about: >-
-    A tight school of yellow, black, and white fish patrolling the far
-    right edge of the Labyrinth, just short of the Tech Boat's limit.
-    If the rock ledge above the back entrance looks empty, wait a
+  about: A tight school of yellow, black, and white fish patrolling the far right edge of the Labyrinth,
+    just short of the Tech Boat's limit. If the rock ledge above the back entrance looks empty, wait a
     moment and they'll show up.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Large" }
-    - { icon: "📍", value: "Right at the Tech Boat's limit" }
-
+  - icon: 🪱
+    label: Bait
+    value: Large
+  - icon: 📍
+    value: Right at the Tech Boat's limit
 - key: bombig
   name: Bombig
   size: large
-  coords: [[1400, 70]]
+  coords:
+  - - 1400
+    - 70
   pin_dy: 16
-  about: >-
-    An oversized cousin of the off-shore Bombats, parked stationary in
-    the Labyrinth's upper reaches. It inhales fish off your line
-    without ever hooking itself — feeding it a huge-hooked Lil'
-    Cheesefin, or just feeding it small fish until the area's cleared
-    out, has both worked.
+  about: An oversized cousin of the off-shore Bombats, parked stationary in the Labyrinth's upper reaches.
+    It inhales fish off your line without ever hooking itself — feeding it a huge-hooked Lil' Cheesefin,
+    or just feeding it small fish until the area's cleared out, has both worked.
   stats:
-    - { icon: "🪝", label: "Gear", value: "Huge hook" }
-    - { icon: "🐟", value: "Feed it small fish or a Lil' Cheesefin" }
+  - icon: 🪝
+    label: Gear
+    value: Huge hook
+  - icon: 🐟
+    value: Feed it small fish or a Lil' Cheesefin

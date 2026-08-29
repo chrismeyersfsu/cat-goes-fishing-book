@@ -33,6 +33,9 @@ as intentional, not bugs:
   marker became the same fixed red, so it was removed entirely.
 - Every group page now ends with a "back to top" link (`#top`, back to
   the very start of the document) the mockup has no reason to have.
+- The map's caption bar (`.cap`, bottom of the frame) is gone -- it
+  covered terrain labels on some Phase 3 crops and mostly repeated the
+  group's own title/cast text. Blanked out on both sides.
 
 The index itself is no longer byte-compared against the mockup's
 19-fish preview at all (see test_matches_approved_mockup) -- only
@@ -80,6 +83,11 @@ def _normalize(html: str) -> str:
     # for these two mockup groups, but still a byte-level attribute
     # difference.
     html = re.sub(r'<div class="map-frame" style="[^"]*">', '<div class="map-frame">', html)
+    # The map's little caption bar covered terrain labels at the bottom
+    # of some Phase 3 crops (it's `position:absolute; bottom:0`) and
+    # was mostly redundant with the group's own title/cast text anyway
+    # -- removed everywhere, including from these two mockup pages.
+    html = re.sub(r'<div class="cap">[^<]*</div>', "", html)
     # Portrait markup (procedural SVG vs a real wiki <img>) is exactly
     # as different by design; neither has a nested </div> inside it.
     html = re.sub(r'(<div class="fish-pic"[^>]*>).*?(</div>)', r"\1PIC\2", html)

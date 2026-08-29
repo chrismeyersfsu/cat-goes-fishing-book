@@ -74,7 +74,7 @@
   name: Flash
   size: small
   coords:
-  - - 1395
+  - - 1396
     - 210
   pin_dy: -16
   about: A small ancestor of the Swordfish that steals fish straight off your hook. Bait a huge hook with

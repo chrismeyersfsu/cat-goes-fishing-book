@@ -1,21 +1,27 @@
 - key: airy
   name: Airy
   size: small
-  coords: [[45, 135]]
-  about: >-
-    A slim blue-and-yellow fish with wings that flies in loops behind and
-    above your boat instead of swimming underwater, which makes it one of
-    the strangest catches in the game.
+  coords:
+  - - 52
+    - 112
+  about: A slim blue-and-yellow fish with wings that flies in loops behind and above your boat instead
+    of swimming underwater, which makes it one of the strangest catches in the game.
   stats:
-    - { icon: "🐟", label: "Category", value: "Small Fish" }
-    - { icon: "📍", label: "Zone", value: "Above the boat, anywhere on open water" }
-    - { icon: "💣", label: "Trigger", value: "Casting Finesse + Detonator + Bomb Stacker" }
+  - icon: 🐟
+    label: Category
+    value: Small Fish
+  - icon: 📍
+    label: Zone
+    value: Above the boat, anywhere on open water
+  - icon: 💣
+    label: Trigger
+    value: Casting Finesse + Detonator + Bomb Stacker
   portrait:
-    body_color: "#4a7fd6"
+    body_color: '#4a7fd6'
     shape: elongated
     tail: small
     dorsal: spiky
     eye: sharp
     mouth: flat
-    tail_color: "#f2c94c"
-    belly: "#f2c94c"
+    tail_color: '#f2c94c'
+    belly: '#f2c94c'

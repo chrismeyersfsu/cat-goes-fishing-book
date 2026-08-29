@@ -1,59 +1,75 @@
 - key: blissy
   name: Blissy
   size: small
-  coords: [[260, 70]]
+  coords:
+  - - 260
+    - 70
   pin_dy: 16
-  about: >-
-    A purple-striped reef fish that doesn't put up much of a fight —
-    one of the more relaxed catches in this stretch of water.
+  about: A purple-striped reef fish that doesn't put up much of a fight — one of the more relaxed catches
+    in this stretch of water.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Small" }
-    - { icon: "📍", value: "Reef" }
-
+  - icon: 🪱
+    label: Bait
+    value: Small
+  - icon: 📍
+    value: Reef
 - key: wombler
   name: Wombler
   size: medium
-  coords: [[400, 130]]
+  coords:
+  - - 400
+    - 130
   pin_dy: 16
-  about: >-
-    An oddly-shaped yellow fish tucked into the deeper parts of the
-    Reef. Easy to land once you've spotted one.
+  about: An oddly-shaped yellow fish tucked into the deeper parts of the Reef. Easy to land once you've
+    spotted one.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Medium" }
-    - { icon: "📍", value: "Deep Reef" }
-
+  - icon: 🪱
+    label: Bait
+    value: Medium
+  - icon: 📍
+    value: Deep Reef
 - key: bo
   name: Bo
   size: small
-  coords: [[245, 40]]
+  coords:
+  - - 245
+    - 40
   pin_dy: 16
-  about: >-
-    A blue fish that sticks to the shallower, mid-ocean side of the
-    Reef, closer to the reef wall than the deep water.
+  about: A blue fish that sticks to the shallower, mid-ocean side of the Reef, closer to the reef wall
+    than the deep water.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Small" }
-    - { icon: "📍", value: "Shallow Reef, near the reef wall" }
-
+  - icon: 🪱
+    label: Bait
+    value: Small
+  - icon: 📍
+    value: Shallow Reef, near the reef wall
 - key: cavin
   name: Cavin
   size: small
-  coords: [[230, 190]]
+  coords:
+  - - 233
+    - 160
   pin_dy: 16
-  about: >-
-    Schools along the sea floor starting near the shore — hug the wall
-    and follow it down to the bottom to find them.
+  about: Schools along the sea floor starting near the shore — hug the wall and follow it down to the
+    bottom to find them.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Small" }
-    - { icon: "📍", value: "Sea floor, shore-side wall" }
-
+  - icon: 🪱
+    label: Bait
+    value: Small
+  - icon: 📍
+    value: Sea floor, shore-side wall
 - key: spinefish
   name: Spinefish
   size: small
-  coords: [[340, 130]]
+  coords:
+  - - 340
+    - 130
   pin_dy: 16
-  about: >-
-    A spiny yellow fish that clusters almost dead-center in the Reef.
-    Not a difficult catch despite the spikes.
+  about: A spiny yellow fish that clusters almost dead-center in the Reef. Not a difficult catch despite
+    the spikes.
   stats:
-    - { icon: "🪱", label: "Bait", value: "Small" }
-    - { icon: "📍", value: "Center of the Reef" }
+  - icon: 🪱
+    label: Bait
+    value: Small
+  - icon: 📍
+    value: Center of the Reef

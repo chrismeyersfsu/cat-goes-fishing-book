@@ -1,13 +1,19 @@
 - key: cuddlecanth
   name: Cuddlecanth
   size: secret
-  coords: [[462, 180]]
-  about: >-
-    A dead ringer for the real-world Coelacanth, tucked in a small
-    pocket just above its own fossil at the bottom of The Empty cave.
-    It won't appear at all unless your system clock is set to a date
+  coords:
+  - - 463
+    - 178
+  about: A dead ringer for the real-world Coelacanth, tucked in a small pocket just above its own fossil
+    at the bottom of The Empty cave. It won't appear at all unless your system clock is set to a date
     before the game's original release.
   stats:
-    - { icon: "🐟", label: "Category", value: "Secret Fish" }
-    - { icon: "📍", label: "Zone", value: "The Empty, above the fossil" }
-    - { icon: "📅", label: "Requirement", value: "System date before original release" }
+  - icon: 🐟
+    label: Category
+    value: Secret Fish
+  - icon: 📍
+    label: Zone
+    value: The Empty, above the fossil
+  - icon: 📅
+    label: Requirement
+    value: System date before original release

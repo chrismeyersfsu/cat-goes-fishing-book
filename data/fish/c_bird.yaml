@@ -1,21 +1,27 @@
 - key: bird
   name: Bird
   size: secret
-  coords: [[25, 165]]
-  about: >-
-    A red cardinal rather than a true fish, coaxed down onto the shore
-    while wearing the mythical Kardinal hat — a hat that only becomes
-    purchasable after releasing a Josie back into the water.
+  coords:
+  - - 16
+    - 163
+  about: A red cardinal rather than a true fish, coaxed down onto the shore while wearing the mythical
+    Kardinal hat — a hat that only becomes purchasable after releasing a Josie back into the water.
   stats:
-    - { icon: "🐟", label: "Category", value: "Secret Fish" }
-    - { icon: "📍", label: "Zone", value: "Shore, boat unequipped" }
-    - { icon: "🎩", label: "Requirement", value: "Kardinal hat + Dig hat" }
+  - icon: 🐟
+    label: Category
+    value: Secret Fish
+  - icon: 📍
+    label: Zone
+    value: Shore, boat unequipped
+  - icon: 🎩
+    label: Requirement
+    value: Kardinal hat + Dig hat
   portrait:
-    body_color: "#c0392b"
+    body_color: '#c0392b'
     shape: round
     tail: fork
     dorsal: triangle
     eye: cute
     mouth: flat
-    tail_color: "#8e2c22"
-    belly: "#e0b25c"
+    tail_color: '#8e2c22'
+    belly: '#e0b25c'

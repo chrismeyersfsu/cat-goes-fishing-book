@@ -35,6 +35,10 @@ class Fish:
     stats: list[Stat] = field(default_factory=list)
     color: str = MARKER_COLOR
     pin_dy: float = 16  # cluster layout: numbered pin offset from the X mark
+    on_land: bool = False  # true only when the fish's own spot is genuinely on
+    # land/structure by game design (sleeping on a cave floor, embedded in a
+    # wall, etc.) -- suppresses validate.py's water-placement check for this
+    # fish specifically. Don't set this to silence a real placement mistake.
 
 
 @dataclass
@@ -77,3 +81,11 @@ class Group:
     about: str | None = None  # duo layout's group-level "About" paragraph
     map_label: str | None = None  # cluster layout's note below the map frame
     map_max_width: int | None = None  # widens a layout's default map-frame width, if needed
+    label_crop_ok: bool = False  # suppresses validate.py's terrain-label-crop check for
+    # this group's view_box. Set only for a crop that's frozen/already approved and can't
+    # be adjusted (e.g. it must byte-match reference/design_preview.html) -- never to
+    # silence a crop that could just be shifted instead.
+    path_crosses_land_ok: bool = False  # suppresses the path-in-water check for this
+    # group's `path`. Same exception rule as label_crop_ok: only for frozen/approved
+    # content, verified visually to render fine (the checker's coordinate space and the
+    # rendered crop's aren't pixel-identical at the very edges of thin channels).

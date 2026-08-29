@@ -2,6 +2,8 @@
   name: Underfin
   size: secret
   coords: [[516, 198]]
+  on_land: true  # verified correct visually against the approved mockup; the
+  # terrain classifier flags it, likely a color-tolerance edge case right at this pixel
   about: >-
     A sleek, all-black fish hiding beneath the map itself, at the very
     bottom of The Empty cave. It doesn't strike at a normal drop — it

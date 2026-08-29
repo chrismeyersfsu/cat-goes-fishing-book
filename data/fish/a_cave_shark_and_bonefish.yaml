@@ -1,24 +1,30 @@
 - key: caveshark
   name: Cave Shark
   size: large
-  coords: [[175, 170]]
-  about: >-
-    The most notoriously fiddly catch in the caves, tucked into a side
-    pocket off the main cave area. Waking it takes the same bomb trick as
-    Bonefish, but it's best lured out into open water before you actually
-    hook it.
+  coords:
+  - - 174
+    - 156
+  about: The most notoriously fiddly catch in the caves, tucked into a side pocket off the main cave area.
+    Waking it takes the same bomb trick as Bonefish, but it's best lured out into open water before you
+    actually hook it.
   stats:
-    - { icon: "🪝", label: "Wake with", value: "Bomb + Detonator" }
-    - { icon: "📍", label: "Location", value: "Side pocket, main caves" }
-
+  - icon: 🪝
+    label: Wake with
+    value: Bomb + Detonator
+  - icon: 📍
+    label: Location
+    value: Side pocket, main caves
 - key: bonefish
   name: Bonefish
   size: large
-  coords: [[215, 155]]
-  about: >-
-    Found sleeping on the cave floor in the caves' main pocket. Detonating
-    a bomb near them wakes the whole group, and they bolt off toward the
-    Reef, where they're much easier to finish catching.
+  coords:
+  - - 215
+    - 155
+  about: Found sleeping on the cave floor in the caves' main pocket. Detonating a bomb near them wakes
+    the whole group, and they bolt off toward the Reef, where they're much easier to finish catching.
   stats:
-    - { icon: "🪝", label: "Wake with", value: "Bomb + Detonator" }
-    - { icon: "📍", value: "Runs to the Reef once woken" }
+  - icon: 🪝
+    label: Wake with
+    value: Bomb + Detonator
+  - icon: 📍
+    value: Runs to the Reef once woken
