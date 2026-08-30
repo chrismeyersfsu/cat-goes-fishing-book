@@ -19,6 +19,7 @@ way to keep a mistake.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -36,7 +37,16 @@ class Correction:
         return f"{self.group_id}: {self.what} {self.detail}"
 
 
-def _fit_fish(group: Group, mask_path: Path) -> list[Correction]:
+MIN_MARKER_GAP = 10.0
+"""How far apart two markers' centres must be. Markers are ~18 map units
+across, so this still lets them overlap and read as a shoal; it only
+stops one being hidden underneath another, which also makes it
+untappable."""
+
+
+def _fit_fish(
+    group: Group, mask_path: Path, taken: list[tuple[float, float]], slot: int
+) -> tuple[list[Correction], int]:
     vx, _vy, vw, _vh = (float(v) for v in group.view_box.split())
     bounds = (
         vx + validate.X_MARGIN,
@@ -47,24 +57,35 @@ def _fit_fish(group: Group, mask_path: Path) -> list[Correction]:
     out = []
     for f in group.fish:
         if f.on_land:
+            slot += len(f.coords)
             continue
         for i, (x, y) in enumerate(list(f.coords)):
             # Clearance, not just "is this pixel water" -- see
             # terrain.nearest_open_water. A marker already sitting in
             # open water is left exactly where the author put it.
-            nx, ny = terrain.nearest_open_water(x, y, mask_path=mask_path, bounds=bounds)
-            if (nx, ny) == (x, y):
-                continue
-            f.coords[i] = (nx, ny)
-            why = (
-                "was on terrain"
-                if not terrain.is_water(x, y, mask_path)
-                else "was too close to terrain"
+            # Exclude this marker's own slot, not every marker that
+            # happens to share its coordinates -- two fish stacked on one
+            # point must each still see the other, or neither moves.
+            others = tuple(taken[:slot] + taken[slot + 1 :])
+            nx, ny = terrain.nearest_open_water(
+                x, y, mask_path=mask_path, bounds=bounds, avoid=others, min_gap=MIN_MARKER_GAP
             )
+            if (nx, ny) == (x, y):
+                slot += 1
+                continue
+            taken[slot] = (nx, ny)
+            slot += 1
+            f.coords[i] = (nx, ny)
+            if not terrain.is_water(x, y, mask_path):
+                why = "was on terrain"
+            elif any(math.hypot(x - ax, y - ay) < MIN_MARKER_GAP for ax, ay in others):
+                why = "was under another marker"
+            else:
+                why = "was too close to terrain"
             out.append(
                 Correction(group.id, f"moved {f.key!r}", f"({x},{y}) -> ({nx:g},{ny:g}), {why}")
             )
-    return out
+    return out, slot
 
 
 def _connected(a: tuple[float, float], b: tuple[float, float], mask_path: Path) -> bool:
@@ -151,8 +172,13 @@ def fit_groups(groups: list[Group], assets_dir: Path = Path("assets")) -> list[C
     """Snap every marker onto water and route every path around land.
     Returns what it changed, in the order it changed it."""
     mask_path = assets_dir / "water_mask.png"
+    # Separation is global: two fish from different groups land on the
+    # same world map, so they have to clear each other too.
+    taken = [(x, y) for g in groups for f in g.fish for x, y in f.coords]
     out: list[Correction] = []
+    slot = 0
     for g in groups:
-        out += _fit_fish(g, mask_path)
+        fixed, slot = _fit_fish(g, mask_path, taken, slot)
+        out += fixed
         out += _fit_path(g, mask_path)
     return out

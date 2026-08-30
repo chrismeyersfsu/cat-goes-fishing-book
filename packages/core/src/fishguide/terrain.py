@@ -131,6 +131,8 @@ def nearest_open_water(
     max_radius: int = 60,
     mask_path: Path = WATER_MASK_PATH,
     bounds: tuple[float, float, float, float] | None = None,
+    avoid: tuple[tuple[float, float], ...] = (),
+    min_gap: float = 0.0,
 ) -> tuple[float, float]:
     """Like nearest_water, but insists the point have `clearance` units
     of water all around it. A marker centred on a one-pixel seam at the
@@ -146,6 +148,13 @@ def nearest_open_water(
             x_lo, x_hi, y_lo, y_hi = bounds
             if not (x_lo <= cx <= x_hi and y_lo <= cy <= y_hi):
                 return False
+        # Every map shows every fish now, so two markers on the same spot
+        # are one marker as far as a reader is concerned -- and only the
+        # top one can be tapped.
+        if min_gap:
+            for ax, ay in avoid:
+                if math.hypot(cx - ax, cy - ay) < min_gap:
+                    return False
         if r <= 0:
             return is_water(cx, cy, mask_path)
         steps = 8

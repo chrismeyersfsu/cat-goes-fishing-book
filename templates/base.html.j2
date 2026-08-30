@@ -128,8 +128,13 @@
   #allFish .fish-marker { opacity:0.34; }
   .map-frame { cursor:grab; touch-action:none; }
   .map-frame.is-dragging { cursor:grabbing; }
-  .own-ring { fill:none; stroke:var(--gold); stroke-width:1.6; opacity:0.9; }
-  .fish-sel { fill:none; stroke:var(--gold); stroke-width:2.4; }
+  /* A fish picture only receives a click where it is actually painted,
+     so a tap on the transparent corner of one fish falls through to
+     whatever is behind it. Make the whole marker box clickable, and
+     keep the decorative rings out of the way entirely. */
+  .own .fish-marker { pointer-events:all; }
+  .own-ring { fill:none; stroke:var(--gold); stroke-width:1.6; opacity:0.9; pointer-events:none; }
+  .fish-sel { fill:none; stroke:var(--gold); stroke-width:2.4; pointer-events:none; }
   .map-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:9px; }
   .map-hint { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.05em;
     text-transform:uppercase; color:var(--ink-soft); }
@@ -498,20 +503,29 @@
     frame.addEventListener('pointerup', end);
     frame.addEventListener('pointercancel', end);
 
-    // A tap inside the shared layer lands on the <use>, not on a fish,
-    // so work out which fish from where the tap was on the map. The
-    // radius follows the zoom: the same finger covers less water when
-    // you are zoomed in.
+    // Which fish was tapped. A group's own fish are real elements, so
+    // ask the DOM first -- that is exact, and it is what a reader taps
+    // most. Only a fish that exists solely in the shared layer needs
+    // inferring, and that is done in screen space: comparing pixels to
+    // pixels can't drift the way comparing a converted point to map
+    // units can.
     frame.addEventListener('click', function (e) {
       if (moved > 6) return;
-      var u = user(e), best = null;
+      var direct = e.target.closest('.fish-marker[data-fish]');
+      if (direct) {
+        window.fishguideShowFish(direct.getAttribute('data-fish'), svg, pts);
+        return;
+      }
+      var m = svg.getScreenCTM();
+      if (!m) return;
+      var p = svg.createSVGPoint(), best = null;
       for (var i = 0; i < pts.length; i++) {
-        var d = Math.hypot(pts[i].x - u.x, pts[i].y - u.y);
+        p.x = pts[i].x; p.y = pts[i].y;
+        var q = p.matrixTransform(m);
+        var d = Math.hypot(q.x - e.clientX, q.y - e.clientY);
         if (!best || d < best.d) best = { d: d, k: pts[i].k };
       }
-      if (best && best.d < Math.max(9, vb[2] * 0.05)) {
-        window.fishguideShowFish(best.k, svg, pts);
-      }
+      if (best && best.d < 26) window.fishguideShowFish(best.k, svg, pts);
     });
 
     var bar = frame.nextElementSibling;

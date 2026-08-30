@@ -227,4 +227,12 @@ All notable user-facing changes to this project. Format follows
 - The context strip's gold box is live: it moves and resizes as you pan
   and zoom, so it always shows where you're looking rather than where
   the page started.
+- Fixed tapping a fish selecting a different one. Two causes: a fish
+  picture only receives a click where it is actually painted, so a tap
+  on a transparent corner fell through to whatever was behind it; and
+  24 pairs of markers had been snapped onto identical coordinates, four
+  of them stacked on one point. Markers are now kept at least 10 map
+  units apart across the whole book -- they can still overlap and read
+  as a shoal, but none can hide underneath another -- and a marker's
+  whole box takes the tap.
 
