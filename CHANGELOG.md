@@ -246,4 +246,11 @@ All notable user-facing changes to this project. Format follows
   that same world map now -- zoom out from any of them and you have it
   -- so a page showing it uncropped had nothing left to add. The book
   opens on the fish index.
+- Fixed 152 fish printing as empty boxes in the PDF. Portraits are
+  lazy-loaded, which is right on the web and wrong for print: printing
+  never scrolls, so an image further down the book never entered the
+  viewport and never loaded. `fishguide pdf` now makes every image
+  eager and waits for it to decode before printing.
+- The map controls are down to Focus and Full screen. Zooming is drag
+  and scroll or pinch, which the maps already did.
 
