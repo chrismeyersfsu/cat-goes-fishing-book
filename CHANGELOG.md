@@ -204,4 +204,8 @@ All notable user-facing changes to this project. Format follows
 - The world map at the front now marks every fish in the book, and pans
   and zooms in place: drag to move, scroll or pinch to zoom, buttons
   and a reset underneath. Tapping a fish there opens the same card.
+- The world map now opens full screen on tap, the same as every other
+  map. Enlarged it takes the screen's shape rather than staying a 5.8:1
+  sliver: you get a full-height slice to scroll left and right through,
+  with the same pan, zoom and tap-a-fish-for-its-card as before.
 

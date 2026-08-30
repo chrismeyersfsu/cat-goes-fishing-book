@@ -89,6 +89,11 @@
     letter-spacing:0.08em; text-transform:uppercase; color:var(--ink); background:transparent;
     border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer; }
   .mv[open] .fc { z-index:140; }
+  .mv .mv-world { aspect-ratio:auto !important; height:min(66vh, 560px); }
+  .mv .world-bar { margin-top:11px; }
+  .mv .world-hint { color:rgba(246,240,225,0.7); }
+  .mv .world-zoom button { color:var(--paper); border-color:rgba(255,255,255,0.3); }
+  .mv .world-zoom button:hover { background:rgba(255,255,255,0.12); }
   /* Full-screen map detail view. Opened by tapping a map or its
      context strip; closed by the bottom bar, a downward swipe, Esc, or
      the back gesture -- several ways out on purpose, since the bar is
@@ -298,11 +303,37 @@
   var stage = mv.querySelector('.mv-stage');
   var origin = null;
 
-  function open(stack) {
-    inner.replaceChildren(stack.cloneNode(true));
+  function open(frame) {
+    // Clone the map and the pieces that belong with it -- the context
+    // strip above, the zoom bar below -- rather than the whole page
+    // column, which on the overview page also holds body copy.
+    var parts = [];
+    var before = frame.previousElementSibling;
+    if (before && before.classList.contains('ctx')) parts.push(before.cloneNode(true));
+    var copy = frame.cloneNode(true);
+    copy.removeAttribute('id');  // one #world-map in the document, not two
+    delete copy.dataset.panzoom;  // the clone carries the original's "already wired" flag
+    parts.push(copy);
+    var after = frame.nextElementSibling;
+    if (after && after.classList.contains('world-bar')) parts.push(after.cloneNode(true));
+    inner.replaceChildren.apply(inner, parts);
     origin = window.scrollY;
     mv.setAttribute('open', '');
     document.body.classList.add('mv-open');
+    if (copy.classList.contains('world-map')) {
+      // A 5.8:1 world in a portrait overlay is a sliver with dead space
+      // above and below. Give the enlarged copy the screen's own shape
+      // and show a full-height slice you scroll sideways. Measured only
+      // once the overlay is displayed -- a hidden element has no size.
+      copy.classList.add('mv-world');
+      copy.style.aspectRatio = '';
+      copy.setAttribute('data-bounds', '0 0 1450 251');
+      var wsvg = copy.querySelector('svg.map-crop');
+      var box = copy.getBoundingClientRect();
+      var vw = Math.min(1450, 251 * (box.width / box.height));
+      wsvg.setAttribute('viewBox', ((1450 - vw) / 2).toFixed(1) + ' 0 ' + vw.toFixed(1) + ' 251');
+      window.fishguidePanZoom(copy);
+    }
     reset();
     history.pushState({ mapView: true }, '');
     mv.querySelector('.mv-close').focus();
@@ -323,9 +354,9 @@
     if (e.target.closest('[data-mv-close]')) { close(); return; }
     if (mv.hasAttribute('open')) return;
     var hit = e.target.closest('.map-frame, .ctx');
-    if (!hit || hit.closest('#world-map')) return;
-    var stack = hit.parentElement;
-    if (stack) open(stack);
+    if (!hit) return;
+    var frame = hit.classList.contains('map-frame') ? hit : hit.nextElementSibling;
+    if (frame && frame.classList.contains('map-frame')) open(frame);
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') close();
@@ -336,7 +367,11 @@
   // is recoverable, and only a real commit (distance or flick) closes.
   var y0 = null, t0 = 0, dy = 0;
   stage.addEventListener('pointerdown', function (e) {
-    if (e.target.closest('.mv-close')) return;
+    // Anything with its own gesture or press target keeps it: the swipe
+    // captures the pointer, so without this a tap on a zoom button never
+    // becomes a click and a drag on the world map dismisses the view
+    // instead of panning it.
+    if (e.target.closest('button, .world-bar, .world-map')) return;
     y0 = e.clientY; t0 = Date.now(); dy = 0;
     stage.style.transition = 'none';
     stage.setPointerCapture(e.pointerId);
@@ -440,8 +475,8 @@
     var hit = e.target.closest('.fish-marker[data-fish]');
     if (!hit) return;
     var open = document.querySelector('.mv[open]');
-    var host = open || hit.closest('.map-frame');
-    if (!open && !hit.closest('#world-map')) return;  // group maps open the detail view instead
+    if (!open) return;  // every map opens large first; fish are tapped in there
+    var host = open;
     e.stopPropagation();
     setScope(host);
     show(hit.getAttribute('data-fish'));
@@ -458,17 +493,21 @@
 // The world map is a viewport, not a picture: drag to pan, wheel or
 // pinch to zoom. It keeps its own viewBox rather than reusing the
 // detail view, because panning and a tap-to-open overlay fight.
-(function () {
-  var frame = document.getElementById('world-map');
-  if (!frame) return;
+window.fishguidePanZoom = function (frame) {
+  if (!frame || frame.dataset.panzoom) return;
+  frame.dataset.panzoom = '1';
   var svg = frame.querySelector('svg.map-crop');
-  var base = svg.getAttribute('viewBox').split(' ').map(Number);
-  var vb = base.slice();
-  var MIN_W = 160;
+  // The pannable world can be wider than what's on screen: a tall crop
+  // of it shows full height and scrolls sideways.
+  var base = (frame.getAttribute('data-bounds') || svg.getAttribute('viewBox'))
+    .split(' ').map(Number);
+  var vb = svg.getAttribute('viewBox').split(' ').map(Number);
+  var ratio = vb[3] / vb[2];
+  var MIN_W = 120;
 
   function apply() {
     vb[2] = Math.min(base[2], Math.max(MIN_W, vb[2]));
-    vb[3] = vb[2] * base[3] / base[2];
+    vb[3] = Math.min(base[3], vb[2] * ratio);
     vb[0] = Math.min(base[0] + base[2] - vb[2], Math.max(base[0], vb[0]));
     vb[1] = Math.min(base[1] + base[3] - vb[3], Math.max(base[1], vb[1]));
     svg.setAttribute('viewBox', vb.join(' '));
@@ -517,16 +556,21 @@
   // A drag that moved is not a tap: don't open a fish you merely passed over.
   frame.addEventListener('click', function (e) { if (moved > 6) e.stopPropagation(); }, true);
 
-  frame.addEventListener('click', function (e) {
+  // The zoom bar sits below the frame, not inside it, so the buttons
+  // have to be listened for there.
+  var bar = frame.nextElementSibling;
+  if (!bar || !bar.classList.contains('world-bar')) bar = frame;
+  bar.addEventListener('click', function (e) {
     var b = e.target.closest('[data-world]');
     if (!b) return;
     var k = b.getAttribute('data-world');
     var cx = vb[0] + vb[2] / 2, cy = vb[1] + vb[3] / 2;
     if (k === 'in') zoom(0.7, cx, cy);
     else if (k === 'out') zoom(1.4, cx, cy);
-    else { vb = base.slice(); apply(); }
+    else { vb[2] = base[3] / ratio; vb[0] = base[0] + (base[2] - vb[2]) / 2; vb[1] = base[1]; apply(); }
   });
-})();
+};
+window.fishguidePanZoom(document.getElementById('world-map'));
 </script>
 </body>
 </html>
