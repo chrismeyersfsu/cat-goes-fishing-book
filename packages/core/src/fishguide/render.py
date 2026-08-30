@@ -13,7 +13,7 @@ from pathlib import Path
 
 import jinja2
 
-from . import art, layout, markers, paginate
+from . import art, layout, markers, paginate, terrain_fit
 from .models import SIZE_ORDER, Fish, Group
 
 TEMPLATES_DIR = Path("templates")
@@ -401,6 +401,12 @@ def build_book(
     groups = data_mod.load_groups(data_dir)
     palette = data_mod.load_palette(data_dir)
 
+    # Correct the geometry before validating it: a marker on a rock or a
+    # lure path across land is something the generator can fix, and
+    # leaving it to a build failure invites silencing the check instead
+    # (see terrain_fit's docstring).
+    for c in terrain_fit.fit_groups(groups, assets_dir):
+        print(f"fishguide: {c}")
     validate_or_raise(groups, assets_dir)
 
     fish_pic = make_fish_pic(assets_dir)

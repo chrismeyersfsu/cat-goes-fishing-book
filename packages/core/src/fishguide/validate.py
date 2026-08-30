@@ -69,9 +69,11 @@ def check_marker_safe_area(group: Group) -> list[str]:
     vx, _vy, vw, _vh = _view_box(group)
     x_lo, x_hi = vx + X_MARGIN, vx + vw - X_MARGIN
 
-    def check_point(x: float, y: float, where: str) -> None:
-        if not (Y_MIN <= y <= Y_MAX):
-            errors.append(f"{group.id}: {where} y={y} outside [{Y_MIN}, {Y_MAX}]")
+    def check_point(
+        x: float, y: float, where: str, y_lo: float = Y_MIN, y_hi: float = Y_MAX
+    ) -> None:
+        if not (y_lo <= y <= y_hi):
+            errors.append(f"{group.id}: {where} y={y} outside [{y_lo}, {y_hi}]")
         if not (x_lo <= x <= x_hi):
             errors.append(f"{group.id}: {where} x={x} outside [{x_lo}, {x_hi}]")
 
@@ -79,8 +81,10 @@ def check_marker_safe_area(group: Group) -> list[str]:
         for i, (x, y) in enumerate(f.coords):
             check_point(x, y, f"fish {f.key!r} coords[{i}]")
     if group.path:
+        # A path point is the end of a hairline, not the centre of a
+        # marker, so it gets the looser bound (see terrain.PATH_Y_MIN).
         for i, (x, y) in enumerate(group.path.points):
-            check_point(x, y, f"path point[{i}]")
+            check_point(x, y, f"path point[{i}]", terrain.PATH_Y_MIN, terrain.PATH_Y_MAX)
     return errors
 
 

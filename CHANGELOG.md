@@ -174,4 +174,23 @@ All notable user-facing changes to this project. Format follows
   their own descriptions call for, and the mockup's pin coordinates
   for that one group were rebased to match.
 - Blooper takes a large hook, not a huge one, per the guide.
+- The generator now fixes map geometry instead of only complaining about
+  it. `fishguide.terrain_fit` runs before validation on every build: it
+  moves each marker to the nearest open water with room around it, and
+  reroutes any lure path that would cross land. It prints every change
+  it makes, so a build stays auditable. This corrected 101 markers --
+  two sitting on rock outright, the rest hugging an edge closely enough
+  to read as beached -- and rerouted two paths.
+- Three router bugs that let land crossings through: routes were built
+  from the author's original endpoints even when those sat on rock;
+  grid hops were never checked for land *between* the two cells; and a
+  route was returned without verifying it. A route that isn't wholly in
+  water is now refused rather than drawn.
+- Lure paths get their own vertical bounds, looser than a marker's. A
+  path is a hairline and a marker is 26 units wide, and holding paths to
+  the marker bound cut the map's water into pieces that don't connect.
+- Two paths genuinely cannot avoid land: Underfin's cave pocket and
+  Magnalav's shore route are sealed off from their cast points by rock.
+  They keep `path_crosses_land_ok`, now with the reason recorded and
+  proven by the generator rather than assumed.
 

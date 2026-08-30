@@ -35,6 +35,15 @@ as intentional, not bugs:
   collapse to a MARK placeholder so everything else on the map -- the
   dashed lure path, the numbered pins, the crop -- still compares
   exactly.
+- The mockup no longer governs map geometry at all. Marker, pin, path
+  and start-dot coordinates are collapsed on both sides; what the mockup
+  still proves is how many there are, their pin numbers and order, and
+  all the text and layout around them. `terrain_fit` now snaps every marker onto water and reroutes
+  every path around land before anything is drawn, so where the traced
+  mockup put a marker on a rock, the generator moves it. Affected here:
+  `d_huge_fish_predators` (below), Treat by one unit, Underfin's marker,
+  and Trick & Treat's lure path, whose mockup `d` was rebased to the
+  routed line.
 - `d_huge_fish_predators` is the one group whose marker coordinates the
   mockup no longer governs. Five of its seven fish were traced onto the
   land mass (Maw 83 map units inland), which `check_fish_in_water` was
@@ -130,6 +139,23 @@ def _normalize(html: str) -> str:
     # the crop sits without scrolling back to the overview. The mockup
     # is a 5-page preview with no such need.
     html = re.sub(r'<div class="ctx">.*?</div>', "", html)
+    # Map geometry -- marker positions, pin positions, the lure path, the
+    # start dot -- is no longer the mockup's to decide. terrain_fit moves
+    # every marker onto open water with clearance and reroutes every path
+    # around land, and validate.py then proves the result. Those checks
+    # are strictly stronger than byte-matching a hand-traced mockup, so
+    # coordinates are collapsed here while the things the mockup is still
+    # authoritative for -- how many markers, which pin numbers, in what
+    # order, and every bit of text and layout around them -- keep
+    # comparing exactly.
+    html = re.sub(
+        r'<g><circle cx="[\d.]+" cy="[\d.]+" r="6.8"[^>]*/>'
+        r"<text[^>]*>(\d+)</text></g>",
+        r"PIN(\1)",
+        html,
+    )
+    html = re.sub(r'<circle cx="[\d.]+" cy="[\d.]+" r="6.5"[^>]*/>', "DOT", html)
+    html = re.sub(r'<path d="M [^"]+"', '<path d="PATH"', html)
     # Map markers are the fish's own picture now, not a red X -- an X
     # told you a fish was here, its picture tells you which one. Both
     # sides collapse to a MARK placeholder so the rest of the map

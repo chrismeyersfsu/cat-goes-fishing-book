@@ -24,8 +24,6 @@
   name: Treat
   size: large
   coords: [[695, 20]]
-  on_land: true  # verified correct visually against the approved mockup; the
-  # terrain classifier flags it, likely a color-tolerance edge case right at this pixel
   about: >-
     Doesn't spawn on its own. Treat only appears in the surface water
     above the Silo, and only after Trick has been personally delivered

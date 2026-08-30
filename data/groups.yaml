@@ -11,7 +11,6 @@
   cast: Hook Trick above the Reef wall on Halloween night, then lead it across to the surface above the
     Silo.
   view_box: 365 0 380 251
-  path_crosses_land_ok: true
   map_caption: Reef wall (Trick) — dashed lure path — Above Silo (Treat)
   map_alt: Map slice showing the path from the Reef wall (Trick) across to above the Silo (Treat)
   about: Trick only appears on Halloween night — set your clock to 12:00 AM, October 31st, and watch for
@@ -67,6 +66,10 @@
   - icon: ⚓
     text: Sinker attachment — helps reach depth fast
 - id: c_underfin
+  # Underfin's pocket at the bottom of The Empty is sealed off from the
+  # cast point's water by rock, so no all-water line exists -- the lure
+  # genuinely goes through the cave wall. Proven by terrain_fit.
+  path_crosses_land_ok: true
   title: Underfin
   tier: C
   layout: feature
@@ -79,7 +82,6 @@
   cast: Bottom of The Empty cave, hugging the Cuddlecanth fossil.
   view_box: 420 0 220 251
   label_crop_ok: true
-  path_crosses_land_ok: true
   map_caption: Fossil corner (start) → drag right → Underfin bites
   map_alt: Map slice of the bottom of The Empty cave showing the drag path from the fossil to where Underfin
     bites
@@ -394,7 +396,6 @@
   cast: Pick up Glacier on the far side of The Empty, then haul it the length of the map to Magmer's lava
     vents in the Labyrinth.
   view_box: 430 0 970 251
-  path_crosses_land_ok: true
   map_caption: The Empty (Glacier) — dashed lure path across the whole map — Labyrinth lava vents (Magmer)
   map_alt: Wide map slice from The Empty across the Silo, Plateau, and Kelp to the Labyrinth, showing
     the cross-map path from Glacier to Magmer
@@ -1040,6 +1041,10 @@
     text: Watch your bombs — Bombats detonate them on contact
     required: false
 - id: c_magnalav
+  # Magnalav's own method has you retreat toward shore and land it on
+  # foot, so the route leaves the water by design; the two ends are in
+  # unconnected bodies. Proven by terrain_fit.
+  path_crosses_land_ok: true
   title: Magnalav
   tier: C
   layout: feature
@@ -1051,7 +1056,6 @@
     kind: diff-hard
   cast: Spotted at the Reef Barrier under sonar, then coaxed back toward shore on foot.
   view_box: 0 0 280 251
-  path_crosses_land_ok: true
   map_caption: Reef Barrier sighting → retreat toward shore in small steps → land it on foot
   map_alt: Map slice from the Reef Barrier to the shore, showing the path Magnalav is coaxed along as
     the boat retreats
