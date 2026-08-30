@@ -85,3 +85,19 @@
     value: Huge hook + small fish
   - icon: 🐟
     value: Spears bait like a Swordfish
+- key: thermo
+  name: Thermo
+  size: small
+  coords:
+  - - 1350
+    - 198
+  pin_dy: 16
+  about: A little glowing fish with vent-like ridges along its sides, circling one of the two Magmers
+    deep at the Labyrinth's bottom. Keep the bait away from the Magmer itself and a decent crank speed
+    reels one in easily.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any
+  - icon: 🎣
+    value: Keep clear of the Magmer's heat

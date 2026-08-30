@@ -89,3 +89,18 @@
     value: Swims in a pair
   - icon: 📍
     value: Wide loop across Open Ocean
+- key: tangfin
+  name: Tangfish
+  size: small
+  coords:
+  - - 46
+    - 64
+  pin_dy: 16
+  about: Small and easy, sticking to the same stretch of water as the Skitters, just under the surface —
+    probing around wherever Sourfish are hanging out usually turns a few up.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Near the surface, alongside Sourfish

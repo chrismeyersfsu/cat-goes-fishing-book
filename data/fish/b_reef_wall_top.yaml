@@ -74,3 +74,79 @@
     value: Any/Small
   - icon: 📍
     value: Deep reef, occasionally the Reef wall
+- key: pinkkisser
+  name: Pink Kisser
+  size: small
+  coords:
+  - - 365
+    - 20
+  pin_dy: 16
+  about: Bright pink with a little pursed, kissing-shaped mouth, holding right on top of the Reef wall.
+    The second-best boat parks you directly over its spot, which makes this about as easy a catch as
+    the wall gets.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Top of the Reef wall
+- key: garder
+  name: Garder
+  size: small
+  coords:
+  - - 390
+    - 20
+  pin_dy: 16
+  about: Pale red with a sharp upper fin, sharing the same top-of-the-wall spot as the rest of this
+    cluster. No tricks to the catch.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Top of the Reef wall
+- key: celad
+  name: Celad
+  size: small
+  coords:
+  - - 415
+    - 20
+  pin_dy: 16
+  about: Round-bodied and green, easy to pick out among the rest of the Reef wall's easy catches. Just
+    as easy to reel in.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Top of the Reef wall
+- key: inno
+  name: Inno
+  size: small
+  coords:
+  - - 440
+    - 20
+  pin_dy: 16
+  about: Small, pale white-and-yellow fish rounding out the Reef wall's easy catches. Nothing about it
+    puts up a fight.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Top of the Reef wall
+- key: pennyfin
+  name: Pennyfin
+  size: small
+  coords:
+  - - 470
+    - 20
+  pin_dy: 16
+  about: A little purple fish holding the same top-of-the-wall spot as Pink Kisser, Garder, Celad, and
+    Inno. Simple catch, no special gear.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Top of the Reef wall

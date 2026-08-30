@@ -85,3 +85,69 @@
     value: Glows — easy to spot
   - icon: 📍
     value: Just above the seafloor
+- key: swooper
+  name: Swooper
+  size: small
+  coords:
+  - - 40
+    - 30
+  pin_dy: 16
+  about: One of the easiest catches in the game, hanging around the shallow stretches of open ocean close
+    to shore.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any
+  - icon: 📍
+    value: Shallow open ocean
+- key: roundfin
+  name: Roundfin
+  size: small
+  coords:
+  - - 40
+    - 55
+  pin_dy: 16
+  about: Sits just barely off-screen from the shore itself, swimming in a tight circular pattern. Realism
+    mode barely slows it down.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Just off shore
+- key: kingfish
+  name: Kingfish
+  size: small
+  coords:
+  - - 184
+    - 120
+  pin_dy: 16
+  about: Small escorts that swarm around Queenfish, easy to hook with small or medium bait — the main
+    hassle is them stealing your bait before Queenfish bites. Land a Queenfish first and the whole swarm
+    starts trailing your boat instead.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Small/Medium
+  - icon: 🐟
+    value: Swarms Queenfish
+  - icon: 🎣
+    value: Bait guard clears the way
+- key: bulbfish
+  name: Bulbfish
+  size: small
+  coords:
+  - - 285
+    - 207
+  pin_dy: 16
+  about: Glows enough to spot easily in the darker, deep water it schools through in a loose line. The
+    long haul back up is the hard part — Flick and a couple of reel upgrades cut down on losing one before
+    it's in the boat. Catching one intact unlocks the lightbulb lure, and it's the key bait for hooking
+    The Maw.
+  stats:
+  - icon: 💡
+    value: Glows — easy to spot
+  - icon: 🎣
+    value: Flick + reel upgrades help the retrieve
+  - icon: 🔓
+    value: Unlocks the lightbulb lure; bait for The Maw

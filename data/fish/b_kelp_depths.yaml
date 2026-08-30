@@ -48,3 +48,28 @@
   stats:
     - { icon: "🪱", label: "Bait", value: "Large" }
     - { icon: "📍", value: "Rare-fruit patch" }
+
+- key: rarefruit
+  name: Rare Fruit
+  size: small
+  coords: [[1215, 172]]
+  pin_dy: 16
+  about: >-
+    Small, dragonfruit-shaped fish swimming with the Cheesefin crowd
+    in the Kelp's rare-fruit patch. An easy catch on its own, and the
+    bait Zub wants — carried over on a huge hook.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }
+    - { icon: "🔗", value: "Bait for Zub, carried on a huge hook" }
+
+- key: lilcheesefin
+  name: Lil Cheesefin
+  size: small
+  coords: [[1208, 192]]
+  pin_dy: 16
+  about: >-
+    Small, round, and cheese-yellow, schooling alongside the Rare
+    Fruit under Elder Cheesefin's watch. No special requirements to
+    land one.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Small" }

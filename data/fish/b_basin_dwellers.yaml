@@ -1,3 +1,34 @@
+- key: skrimp
+  name: Skrimp
+  size: small
+  coords:
+  - - 287
+    - 140
+  pin_dy: 16
+  about: A tiny shrimp-like fish holding along the sea-floor drop-off just before the Basin. Work backward
+    from the Reef wall toward shore, and if Gupper starts turning up, you've gone too deep — reel up to
+    find the drop-off instead.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Small
+  - icon: 💣
+    value: Bombs make reaching the drop-off a lot easier
+- key: puff
+  name: Puff
+  size: small
+  coords:
+  - - 295
+    - 90
+  pin_dy: 16
+  about: A small pufferfish scattered through the mid-ocean band before the Reef wall, level with its top
+    and just above the Basin. No fish ever bites a Puff, so there's nothing to lose it to — once it's
+    hooked it just puffs up. Its real job is live bait for Swordfish.
+  stats:
+  - icon: 🐟
+    value: Never gets bitten by other fish
+  - icon: 🔗
+    value: Live bait for Swordfish
 - key: gupper
   name: Gupper
   size: large

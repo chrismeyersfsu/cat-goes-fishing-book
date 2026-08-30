@@ -35,6 +35,9 @@ as intentional, not bugs:
   collapse to a MARK placeholder so everything else on the map -- the
   dashed lure path, the numbered pins, the crop -- still compares
   exactly.
+- Every group map gained a context strip above it (the whole world with
+  this page's slice marked). Stripped before comparing: a 5-page
+  mockup preview had no reason to orient the reader.
 - Every group page now ends with a "back to top" link (`#top`, back to
   the very start of the document) the mockup has no reason to have.
 - The map's caption bar (`.cap`, bottom of the frame) is gone -- it
@@ -115,6 +118,11 @@ def _normalize(html: str) -> str:
     # as different by design; neither has a nested </div> inside it.
     html = re.sub(r'(<div class="fish-pic"[^>]*>).*?(</div>)', r"\1PIC\2", html)
     html = re.sub(r'(<div class="index-thumb">).*?(</div>)', r"\1PIC\2", html)
+    # Every group map now carries a context strip above it -- the whole
+    # world with this page's slice marked, so a reader can see where
+    # the crop sits without scrolling back to the overview. The mockup
+    # is a 5-page preview with no such need.
+    html = re.sub(r'<div class="ctx">.*?</div>', "", html)
     # Map markers are the fish's own picture now, not a red X -- an X
     # told you a fish was here, its picture tells you which one. Both
     # sides collapse to a MARK placeholder so the rest of the map
@@ -163,13 +171,15 @@ def test_matches_approved_mockup():
     assert "<h2>The World</h2>" in overview
     assert 'viewBox="0 0 1450 251"' in overview
 
-    # The index now covers the full 178-fish roster (Phase 3), not the
-    # mockup's 19-fish preview -- byte-equality against it stopped
-    # meaning anything once real content superseded the demo. Check
-    # the index is internally sane instead of matching frozen content.
+    # The index now covers the full 203-fish roster (178 from Phase 3
+    # plus 25 the community guide named that never made it into data/),
+    # not the mockup's 19-fish preview -- byte-equality against it
+    # stopped meaning anything once real content superseded the demo.
+    # Check the index is internally sane instead of matching frozen
+    # content.
     index_page = next(p for p in book_pages if "<h2>Fish Index</h2>" in p)
-    assert "178 of 178 Entries Shown" in index_page
-    assert index_page.count('class="index-row"') == 178
+    assert "203 of 203 Entries Shown" in index_page
+    assert index_page.count('class="index-row"') == 203
     assert "Bitterfish" in index_page and "Silo Depths I" in index_page
 
     demo_group_ids = [

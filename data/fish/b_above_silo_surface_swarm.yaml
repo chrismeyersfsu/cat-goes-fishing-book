@@ -73,3 +73,18 @@
     value: Huge
   - icon: 🐟
     value: Hook a Tim first, then lower it slowly
+- key: gallina
+  name: Gallina
+  size: small
+  coords:
+  - - 685
+    - 40
+  pin_dy: -16
+  about: An easy catch found further off-shore in very shallow water, right around the off-shore side
+    of the Cowfish spawn.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Shallow water near the off-shore Cowfish spawn

@@ -68,3 +68,63 @@
     value: Stationary, Open Ocean
   - icon: 🐟
     value: Guarded by baby sizzer
+- key: tetra
+  name: Tetra
+  size: small
+  coords:
+  - - 176
+    - 68
+  pin_dy: 16
+  about: A tight school holding at mid-ocean depth in the same water Chompy and Crayfin patrol. Nothing
+    special about the catch itself.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Mid-ocean, near Chompy and Crayfin
+- key: tappy
+  name: Tappy
+  size: small
+  coords:
+  - - 200
+    - 100
+  pin_dy: 16
+  about: Similar to Tetra and found in the same general area, just sitting a bit deeper — usually turns
+    up wherever the big Sizzer cluster is resting.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Deeper than Tetra, near Sizzer
+- key: babysizzer
+  name: Baby Sizzer
+  size: small
+  coords:
+  - - 100
+    - 140
+  pin_dy: 16
+  about: Swarms around the stationary adult Sizzer, and going after one risks the parent snapping your
+    line. A fast reel (or a Gauge to speed one up), plus Bait Guard and large bait to occupy the adult
+    first, keeps things civil enough to pick off a baby.
+  stats:
+  - icon: 🎣
+    value: Fast reel or Gauge helps
+  - icon: 🪱
+    value: Bait Guard + large bait on the adult first
+- key: trillow
+  name: Trillow
+  size: small
+  coords:
+  - - 150
+    - 152
+  pin_dy: 16
+  about: Loops in a wide, loose circle at mid-ocean depth, usually spotted under the higher-resting Sizzer
+    cluster near Sourfish and Chompy.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 📍
+    value: Mid-ocean, under the Sizzer cluster

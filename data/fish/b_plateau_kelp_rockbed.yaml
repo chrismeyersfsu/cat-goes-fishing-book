@@ -24,6 +24,20 @@
     - { icon: "🪝", label: "Bait", value: "Rare Fruit on a huge hook" }
     - { icon: "🎣", value: "Ignores normal bait entirely" }
 
+- key: flechette
+  name: Flechette
+  size: small
+  coords: [[1075, 95]]
+  pin_dy: 16
+  about: >-
+    A thin gray fish with red-tipped back spines, part of the swarm
+    that escorts Rogachev everywhere it swims. Bites readily on its
+    own — clear enough of the swarm and Rogachev finally settles down
+    for its own catch.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any" }
+    - { icon: "🐟", value: "Escorts Rogachev; easy on its own" }
+
 - key: rogachev
   name: Rogachev
   size: medium

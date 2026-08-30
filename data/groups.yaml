@@ -550,7 +550,7 @@
   title: Reef Wall Top
   tier: B
   layout: cluster
-  subtitle: Mixed Category · Five Entries
+  subtitle: Mixed Category · Ten Entries
   badges:
   - text: Mixed
     kind: cat
@@ -633,26 +633,30 @@
   title: Basin Dwellers
   tier: B
   layout: cluster
-  subtitle: Large Fish · Two Entries
+  subtitle: Mixed Sizes · Four Entries
   badges:
-  - text: Large Fish
+  - text: Mixed
     kind: cat
   - text: Easy
     kind: diff-easy
-  cast: Drop into the Basin near the drop-off and the Yin — both fish hold close to the walls there.
+  cast: Drop into the Basin and its approach — the drop-off before it, and the walls near the Yin — where
+    all four of these fish hold.
   view_box: 273 0 187 251
-  map_caption: The Basin — near the drop-off and the Yin
-  map_alt: Map slice of the Basin showing two large fish near the drop-off and the Yin
+  map_caption: The Basin and its approach — drop-off, seafloor, and near the Yin
+  map_alt: Map slice of the Basin and its approach showing four fish across the drop-off and near the Yin
   map_label: Numbers on the map match the entries below, left to right.
   shared_gear:
   - icon: 🪱
-    text: Large bait
+    text: Small bait — Skrimp
+    required: true
+  - icon: 🪱
+    text: Large bait — Gupper and Gorbon
     required: true
 - id: b_above_silo_surface_swarm
   title: Above-Silo Surface Swarm
   tier: B
   layout: cluster
-  subtitle: Mixed Category · Five Entries
+  subtitle: Mixed Category · Six Entries
   badges:
   - text: Mixed
     kind: cat
@@ -700,22 +704,22 @@
   title: Plateau Far-Left Pocket (Dunkan's Corner)
   tier: B
   layout: cluster
-  subtitle: Mixed Category · Three Entries
+  subtitle: Mixed Category · Four Entries
   badges:
   - text: Mixed
     kind: cat
   - text: Hard
     kind: diff-hard
-  cast: Head to the very far-left edge of the Plateau — Dunkan's Corner holds all three fish in one tight
+  cast: Head to the very far-left edge of the Plateau — Dunkan's Corner holds all four fish in one tight
     pocket.
   view_box: 840 0 252 251
   map_caption: Dunkan's Corner — the Plateau's far-left pocket
-  map_alt: Map slice of the Plateau's far-left pocket showing three fish, including Dunkan guarding the
+  map_alt: Map slice of the Plateau's far-left pocket showing four fish, including Dunkan guarding the
     corner
   map_label: Numbers on the map match the entries below, shallowest to deepest.
   shared_gear:
   - icon: 🪱
-    text: Large bait
+    text: Any to large bait — bring a mix
     required: true
   - icon: 🪝
     text: Huge hook — needed for Dunkan
@@ -773,7 +777,7 @@
   title: Kelp Shallows
   tier: B
   layout: cluster
-  subtitle: Mixed Sizes · Six Entries
+  subtitle: Mixed Sizes · Eight Entries
   badges:
   - text: Mixed
     kind: cat
@@ -784,7 +788,7 @@
   map_caption: Kelp shallows, working right toward the Labyrinth
   map_alt: Map slice of the Kelp shallows showing six fish spread from open Kelp water to the Labyrinth's
     edge
-  map_label: Numbers on the map match the entries below, left to right; 1-4 continue with the map, 5-6
+  map_label: Numbers on the map match the entries below, left to right; 1-4 continue with the map, 5-8
     on the next page.
   max_entries_with_map: 4
   shared_gear:
@@ -797,7 +801,7 @@
   title: Kelp Depths
   tier: B
   layout: cluster
-  subtitle: Mixed Sizes · Four Entries
+  subtitle: Mixed Sizes · Six Entries
   badges:
   - text: Mixed
     kind: cat
@@ -806,11 +810,11 @@
   cast: Drop into the deeper Kelp pockets past the shallows — patience matters more than gear here.
   view_box: 925 0 394 251
   map_caption: Kelp depths, deeper pockets of the Very Distant Sea
-  map_alt: Map slice of the deeper Kelp water showing four fish tucked into rockbed and kelp pockets
+  map_alt: Map slice of the deeper Kelp water showing five fish tucked into rockbed and kelp pockets
   map_label: Numbers on the map match the entries below, left to right.
   shared_gear:
   - icon: 🪱
-    text: Medium bait
+    text: Small to medium bait
     required: true
   - icon: 🪱
     text: Large bait — Elder Cheesefin
@@ -819,17 +823,17 @@
   title: Plateau/Kelp Rockbed
   tier: B
   layout: cluster
-  subtitle: Medium Fish · Three Entries
+  subtitle: Mixed Sizes · Four Entries
   badges:
-  - text: Medium Fish
+  - text: Mixed
     kind: cat
   - text: Hard
     kind: diff-hard
-  cast: Work the fossil rockbed between the Plateau and the Kelp — bring extra gear, two of these three
+  cast: Work the fossil rockbed between the Plateau and the Kelp — bring extra gear, two of these four
     fish need real setup.
   view_box: 925 0 275 251
   map_caption: Rockbed between the Plateau and the Kelp
-  map_alt: Map slice of the fossil rockbed between the Plateau and Kelp showing three fish
+  map_alt: Map slice of the fossil rockbed between the Plateau and Kelp showing four fish
   map_label: Numbers on the map match the entries below, left to right.
   shared_gear:
   - icon: 🪱
@@ -848,7 +852,7 @@
   title: Labyrinth Wanderers
   tier: B
   layout: cluster
-  subtitle: Mostly Small Fish · Six Entries
+  subtitle: Mostly Small Fish · Seven Entries
   badges:
   - text: Mixed
     kind: cat
@@ -860,7 +864,7 @@
   map_caption: Labyrinth tunnels, entrance to interior
   map_alt: Map slice of the Labyrinth caves showing six wandering fish from the entrance toward the interior
   map_label: Numbers on the map match the entries below, left to right through the tunnels; 1-4 continue
-    with the map, 5-6 on the next page.
+    with the map, 5-7 on the next page.
   max_entries_with_map: 4
   shared_gear:
   - icon: 🪱
@@ -1504,11 +1508,31 @@
   - icon: 🐟
     text: Conpas caught first (as live bait)
     required: true
+- id: c_rem
+  title: R.E.M
+  tier: C
+  layout: feature
+  subtitle: Secret Fish · Undocumented
+  badges:
+  - text: Secret Fish
+    kind: cat
+  - text: Hard
+    kind: diff-hard
+  cast: No confirmed spot — the only record of this fish anywhere is its name in the in-game catalog.
+  view_box: 100 0 200 251
+  map_caption: Open ocean — no confirmed spot
+  map_alt: Map slice of open ocean water where R.E.M might eventually turn up, unconfirmed
+  special_instructions: No known trigger exists in the community guide this book paraphrases, or anywhere
+    else this book's own research turned up. Everything else in this book has at least one documented
+    path to a catch; this one doesn't. Treat the map slice here as a placeholder, not a promise.
+  shared_gear:
+  - icon: 🐟
+    text: No known catch method — bring anything and get lucky
 - id: d_shore_open_ocean_common_i
   title: Shore & Open Ocean Common I
   tier: D
   layout: cluster
-  subtitle: Common Fish · Six Entries
+  subtitle: Common Fish · Ten Entries
   badges:
   - text: Common Fish
     kind: cat
@@ -1530,7 +1554,7 @@
   title: Shore & Open Ocean Common II
   tier: D
   layout: cluster
-  subtitle: Common Fish · Six Entries
+  subtitle: Common Fish · Seven Entries
   badges:
   - text: Common Fish
     kind: cat
@@ -1549,7 +1573,7 @@
   title: Open Ocean Predators & Pairs
   tier: D
   layout: cluster
-  subtitle: Mixed Category · Five Entries
+  subtitle: Mixed Category · Nine Entries
   badges:
   - text: Mixed
     kind: cat

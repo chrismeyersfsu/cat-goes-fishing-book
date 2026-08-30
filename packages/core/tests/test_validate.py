@@ -2,6 +2,8 @@
 data -- each test breaks exactly one rule so a failure here points at
 the right check."""
 
+from pathlib import Path
+
 import pytest
 from fishguide import validate
 from fishguide.models import Fish, Group
@@ -37,7 +39,12 @@ def _group(fish, view_box="0 0 100 251", **kw) -> Group:
 
 def test_clean_group_has_no_errors():
     g = _group([_fish("a"), _fish("b", coords=(60, 100))])
-    assert validate.validate_all([g]) == []
+    # check_roster_coverage compares against the real guide text by
+    # default, which this two-fish synthetic group was never going to
+    # satisfy -- point it at a path that doesn't exist so this test
+    # stays focused on the other checks. See the roster-coverage tests
+    # below for that check's own coverage.
+    assert validate.validate_all([g], guide_path=Path("no/such/file.txt")) == []
 
 
 def test_marker_too_low_fails_safe_area():
@@ -91,3 +98,29 @@ def test_validate_or_raise_raises_on_errors():
     g = _group([_fish("a", coords=(50, 10))])
     with pytest.raises(validate.ValidationError):
         validate.validate_or_raise([g])
+
+
+def test_roster_coverage_flags_a_fish_named_in_the_guide_but_missing_from_data(tmp_path):
+    guide = tmp_path / "guide_text.txt"
+    guide.write_text("SOME INTRO TEXT\nSWOOPER\nEasy fish, found in the shallows.\n")
+    g = _group([_fish("a")])
+    errors = validate.check_roster_coverage([g], guide_path=guide)
+    assert any("SWOOPER" in e for e in errors)
+
+
+def test_roster_coverage_is_clean_once_the_fish_is_in_data(tmp_path):
+    guide = tmp_path / "guide_text.txt"
+    guide.write_text("SWOOPER\nEasy fish, found in the shallows.\n")
+    g = _group([_fish("swooper")])
+    assert validate.check_roster_coverage([g], guide_path=guide) == []
+
+
+def test_roster_coverage_ignores_known_non_fish_headings():
+    guide_text = "\n".join(sorted(validate.NON_FISH_HEADINGS)) + "\nE\nNOT A HEADING, HAS A COMMA\n"
+    assert validate._guide_fish_headings(guide_text) == set()
+
+
+def test_roster_coverage_skips_missing_guide_file(tmp_path):
+    g = _group([_fish("a")])
+    errors = validate.check_roster_coverage([g], guide_path=tmp_path / "missing.txt")
+    assert errors == []

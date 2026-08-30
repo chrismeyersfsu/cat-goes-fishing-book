@@ -137,4 +137,31 @@ All notable user-facing changes to this project. Format follows
   download` keeps the wiki's own filename, so every embedded picture
   was announcing `image/png` over WebP bytes and relying on the
   browser to sniff past it.
+- Roster gap closed: `reference/fish_grouping_scheme.md`, the scheme
+  the Phase 3 roster was seeded from, turned out to be missing 25 fish
+  that `reference/guide_text.txt` documents and a player's in-game
+  fishdex confirmed are real and catchable (Swooper, Roundfin,
+  Kingfish, Gallina, Tangfish, Tetra, Tappy, Trillow, Bulbfish, Pink
+  Kisser, Garder, Skrimp, Baby Sizzer, Celad, Inno, Pennyfin, Puff,
+  Flechette, Thermo, Fumer, Rare Fruit, Lil Cheesefin, Orwellian, Boom
+  Puff, and R.E.M). All 25 are now in `data/`, mostly folded into
+  existing groups whose location already matched (Reef Wall Top, Basin
+  Dwellers, Kelp Shallows/Depths, and others); R.E.M is a new Tier C
+  entry of its own since no group fit and the guide itself documents no
+  catch method for it. `render.TOTAL_ROSTER` is now 203. A scheme
+  snapshot can silently drop fish the same way again, so `validate.py`
+  gained `check_roster_coverage`, which reconciles every fish heading
+  in the guide text against `data/` on every build instead of trusting
+  the scheme.
+- The full 203-fish roster is in `data/` now: 25 fish the guide
+  documents were never transcribed from
+  `reference/fish_grouping_scheme.md`'s 178-fish list (Lil Cheesefin,
+  Orwellian, Boom Puff, Kingfish, Skrimp, Thermo and 19 more). A new
+  `check_roster_coverage` fails the build when `guide_text.txt` names
+  a fish no group contains, so the roster can't silently drift again.
+- Every group map now carries a context strip: the whole world drawn
+  as a short band above the map, with this page's slice marked and
+  guide lines running down to the detail map's own edges. Answers
+  "where on the map is this?" without scrolling back to the overview,
+  costs no interaction, and prints.
 

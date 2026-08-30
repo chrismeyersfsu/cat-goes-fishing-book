@@ -85,3 +85,35 @@
     value: Medium
   - icon: 📍
     value: Visible on sonar
+- key: fumer
+  name: Fumer
+  size: small
+  coords:
+  - - 1270
+    - 50
+  pin_dy: 16
+  about: A small, angry red fish marked with the king's crown symbol, held in the Very Distant Sea caves
+    until the Buffalo Fish wall trick frees the whole royal court. Loose, it chases bait aggressively
+    through this stretch of Kelp toward the Labyrinth.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Any/Small
+  - icon: 🔓
+    value: Freed via the Buffalo Fish cave trick
+- key: boompuff
+  name: Boom Puff
+  size: small
+  coords:
+  - - 1160
+    - 45
+  pin_dy: 16
+  about: A red pufferfish scattered through the Very Distant Sea above the Kelp. Easy to hook with any
+    small bait, but it explodes on a bite from another fish or a nearby bomb — and can chain into the
+    rest of the group, which also startles nearby Buffalo Fish.
+  stats:
+  - icon: 🪱
+    label: Bait
+    value: Small
+  - icon: 💣
+    value: Explodes on contact — can chain

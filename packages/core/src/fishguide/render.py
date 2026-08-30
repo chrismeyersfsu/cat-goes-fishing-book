@@ -26,7 +26,7 @@ SIZE_LABELS = {
     "huge": "Huge Fish",
     "secret": "Secret Fish",
 }
-TOTAL_ROSTER = 178
+TOTAL_ROSTER = 203
 
 # The world map's coordinate space runs to x=1568 (PLAN.md's data
 # model comment; confirmed against assets/map_terrain_defs.html's own
@@ -261,6 +261,39 @@ def _grid_class(cols: int, continuation: bool) -> str:
     return "dex-grid cols4" if cols == 4 else "entry-grid3"
 
 
+WORLD_WIDTH = 1450.0  # same crop as FULL_MAP_VIEW_BOX -- the drawn world, not the 1568 space
+
+
+def _context_strip(group: Group) -> str:
+    """The whole world drawn as a short band above a group's map, with
+    this group's crop marked on it, and two guide lines running from
+    the mark's edges down to the edges of the detail map below.
+
+    The band answers "where on the map is this?" without the reader
+    scrolling back to the overview page, which is the only way to ask
+    that question today. It's static markup on purpose: it costs no
+    interaction, and unlike a zoom control it survives into the printed
+    PDF. The guide lines are what tie the two together -- without them
+    a full-width crop mark sitting above a full-width detail map reads
+    as two unrelated pictures."""
+    vx, _vy, vw, _vh = (float(v) for v in group.view_box.split())
+    lo = max(0.0, min(vx, WORLD_WIDTH))
+    hi = max(lo, min(vx + vw, WORLD_WIDTH))
+    fl, fr = lo / WORLD_WIDTH * 100, hi / WORLD_WIDTH * 100
+    return (
+        '<div class="ctx">'
+        f'<svg class="ctx-map" viewBox="0 0 {WORLD_WIDTH:g} 251" preserveAspectRatio="xMidYMid meet" '
+        'role="img" aria-label="The whole world, with this page\'s slice marked">'
+        '<use href="#mapTerrain"/>'
+        f'<rect class="ctx-box" x="{lo:.1f}" y="0" width="{hi - lo:.1f}" height="251"/>'
+        "</svg>"
+        '<svg class="ctx-link" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">'
+        f'<path d="M{fl:.2f} 0 L0 10"/><path d="M{fr:.2f} 0 L100 10"/>'
+        "</svg>"
+        "</div>"
+    )
+
+
 def _map_frame_style(group: Group) -> str:
     _x, _y, w, _h = (float(v) for v in group.view_box.split())
     style = f"aspect-ratio:{w:g}/251;"
@@ -271,6 +304,7 @@ def _map_frame_style(group: Group) -> str:
 
 def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: dict) -> str:
     globals_ = {"fish_pic": fish_pic}
+    context_strip = _context_strip(group)
     pages = layout.split_group(group)
     out = []
     for page in pages:
@@ -281,6 +315,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: d
                     group=group,
                     map_markers=_duo_map(group, sizes),
                     map_frame_style=_map_frame_style(group),
+                    context_strip=context_strip,
                     **globals_,
                 )
             )
@@ -292,6 +327,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: d
                     f=group.fish[0],
                     map_markers=_feature_map(group, sizes),
                     map_frame_style=_map_frame_style(group),
+                    context_strip=context_strip,
                     **globals_,
                 )
             )
@@ -325,6 +361,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: d
                         start_index=start_index,
                         map_markers=map_markers,
                         map_frame_style=_map_frame_style(group),
+                        context_strip=context_strip,
                         grid_class=_grid_class(cols, False),
                         show_gear=len(pages) == 1,
                         **globals_,

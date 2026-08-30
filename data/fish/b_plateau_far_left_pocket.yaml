@@ -38,3 +38,16 @@
   stats:
     - { icon: "🪝", label: "Hook", value: "Huge" }
     - { icon: "🎣", value: "Bomb stacker + Detonator to break the armor first" }
+
+- key: orwellian
+  name: Orwellian
+  size: small
+  coords: [[870, 205]]
+  pin_dy: 16
+  about: >-
+    Round, brown-and-blue fish resting on the seabed at the Plateau's
+    far-left edge, tucked in alongside Newk's pocket and Dunkan's
+    territory. No special approach needed.
+  stats:
+    - { icon: "🪱", label: "Bait", value: "Any/Medium" }
+    - { icon: "📍", value: "Plateau's left-edge seabed" }

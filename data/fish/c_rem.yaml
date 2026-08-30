@@ -1,0 +1,14 @@
+- key: rem
+  name: R.E.M
+  size: secret
+  coords: [[150, 50]]
+  about: >-
+    One of the game's secret fish — an in-joke tribute to this very
+    guide's author. It never turns up in the ordinary course of
+    fishing, and unlike every other secret fish in this book, no
+    reliable trigger has surfaced in the community that wrote the
+    guide up. Keep an eye out; if you find the trick, the rest of us
+    want to know too.
+  stats:
+    - { icon: "🐟", label: "Category", value: "Secret Fish" }
+    - { icon: "⚠️", label: "Trigger", value: "Undocumented — no confirmed method" }
