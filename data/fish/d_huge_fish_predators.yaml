@@ -1,13 +1,18 @@
 # Pin offsets alternate sign here (unlike every other cluster group,
-# which is a uniform +16): TigerShark/PrimalTurgeon/Swordfish sit near
-# the top of this map's viewBox, so their number pin goes above the X
-# instead of below. Reproduced from the mockup's exact pin positions,
-# not derived from a general rule.
+# which is a uniform +16): a fish sitting near the top or the bottom of
+# this map's viewBox puts its number pin on whichever side has room.
+#
+# Five of these fish were originally drawn on the land mass -- traced
+# that way in the approved mockup, then held there by an `on_land: true`
+# flag that was only ever meant for a spot that's genuinely on terrain
+# by game design. Maw was 83 map units inland. They now sit in the
+# deepest open water their own descriptions call for; the mockup's
+# coordinates for this group are no longer the reference (see
+# tests/test_golden.py).
 - key: shark
   name: Shark
   size: huge
-  coords: [[110, 195]]
-  on_land: true
+  coords: [[103, 140]]
   pin_dy: 16
   about: >-
     Patrols the lower mid-ocean and deep water off-shore. Won't touch
@@ -27,8 +32,7 @@
 - key: tigershark
   name: Tiger Shark
   size: huge
-  coords: [[185, 105]]
-  on_land: true
+  coords: [[189, 107]]
   pin_dy: -16
   about: >-
     Gray and striped, cruising the mid-ocean range. One of the more
@@ -91,8 +95,7 @@
 - key: noctis
   name: Noctis
   size: huge
-  coords: [[230, 195]]
-  on_land: true
+  coords: [[252, 146]]
   pin_dy: 16
   about: >-
     Only surfaces at night or during storms, swooping along the deep
@@ -114,9 +117,8 @@
 - key: moga
   name: Moga
   size: huge
-  coords: [[270, 205]]
-  on_land: true
-  pin_dy: 16
+  coords: [[301, 225]]
+  pin_dy: -16
   about: >-
     Quick and elusive, sticking to the darkest depths of the Open Ocean
     — but only shows itself if your hook has no light attached.
@@ -135,9 +137,8 @@
 - key: maw
   name: Maw
   size: huge
-  coords: [[90, 215]]
-  on_land: true
-  pin_dy: 16
+  coords: [[122, 119]]
+  pin_dy: -16
   about: >-
     Usually found stuck mid-bite on a bulbfish at the very bottom of
     the bulbfish layer. Hook the bulbfish it's chasing and Maw follows

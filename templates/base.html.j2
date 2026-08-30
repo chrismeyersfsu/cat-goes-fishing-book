@@ -41,6 +41,33 @@
   .badge.diff-hard { background:#f3c3b9; color:#8a2c17; }
   .cast-strip { display:flex; align-items:center; gap:10px; background:var(--gold-soft); border-top:1px dashed var(--gold); border-bottom:1px dashed var(--gold); padding:9px 24px; font-family:'Space Mono',monospace; font-size:12.5px; color:#6b4e14; position:relative; z-index:1; }
   .cast-strip b { color:#4a3305; text-transform:uppercase; letter-spacing:0.05em; }
+  /* Full-screen map detail view. Opened by tapping a map or its
+     context strip; closed by the bottom bar, a downward swipe, Esc, or
+     the back gesture -- several ways out on purpose, since the bar is
+     the discoverable one and the swipe is the one a phone reader
+     reaches for first. Print never sees any of it. */
+  .map-frame, .ctx { cursor:zoom-in; }
+  .mv { position:fixed; inset:0; z-index:120; display:none; }
+  .mv[open] { display:flex; flex-direction:column; }
+  .mv-scrim { position:absolute; inset:0; background:rgba(7,22,14,0.90); }
+  .mv-stage { position:relative; flex:1; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:10px; padding:18px 14px 76px;
+    transform-origin:center; touch-action:none; }
+  .mv-inner { width:100%; max-width:900px; }
+  .mv-inner .ctx, .mv-inner .map-frame { max-width:none; margin:0; cursor:default; }
+  .mv-inner .ctx-link { height:26px; }
+  .mv-grab { width:44px; height:5px; border-radius:99px; background:rgba(246,240,225,0.5); flex:none; }
+  .mv-bar { position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:center;
+    padding:14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+    background:rgba(7,22,14,0.94); border-top:1px solid rgba(255,255,255,0.16); }
+  .mv-close { font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--paper); background:transparent;
+    border:1px solid rgba(255,255,255,0.34); border-radius:999px; padding:10px 22px; cursor:pointer; }
+  .mv-close:hover { background:rgba(255,255,255,0.10); }
+  body.mv-open { overflow:hidden; }
+  @media (prefers-reduced-motion:no-preference) {
+    .mv-stage { transition:transform 0.24s ease, opacity 0.24s ease; }
+  }
   /* Context strip: the whole world above a group's crop, with this
      page's slice marked and guide lines down to the detail map. The
      .ctx box must match the .map-frame's own width/centering per
@@ -146,7 +173,7 @@
     .wrap { max-width:none; }
     .page { break-after:page; box-shadow:none; border:none; border-radius:0; margin-bottom:0; }
     .page::before, .tape { display:none; }
-    .footnote, .back-to-top { display:none; }
+    .footnote, .back-to-top, .mv { display:none !important; }
     .entry-card, .duo-card, .dex-card, .index-row { break-inside:avoid; }
   }
 </style>
@@ -160,6 +187,11 @@
   </div>
 </div>
 
+<div class="mv" id="map-view" role="dialog" aria-modal="true" aria-label="Map detail">
+  <div class="mv-scrim" data-mv-close></div>
+  <div class="mv-stage"><div class="mv-grab"></div><div class="mv-inner"></div></div>
+  <div class="mv-bar"><button type="button" class="mv-close" data-mv-close>Done &middot; back to the fish</button></div>
+</div>
 {{ map_defs }}
 <script>
 // The back link normally returns you to wherever you jumped from --
@@ -187,6 +219,79 @@
     origin = window.scrollY;
     relabel('\u2191 Back');
   });
+})();
+</script>
+<script>
+// Tapping a map (or the context strip above it) opens both full screen,
+// so you can read the crop without the page around it. Ways back out:
+// the bottom bar, a downward swipe, Esc, and the browser's own back --
+// deliberately several, because the bar is the one people see and the
+// swipe is the one they try. Never a bare click on the map itself: that
+// would fire every time you meant to look at a fish.
+(function () {
+  var mv = document.getElementById('map-view');
+  if (!mv) return;
+  var inner = mv.querySelector('.mv-inner');
+  var stage = mv.querySelector('.mv-stage');
+  var origin = null;
+
+  function open(stack) {
+    inner.replaceChildren(stack.cloneNode(true));
+    origin = window.scrollY;
+    mv.setAttribute('open', '');
+    document.body.classList.add('mv-open');
+    reset();
+    history.pushState({ mapView: true }, '');
+    mv.querySelector('.mv-close').focus();
+  }
+  function reset() { stage.style.transform = ''; stage.style.opacity = ''; }
+  function close(fromPop) {
+    if (!mv.hasAttribute('open')) return;
+    mv.removeAttribute('open');
+    document.body.classList.remove('mv-open');
+    inner.replaceChildren();
+    reset();
+    if (origin !== null) window.scrollTo({ top: origin });
+    if (!fromPop && history.state && history.state.mapView) history.back();
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-mv-close]')) { close(); return; }
+    if (mv.hasAttribute('open')) return;
+    var hit = e.target.closest('.map-frame, .ctx');
+    if (!hit) return;
+    var stack = hit.parentElement;
+    if (stack) open(stack);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+  window.addEventListener('popstate', function () { close(true); });
+
+  // Drag down to dismiss: the stage follows your finger so a half-swipe
+  // is recoverable, and only a real commit (distance or flick) closes.
+  var y0 = null, t0 = 0, dy = 0;
+  stage.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.mv-close')) return;
+    y0 = e.clientY; t0 = Date.now(); dy = 0;
+    stage.style.transition = 'none';
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', function (e) {
+    if (y0 === null) return;
+    dy = Math.max(0, e.clientY - y0);
+    stage.style.transform = 'translateY(' + dy + 'px) scale(' + (1 - Math.min(dy / 1400, 0.12)) + ')';
+    stage.style.opacity = String(1 - Math.min(dy / 520, 0.72));
+  });
+  function end() {
+    if (y0 === null) return;
+    var flick = dy > 40 && (Date.now() - t0) < 300;
+    stage.style.transition = '';
+    if (dy > 130 || flick) { close(); } else { reset(); }
+    y0 = null;
+  }
+  stage.addEventListener('pointerup', end);
+  stage.addEventListener('pointercancel', end);
 })();
 </script>
 </body>

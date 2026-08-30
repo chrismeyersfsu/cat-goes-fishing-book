@@ -50,9 +50,9 @@
     - 185
   pin_dy: 16
   about: Round-bodied and soft blue, with a mouth shaped like a sideways parenthesis. Bloopers ignore
-    normal bait entirely — hook a small fish on a huge hook and lure it over their group instead.
+    normal bait entirely — hook a small fish on a large hook and lure it over their group instead.
   stats:
   - icon: 🪱
-    value: Small fish on a huge hook
+    value: Small fish on a large hook
   - icon: 🐟
     value: Won't bite plain bait

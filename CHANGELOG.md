@@ -164,4 +164,14 @@ All notable user-facing changes to this project. Format follows
   guide lines running down to the detail map's own edges. Answers
   "where on the map is this?" without scrolling back to the overview,
   costs no interaction, and prints.
+- Tapping a map or its context strip opens both full screen, with the
+  page dimmed behind. Close it with the bottom bar, a downward swipe,
+  `Esc`, or the back gesture; you land back on the fish you left.
+- Fixed five Huge-Fish Predators drawn on the land mass -- Maw was 83
+  map units inland. They were held there by `on_land: true`, a flag
+  meant only for a spot that's on terrain by game design, never for
+  silencing a real placement mistake. They now sit in the open water
+  their own descriptions call for, and the mockup's pin coordinates
+  for that one group were rebased to match.
+- Blooper takes a large hook, not a huge one, per the guide.
 

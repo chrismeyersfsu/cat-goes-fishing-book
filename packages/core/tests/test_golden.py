@@ -35,6 +35,13 @@ as intentional, not bugs:
   collapse to a MARK placeholder so everything else on the map -- the
   dashed lure path, the numbered pins, the crop -- still compares
   exactly.
+- `d_huge_fish_predators` is the one group whose marker coordinates the
+  mockup no longer governs. Five of its seven fish were traced onto the
+  land mass (Maw 83 map units inland), which `check_fish_in_water` was
+  built to catch and which an `on_land: true` flag was wrongly used to
+  silence. They were moved into the open water their own descriptions
+  call for and the mockup's pin coordinates for this page were updated
+  to match, so the rest of the page still compares byte-for-byte.
 - Every group map gained a context strip above it (the whole world with
   this page's slice marked). Stripped before comparing: a 5-page
   mockup preview had no reason to orient the reader.
