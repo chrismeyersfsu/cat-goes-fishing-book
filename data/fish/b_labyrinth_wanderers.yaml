@@ -72,7 +72,7 @@
     value: Marches in a long line
 - key: flash
   name: Flash
-  size: small
+  size: medium
   coords:
   - - 1396
     - 210

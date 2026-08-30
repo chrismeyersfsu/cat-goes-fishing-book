@@ -52,7 +52,7 @@
 
 - key: primalturgeon
   name: Primal Turgeon
-  size: huge
+  size: medium
   coords: [[145, 80]]
   pin_dy: -16
   about: >-

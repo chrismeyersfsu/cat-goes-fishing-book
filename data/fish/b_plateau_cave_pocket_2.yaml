@@ -28,7 +28,7 @@
     value: Cave floor
 - key: lumos
   name: Lumos
-  size: small
+  size: medium
   coords:
   - - 915
     - 185

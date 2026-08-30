@@ -208,4 +208,9 @@ All notable user-facing changes to this project. Format follows
   map. Enlarged it takes the screen's shape rather than staying a 5.8:1
   sliver: you get a full-height slice to scroll left and right through,
   with the same pan, zoom and tap-a-fish-for-its-card as before.
+- Four more size corrections from the in-game fishdex: Trick, Lumos,
+  Flash and Primal Turgeon are all medium fish. Twenty-four fish have
+  now been checked against the game's own catalogue and five were
+  wrong, so the size field is worth checking across the roster rather
+  than trusting the transcription.
 
