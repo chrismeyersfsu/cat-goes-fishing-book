@@ -17,6 +17,9 @@ as intentional, not bugs:
   else in the pipeline does either -- see render.py's docstring).
 - Every group's own page now carries a `id="group-..."` anchor (so the
   index can link to it) that the mockup has no reason to have.
+- The whole-world overview page the book used to open on is gone. Every
+  group map is the same world map now, framed on that group, so a page
+  showing the world uncropped had nothing left to add.
 - Portraits: a fish with a downloaded wiki picture (packages/wiki)
   renders an `<img>` instead of the mockup's procedural `art.fish()`
   SVG -- real art beats a placeholder. Picture markup is blanked out
@@ -230,12 +233,10 @@ def test_matches_approved_mockup():
     )
     book_pages = [_normalize(p) for p in raw_pages]
 
-    overview = book_pages[0]
-    assert "<h2>The World</h2>" in overview
-    # The overview shows the whole world, inset by the same 4.5% every
-    # other crop is (see crop_view_box); check the real attribute on the
-    # un-normalized page, since _normalize blanks viewBox.
-    assert f'viewBox="{render.crop_view_box(render.FULL_MAP_VIEW_BOX)}"' in raw_pages[0]
+    # The book used to open on a whole-world overview page. Every group
+    # map is that same world map now, so it said nothing the other pages
+    # didn't; the index leads instead.
+    assert "<h2>The World</h2>" not in "".join(book_pages)
 
     # The index now covers the full 203-fish roster (178 from Phase 3
     # plus 25 the community guide named that never made it into data/),

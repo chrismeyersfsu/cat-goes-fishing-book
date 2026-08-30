@@ -242,4 +242,8 @@ All notable user-facing changes to this project. Format follows
   resolved through that matrix, so on some browsers each tap was off by
   about 4.5%. The inset is baked into the viewBox instead -- same
   picture, exact maths everywhere.
+- Dropped the whole-world page the book opened on. Every group map is
+  that same world map now -- zoom out from any of them and you have it
+  -- so a page showing it uncropped had nothing left to add. The book
+  opens on the fish index.
 

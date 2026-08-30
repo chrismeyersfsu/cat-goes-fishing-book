@@ -28,15 +28,6 @@ SIZE_LABELS = {
 }
 TOTAL_ROSTER = 203
 
-# The world map's coordinate space runs to x=1568 (PLAN.md's data
-# model comment; confirmed against assets/map_terrain_defs.html's own
-# path bounds), but everything actually drawn -- including the
-# "Furthest distance a tech boat can go" label past the boundary
-# arrow -- ends by x~=1410. Past that is solid, undrawn ocean fill, so
-# the overview page crops to 1450 instead of the full 1568 to cut that
-# dead space (checked visually; see git history for the before/after).
-FULL_MAP_VIEW_BOX = "0 0 1450 251"
-
 
 # Emoji -> the real game icon that replaces it (assets/game_icons/<name>.png,
 # see assets/game_icons/fetch_game_icons.py). The wiki only has one clean,
@@ -301,7 +292,11 @@ def _grid_class(cols: int, continuation: bool) -> str:
     return "dex-grid cols4" if cols == 4 else "entry-grid3"
 
 
-WORLD_WIDTH = 1450.0  # same crop as FULL_MAP_VIEW_BOX -- the drawn world, not the 1568 space
+# The map's coordinate space runs to x=1568, but everything actually
+# drawn -- including the "Furthest distance a tech boat can go" label
+# past the boundary arrow -- ends by x~=1410. Past that is solid,
+# undrawn ocean fill, so panning stops at 1450 rather than 1568.
+WORLD_WIDTH = 1450.0
 
 
 def _context_strip(group: Group) -> str:
@@ -440,22 +435,6 @@ def _fish_registry(groups: list[Group], jinja_env: jinja2.Environment) -> str:
     )
 
 
-def _world_map_markers(groups: list[Group], sizes: dict) -> str:
-    """The world map draws the same shared layer as every other map; no
-    group owns it, so nothing is highlighted."""
-    return '<use href="#allFish"/>'
-
-
-def render_overview(jinja_env: jinja2.Environment, groups: list[Group], sizes: dict) -> str:
-    _x, _y, w, _h = (float(v) for v in FULL_MAP_VIEW_BOX.split())
-    tmpl = jinja_env.get_template("page_overview.html.j2")
-    return tmpl.render(
-        view_box=crop_view_box(FULL_MAP_VIEW_BOX),
-        view_box_w=f"{w:g}",
-        map_markers=_world_map_markers(groups, sizes),
-    )
-
-
 def render_index(
     jinja_env: jinja2.Environment, groups: list[Group], size_pills: dict, fish_pic
 ) -> str:
@@ -492,8 +471,7 @@ def build_book(
     fish_pic = make_fish_pic(assets_dir)
     jinja_env = env(templates_dir, assets_dir)
     marker_defs, sizes = make_marker_defs(groups, assets_dir)
-    content = render_overview(jinja_env, groups, sizes)
-    content += "\n" + render_index(jinja_env, groups, palette["size_pills"], fish_pic)
+    content = render_index(jinja_env, groups, palette["size_pills"], fish_pic)
     content += "\n" + "\n".join(render_group(jinja_env, g, fish_pic, sizes) for g in groups)
 
     base = jinja_env.get_template("base.html.j2")

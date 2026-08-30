@@ -42,9 +42,6 @@
   .cast-strip { display:flex; align-items:center; gap:10px; background:var(--gold-soft); border-top:1px dashed var(--gold); border-bottom:1px dashed var(--gold); padding:9px 24px; font-family:'Space Mono',monospace; font-size:12.5px; color:#6b4e14; position:relative; z-index:1; }
   .cast-strip b { color:#4a3305; text-transform:uppercase; letter-spacing:0.05em; }
   /* World map: pan/zoom in place, and every fish on it is tappable. */
-  .world-map { cursor:grab; touch-action:none; }
-  .world-map.is-dragging { cursor:grabbing; }
-  .world-map .map-crop { transform:none; }
   .world-bar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:9px; }
   .world-hint { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.05em;
     text-transform:uppercase; color:var(--ink-soft); }
@@ -89,7 +86,6 @@
     letter-spacing:0.08em; text-transform:uppercase; color:var(--ink); background:transparent;
     border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer; }
   .mv[open] .fc { z-index:140; }
-  .mv .mv-world { aspect-ratio:auto !important; height:min(66vh, 560px); }
   .mv .world-bar { margin-top:11px; }
   .mv .world-hint { color:rgba(246,240,225,0.7); }
   .mv .world-zoom button { color:var(--paper); border-color:rgba(255,255,255,0.3); }
@@ -336,7 +332,6 @@
     var before = frame.previousElementSibling;
     if (before && before.classList.contains('ctx')) parts.push(before.cloneNode(true));
     var copy = frame.cloneNode(true);
-    copy.removeAttribute('id');  // one #world-map in the document, not two
     delete copy.dataset.wired;  // the clone carries the original's "already wired" flag
     parts.push(copy);
     var after = frame.nextElementSibling;
@@ -345,22 +340,7 @@
     origin = window.scrollY;
     mv.setAttribute('open', '');
     document.body.classList.add('mv-open');
-    if (copy.classList.contains('world-map')) {
-      // A 5.8:1 world in a portrait overlay is a sliver with dead space
-      // above and below. Give the enlarged copy the screen's own shape
-      // and show a full-height slice you scroll sideways. Measured only
-      // once the overlay is displayed -- a hidden element has no size.
-      copy.classList.add('mv-world');
-      copy.style.aspectRatio = '';
-      copy.setAttribute('data-bounds', '0 0 1450 251');
-      var wsvg = copy.querySelector('svg.map-crop');
-      var box = copy.getBoundingClientRect();
-      var vw = Math.min(1450, 251 * (box.width / box.height));
-      wsvg.setAttribute('viewBox', ((1450 - vw) / 2).toFixed(1) + ' 0 ' + vw.toFixed(1) + ' 251');
-      window.fishguideWireMap(copy);
-    } else {
-      window.fishguideWireMap(copy);
-    }
+    window.fishguideWireMap(copy);
     reset();
     history.pushState({ mapView: true }, '');
     mv.querySelector('.mv-close').focus();
