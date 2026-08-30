@@ -193,4 +193,6 @@ All notable user-facing changes to this project. Format follows
   Magnalav's shore route are sealed off from their cast points by rock.
   They keep `path_crosses_land_ok`, now with the reason recorded and
   proven by the generator rather than assumed.
+- Tim is a small fish, not a medium one -- confirmed against the
+  in-game fishdex, and its own description already called it small.
 

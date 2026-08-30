@@ -39,7 +39,7 @@
 
 - key: tim
   name: Tim
-  size: medium
+  size: small
   coords: [[705, 128]]
   pin_dy: 16
   about: >-
