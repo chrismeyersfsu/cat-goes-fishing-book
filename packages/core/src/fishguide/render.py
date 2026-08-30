@@ -199,7 +199,7 @@ def make_marker_defs(groups: list[Group], assets_dir: Path = ASSETS_DIR):
 
 def _fish_marker(f: Fish, sizes: dict, x: float, y: float, size: float) -> str:
     w, h = sizes[f.key]
-    return markers.fish_marker(x, y, f"fm-{f.key}", w, h, size=size)
+    return markers.fish_marker(x, y, f"fm-{f.key}", w, h, size=size, key=f.key)
 
 
 REFERENCE_VIEW_BOX_WIDTH = 380  # Trick & Treat's; a size-26 marker reads fine at this zoom
@@ -370,10 +370,57 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: d
     return "\n".join(out)
 
 
-def render_overview(jinja_env: jinja2.Environment) -> str:
+def _fish_registry(groups: list[Group], jinja_env: jinja2.Environment) -> str:
+    """Every fish's card content as one JSON blob the page's script can
+    look up by key, so tapping a marker anywhere -- a group map or the
+    world map -- shows the same card without duplicating that markup
+    per marker. The portrait is a `<use>` of the marker symbol already
+    embedded once in the document (see make_marker_defs), so a card
+    costs no extra image bytes."""
+    import json
+
+    badges = jinja_env.get_template("partials/badges.html.j2").module
+    out = {}
+    for g in groups:
+        for i, f in enumerate(g.fish, start=1):
+            out[f.key] = {
+                "name": f.name,
+                "size": SIZE_LABELS.get(f.size, f.size),
+                "about": f.about,
+                "stats": str(badges.stat_row(f.stats)).strip() if f.stats else "",
+                "group": g.title,
+                "groupId": g.id,
+                "n": i,
+                "of": len(g.fish),
+            }
+    return (
+        '<script type="application/json" id="fish-data">'
+        + json.dumps(out, ensure_ascii=False).replace("</", "<\\/")
+        + "</script>"
+    )
+
+
+def _world_map_markers(groups: list[Group], sizes: dict) -> str:
+    """Every fish in the book on the one world map. Markers are smaller
+    than a group map's -- 203 of them share this crop -- and carry no
+    numbered pins, since there is no cast list beside it to number
+    against; the fish's own picture is the label."""
+    parts = []
+    for g in groups:
+        for f in g.fish:
+            for x, y in f.coords:
+                parts.append(_fish_marker(f, sizes, x, y, 13))
+    return "".join(parts)
+
+
+def render_overview(jinja_env: jinja2.Environment, groups: list[Group], sizes: dict) -> str:
     _x, _y, w, _h = (float(v) for v in FULL_MAP_VIEW_BOX.split())
     tmpl = jinja_env.get_template("page_overview.html.j2")
-    return tmpl.render(view_box=FULL_MAP_VIEW_BOX, view_box_w=f"{w:g}")
+    return tmpl.render(
+        view_box=FULL_MAP_VIEW_BOX,
+        view_box_w=f"{w:g}",
+        map_markers=_world_map_markers(groups, sizes),
+    )
 
 
 def render_index(
@@ -411,11 +458,15 @@ def build_book(
 
     fish_pic = make_fish_pic(assets_dir)
     jinja_env = env(templates_dir, assets_dir)
-    content = render_overview(jinja_env)
-    content += "\n" + render_index(jinja_env, groups, palette["size_pills"], fish_pic)
     marker_defs, sizes = make_marker_defs(groups, assets_dir)
+    content = render_overview(jinja_env, groups, sizes)
+    content += "\n" + render_index(jinja_env, groups, palette["size_pills"], fish_pic)
     content += "\n" + "\n".join(render_group(jinja_env, g, fish_pic, sizes) for g in groups)
 
     base = jinja_env.get_template("base.html.j2")
-    map_defs = (assets_dir / "map_terrain_defs.html").read_text() + marker_defs
+    map_defs = (
+        (assets_dir / "map_terrain_defs.html").read_text()
+        + marker_defs
+        + _fish_registry(groups, jinja_env)
+    )
     return base.render(content=content, map_defs=map_defs)

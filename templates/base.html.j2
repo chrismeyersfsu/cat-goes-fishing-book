@@ -41,6 +41,54 @@
   .badge.diff-hard { background:#f3c3b9; color:#8a2c17; }
   .cast-strip { display:flex; align-items:center; gap:10px; background:var(--gold-soft); border-top:1px dashed var(--gold); border-bottom:1px dashed var(--gold); padding:9px 24px; font-family:'Space Mono',monospace; font-size:12.5px; color:#6b4e14; position:relative; z-index:1; }
   .cast-strip b { color:#4a3305; text-transform:uppercase; letter-spacing:0.05em; }
+  /* World map: pan/zoom in place, and every fish on it is tappable. */
+  .world-map { cursor:grab; touch-action:none; }
+  .world-map.is-dragging { cursor:grabbing; }
+  .world-map .map-crop { transform:none; }
+  .world-bar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:9px; }
+  .world-hint { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.05em;
+    text-transform:uppercase; color:var(--ink-soft); }
+  .world-zoom { display:flex; gap:6px; margin-left:auto; }
+  .world-zoom button { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.05em;
+    text-transform:uppercase; color:var(--ink); background:transparent;
+    border:1px solid var(--line); border-radius:7px; padding:6px 11px; cursor:pointer; }
+  .world-zoom button:hover { background:var(--paper2); }
+  .fish-marker[data-fish] { cursor:pointer; }
+  .fish-sel { pointer-events:none; }
+
+  /* Fish card: one sheet, shared by the world map and the detail view. */
+  .fc { position:fixed; left:0; right:0; bottom:0; z-index:130; background:var(--paper);
+    border-radius:18px 18px 0 0; box-shadow:0 -14px 40px -12px rgba(0,0,0,0.55);
+    padding:0 0 calc(14px + env(safe-area-inset-bottom, 0px)); display:none;
+    max-height:76vh; overflow:auto; touch-action:pan-y; }
+  .fc[open] { display:block; }
+  .fc-grab { width:38px; height:4px; border-radius:99px; background:var(--line); margin:9px auto 4px; }
+  .fc-head { display:flex; align-items:baseline; gap:10px; padding:6px 16px 0; flex-wrap:wrap; }
+  .fc-name { font-family:'Baloo 2',sans-serif; font-weight:700; font-size:21px; color:var(--deep); }
+  .fc-size { font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--ink-soft); }
+  .fc-where { font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--ink-soft); margin-left:auto; }
+  .fc-body { display:flex; gap:14px; padding:10px 16px 0; align-items:flex-start; }
+  .fc-pic { flex:none; width:104px; height:78px; background:var(--paper2); border:1px solid var(--line);
+    border-radius:10px; display:grid; place-items:center; overflow:hidden; }
+  .fc-pic svg { width:88%; height:88%; }
+  .fc-about { font-size:14.5px; line-height:1.55; color:var(--ink-soft); margin:0; }
+  .fc-stats { display:flex; flex-wrap:wrap; gap:8px; padding:11px 16px 0; font-size:12.5px; }
+  .fc-stats span { background:rgba(23,36,26,0.06); border-radius:7px; padding:5px 9px; }
+  .fc-nav { display:flex; align-items:center; gap:10px; padding:12px 16px 2px; }
+  .fc-nav { flex-wrap:wrap; }
+  .fc-nav button[data-fc="prev"], .fc-nav button[data-fc="next"] {
+    font-family:'Space Mono',monospace; font-size:12px; color:var(--ink);
+    background:transparent; border:1px solid var(--line); border-radius:999px;
+    width:34px; height:34px; flex:none; cursor:pointer; }
+  .fc-nav button:disabled { opacity:0.35; cursor:default; }
+  .fc-count { font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--ink-soft); }
+  .fc-done { margin-left:auto; flex:none; white-space:nowrap; font-family:'Space Mono',monospace; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--ink); background:transparent;
+    border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer; }
+  .mv[open] .fc { z-index:140; }
   /* Full-screen map detail view. Opened by tapping a map or its
      context strip; closed by the bottom bar, a downward swipe, Esc, or
      the back gesture -- several ways out on purpose, since the bar is
@@ -173,7 +221,7 @@
     .wrap { max-width:none; }
     .page { break-after:page; box-shadow:none; border:none; border-radius:0; margin-bottom:0; }
     .page::before, .tape { display:none; }
-    .footnote, .back-to-top, .mv { display:none !important; }
+    .footnote, .back-to-top, .mv, .fc, .world-bar { display:none !important; }
     .entry-card, .duo-card, .dex-card, .index-row { break-inside:avoid; }
   }
 </style>
@@ -187,6 +235,21 @@
   </div>
 </div>
 
+<div class="fc" id="fish-card" role="dialog" aria-label="Fish details">
+  <div class="fc-grab"></div>
+  <div class="fc-head"><span class="fc-name"></span><span class="fc-size"></span><span class="fc-where"></span></div>
+  <div class="fc-body">
+    <div class="fc-pic"><svg viewBox="0 0 10 10"><use></use></svg></div>
+    <p class="fc-about"></p>
+  </div>
+  <div class="fc-stats"></div>
+  <div class="fc-nav">
+    <button type="button" data-fc="prev" aria-label="Previous fish">&#8592;</button>
+    <button type="button" data-fc="next" aria-label="Next fish">&#8594;</button>
+    <span class="fc-count"></span>
+    <button type="button" class="fc-done" data-fc="close">Close</button>
+  </div>
+</div>
 <div class="mv" id="map-view" role="dialog" aria-modal="true" aria-label="Map detail">
   <div class="mv-scrim" data-mv-close></div>
   <div class="mv-stage"><div class="mv-grab"></div><div class="mv-inner"></div></div>
@@ -252,6 +315,7 @@
     inner.replaceChildren();
     reset();
     if (origin !== null) window.scrollTo({ top: origin });
+    window.dispatchEvent(new Event('fishguide:mapclosed'));
     if (!fromPop && history.state && history.state.mapView) history.back();
   }
 
@@ -259,7 +323,7 @@
     if (e.target.closest('[data-mv-close]')) { close(); return; }
     if (mv.hasAttribute('open')) return;
     var hit = e.target.closest('.map-frame, .ctx');
-    if (!hit) return;
+    if (!hit || hit.closest('#world-map')) return;
     var stack = hit.parentElement;
     if (stack) open(stack);
   });
@@ -292,6 +356,176 @@
   }
   stage.addEventListener('pointerup', end);
   stage.addEventListener('pointercancel', end);
+})();
+</script>
+<script>
+// Tapping a fish -- on the world map or inside the full-screen detail
+// view -- opens one shared card. The card's content comes from the JSON
+// blob emitted once per book, and its portrait is a <use> of the marker
+// symbol already in the document, so no card costs extra bytes.
+(function () {
+  var data = {};
+  try { data = JSON.parse(document.getElementById('fish-data').textContent); } catch (e) { return; }
+  var card = document.getElementById('fish-card');
+  if (!card) return;
+  var els = {
+    name: card.querySelector('.fc-name'), size: card.querySelector('.fc-size'),
+    where: card.querySelector('.fc-where'), about: card.querySelector('.fc-about'),
+    stats: card.querySelector('.fc-stats'), count: card.querySelector('.fc-count'),
+    use: card.querySelector('.fc-pic use'), svg: card.querySelector('.fc-pic svg'),
+    prev: card.querySelector('[data-fc="prev"]'), next: card.querySelector('[data-fc="next"]')
+  };
+  var scope = [];   // the fish keys tappable in whatever map is open
+  var at = -1;
+
+  function ring(key) {
+    document.querySelectorAll('.fish-sel').forEach(function (n) { n.remove(); });
+    if (!key) return;
+    var host = document.querySelector('.mv[open]') || document;
+    var g = host.querySelector('.fish-marker[data-fish="' + key + '"]');
+    if (!g) return;
+    var b = g.getBBox();
+    var pad = Math.max(b.width, b.height) * 0.22;
+    var r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    r.setAttribute('class', 'fish-sel');
+    r.setAttribute('x', b.x - pad); r.setAttribute('y', b.y - pad);
+    r.setAttribute('width', b.width + pad * 2); r.setAttribute('height', b.height + pad * 2);
+    r.setAttribute('rx', (b.height + pad * 2) / 2);
+    r.setAttribute('fill', 'none'); r.setAttribute('stroke', '#cf9a3d');
+    r.setAttribute('stroke-width', Math.max(1.2, pad * 0.5));
+    g.parentNode.insertBefore(r, g);
+  }
+
+  function show(key) {
+    var f = data[key];
+    if (!f) return;
+    at = scope.indexOf(key);
+    els.name.textContent = f.name;
+    els.size.textContent = f.size;
+    els.where.textContent = f.group;
+    els.about.textContent = f.about;
+    els.stats.innerHTML = f.stats || '';
+    els.use.setAttribute('href', '#fm-' + key);
+    var sym = document.getElementById('fm-' + key);
+    els.svg.setAttribute('viewBox', sym ? sym.getAttribute('viewBox') : '0 0 10 10');
+    els.count.textContent = at >= 0 && scope.length > 1
+      ? (at + 1) + ' of ' + scope.length
+      : f.n + ' of ' + f.of + ' · ' + f.group;
+    els.prev.disabled = els.next.disabled = scope.length < 2;
+    card.setAttribute('open', '');
+    ring(key);
+  }
+  function close() { card.removeAttribute('open'); ring(null); at = -1; }
+  function step(d) {
+    if (scope.length < 2) return;
+    at = (at + d + scope.length) % scope.length;
+    show(scope[at]);
+  }
+
+  // Which fish are reachable right now: the ones drawn in the open
+  // detail view, or on the world map when nothing is open.
+  function setScope(host) {
+    scope = Array.prototype.map.call(
+      host.querySelectorAll('.fish-marker[data-fish]'),
+      function (g) { return g.getAttribute('data-fish'); });
+  }
+
+  document.addEventListener('click', function (e) {
+    var act = e.target.closest('[data-fc]');
+    if (act) {
+      var k = act.getAttribute('data-fc');
+      if (k === 'close') close(); else step(k === 'next' ? 1 : -1);
+      return;
+    }
+    var hit = e.target.closest('.fish-marker[data-fish]');
+    if (!hit) return;
+    var open = document.querySelector('.mv[open]');
+    var host = open || hit.closest('.map-frame');
+    if (!open && !hit.closest('#world-map')) return;  // group maps open the detail view instead
+    e.stopPropagation();
+    setScope(host);
+    show(hit.getAttribute('data-fish'));
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    if (!card.hasAttribute('open')) return;
+    if (e.key === 'Escape') { close(); e.stopPropagation(); }
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') step(-1);
+  }, true);
+  window.addEventListener('fishguide:mapclosed', close);
+})();
+
+// The world map is a viewport, not a picture: drag to pan, wheel or
+// pinch to zoom. It keeps its own viewBox rather than reusing the
+// detail view, because panning and a tap-to-open overlay fight.
+(function () {
+  var frame = document.getElementById('world-map');
+  if (!frame) return;
+  var svg = frame.querySelector('svg.map-crop');
+  var base = svg.getAttribute('viewBox').split(' ').map(Number);
+  var vb = base.slice();
+  var MIN_W = 160;
+
+  function apply() {
+    vb[2] = Math.min(base[2], Math.max(MIN_W, vb[2]));
+    vb[3] = vb[2] * base[3] / base[2];
+    vb[0] = Math.min(base[0] + base[2] - vb[2], Math.max(base[0], vb[0]));
+    vb[1] = Math.min(base[1] + base[3] - vb[3], Math.max(base[1], vb[1]));
+    svg.setAttribute('viewBox', vb.join(' '));
+  }
+  function zoom(factor, cx, cy) {
+    var w = vb[2] * factor;
+    w = Math.min(base[2], Math.max(MIN_W, w));
+    var k = w / vb[2];
+    vb[0] = cx - (cx - vb[0]) * k;
+    vb[1] = cy - (cy - vb[1]) * k;
+    vb[2] = w;
+    apply();
+  }
+  function at(e) {
+    var r = frame.getBoundingClientRect();
+    return [vb[0] + (e.clientX - r.left) / r.width * vb[2],
+            vb[1] + (e.clientY - r.top) / r.height * vb[3]];
+  }
+
+  frame.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    var p = at(e);
+    zoom(e.deltaY > 0 ? 1.15 : 0.87, p[0], p[1]);
+  }, { passive: false });
+
+  var drag = null, moved = 0;
+  frame.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.world-zoom')) return;
+    drag = { x: e.clientX, y: e.clientY, vx: vb[0], vy: vb[1] };
+    moved = 0;
+    frame.classList.add('is-dragging');
+    frame.setPointerCapture(e.pointerId);
+  });
+  frame.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    var r = frame.getBoundingClientRect();
+    var dx = (e.clientX - drag.x) / r.width * vb[2];
+    var dy = (e.clientY - drag.y) / r.height * vb[3];
+    moved = Math.max(moved, Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y));
+    vb[0] = drag.vx - dx; vb[1] = drag.vy - dy;
+    apply();
+  });
+  function end() { drag = null; frame.classList.remove('is-dragging'); }
+  frame.addEventListener('pointerup', end);
+  frame.addEventListener('pointercancel', end);
+  // A drag that moved is not a tap: don't open a fish you merely passed over.
+  frame.addEventListener('click', function (e) { if (moved > 6) e.stopPropagation(); }, true);
+
+  frame.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-world]');
+    if (!b) return;
+    var k = b.getAttribute('data-world');
+    var cx = vb[0] + vb[2] / 2, cy = vb[1] + vb[3] / 2;
+    if (k === 'in') zoom(0.7, cx, cy);
+    else if (k === 'out') zoom(1.4, cx, cy);
+    else { vb = base.slice(); apply(); }
+  });
 })();
 </script>
 </body>

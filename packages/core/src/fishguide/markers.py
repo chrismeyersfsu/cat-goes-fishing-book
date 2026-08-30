@@ -10,14 +10,17 @@ import math
 HALO_FILTER_ID = "fish-marker-halo"
 
 
-def fish_marker(x, y, symbol_id, pic_w, pic_h, size=26.0):
+def fish_marker(x, y, symbol_id, pic_w, pic_h, size=26.0, key=None):
     """The fish's own picture as its map marker, fitted inside a `size`
     box on its longest edge and centered on (x, y). Reads as "this
-    fish, here" far more directly than the X this replaced."""
+    fish, here" far more directly than the X this replaced. `key`
+    tags the marker with the fish it stands for, so a tap can
+    find its record."""
     scale = size / max(pic_w, pic_h)
     w, h = pic_w * scale, pic_h * scale
+    ident = f' data-fish="{key}"' if key else ""
     return (
-        f'<g class="fish-marker" filter="url(#{HALO_FILTER_ID})">'
+        f'<g class="fish-marker"{ident} filter="url(#{HALO_FILTER_ID})">'
         f'<use href="#{symbol_id}" x="{x - w / 2:.1f}" y="{y - h / 2:.1f}" '
         f'width="{w:.1f}" height="{h:.1f}"/>'
         f"</g>"

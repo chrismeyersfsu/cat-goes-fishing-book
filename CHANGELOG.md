@@ -195,4 +195,13 @@ All notable user-facing changes to this project. Format follows
   proven by the generator rather than assumed.
 - Tim is a small fish, not a medium one -- confirmed against the
   in-game fishdex, and its own description already called it small.
+- Tapping a fish opens its card -- portrait, description, bait and gear,
+  and which group it belongs to -- with arrows to step through the rest
+  of the fish on that map. It works on the world map and inside the
+  full-screen detail view, and `Esc` closes the card before the view.
+  Card content is emitted once per book and the portrait reuses the
+  marker picture already embedded, so a card costs no extra bytes.
+- The world map at the front now marks every fish in the book, and pans
+  and zooms in place: drag to move, scroll or pinch to zoom, buttons
+  and a reset underneath. Tapping a fish there opens the same card.
 
