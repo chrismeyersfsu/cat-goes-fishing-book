@@ -35,6 +35,10 @@ as intentional, not bugs:
   collapse to a MARK placeholder so everything else on the map -- the
   dashed lure path, the numbered pins, the crop -- still compares
   exactly.
+- The 4.5% inset that hides the map art's ragged edges moved out of a
+  CSS transform and into the viewBox, so the numbers in that attribute
+  differ from the mockup's while the picture is the same. Blanked on
+  both sides.
 - Every map is now the same live world map pointed at the group, not a
   flat crop: it uses one shared layer of every fish in the book and
   redraws the group's own fish on top with a ring. The shared layer,
@@ -144,6 +148,14 @@ def _normalize(html: str) -> str:
     # the crop sits without scrolling back to the overview. The mockup
     # is a 5-page preview with no such need.
     html = re.sub(r'<div class="ctx">.*?</div>', "", html)
+    # The 4.5% inset that hides the map art's ragged edges moved from a
+    # CSS transform on the <svg> into the viewBox itself: a CSS transform
+    # is not reliably reflected in getScreenCTM() across browsers, and
+    # every tap on a map is resolved through that matrix. Same picture,
+    # different numbers in the attribute.
+    html = re.sub(
+        r'<svg class="map-crop" viewBox="[^"]*"', '<svg class="map-crop" viewBox="VB"', html
+    )
     # Every map is the same live world map now, pointed at this group:
     # it draws one shared layer holding every fish in the book, then
     # redraws this group's own fish on top of it with a ring. The mockup
@@ -220,7 +232,10 @@ def test_matches_approved_mockup():
 
     overview = book_pages[0]
     assert "<h2>The World</h2>" in overview
-    assert 'viewBox="0 0 1450 251"' in overview
+    # The overview shows the whole world, inset by the same 4.5% every
+    # other crop is (see crop_view_box); check the real attribute on the
+    # un-normalized page, since _normalize blanks viewBox.
+    assert f'viewBox="{render.crop_view_box(render.FULL_MAP_VIEW_BOX)}"' in raw_pages[0]
 
     # The index now covers the full 203-fish roster (178 from Phase 3
     # plus 25 the community guide named that never made it into data/),

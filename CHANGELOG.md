@@ -235,4 +235,11 @@ All notable user-facing changes to this project. Format follows
   units apart across the whole book -- they can still overlap and read
   as a shoal, but none can hide underneath another -- and a marker's
   whole box takes the tap.
+- Taps on a map are no longer resolved through a CSS transform. The
+  4.5% inset that hides the map art's ragged edges used to be a
+  `transform: scale()` on the `<svg>`; a CSS transform is not reliably
+  reflected in `getScreenCTM()` across browsers, and every tap is
+  resolved through that matrix, so on some browsers each tap was off by
+  about 4.5%. The inset is baked into the viewBox instead -- same
+  picture, exact maths everywhere.
 

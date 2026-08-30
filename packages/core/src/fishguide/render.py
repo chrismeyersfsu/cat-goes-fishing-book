@@ -206,6 +206,21 @@ def _fish_marker(f: Fish, sizes: dict, x: float, y: float, size: float) -> str:
 # units grows and shrinks with the view the way anything drawn on a map
 # should; scaling it per crop (what _marker_scale used to do) would make
 # the same fish a different size on every page.
+MAP_ZOOM = 1.045
+"""The map art has ragged edges, so every crop was nudged in by 4.5% with
+a CSS `transform: scale()`. That transform is now baked into the viewBox
+instead: a CSS transform on an <svg> is not reliably reflected in
+getScreenCTM() across browsers, and every tap on a map is resolved
+through that matrix. Doing the inset in the viewBox keeps the same
+picture and makes the coordinate maths exact everywhere."""
+
+
+def crop_view_box(view_box: str) -> str:
+    x, y, w, h = (float(v) for v in view_box.split())
+    nw, nh = w / MAP_ZOOM, h / MAP_ZOOM
+    return f"{x + (w - nw) / 2:g} {y + (h - nh) / 2:g} {nw:g} {nh:g}"
+
+
 MARKER_SIZE = 18.0
 
 
@@ -328,7 +343,7 @@ def _map_frame_style(group: Group) -> str:
 
 
 def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: dict) -> str:
-    globals_ = {"fish_pic": fish_pic}
+    globals_ = {"fish_pic": fish_pic, "map_view_box": crop_view_box(group.view_box)}
     context_strip = _context_strip(group)
     pages = layout.split_group(group)
     out = []
@@ -435,7 +450,7 @@ def render_overview(jinja_env: jinja2.Environment, groups: list[Group], sizes: d
     _x, _y, w, _h = (float(v) for v in FULL_MAP_VIEW_BOX.split())
     tmpl = jinja_env.get_template("page_overview.html.j2")
     return tmpl.render(
-        view_box=FULL_MAP_VIEW_BOX,
+        view_box=crop_view_box(FULL_MAP_VIEW_BOX),
         view_box_w=f"{w:g}",
         map_markers=_world_map_markers(groups, sizes),
     )
