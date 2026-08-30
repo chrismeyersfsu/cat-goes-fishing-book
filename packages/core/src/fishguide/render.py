@@ -202,54 +202,79 @@ def _fish_marker(f: Fish, sizes: dict, x: float, y: float, size: float) -> str:
     return markers.fish_marker(x, y, f"fm-{f.key}", w, h, size=size, key=f.key)
 
 
-REFERENCE_VIEW_BOX_WIDTH = 380  # Trick & Treat's; a size-26 marker reads fine at this zoom
+# One marker size everywhere. Maps zoom now, so a marker sized in map
+# units grows and shrinks with the view the way anything drawn on a map
+# should; scaling it per crop (what _marker_scale used to do) would make
+# the same fish a different size on every page.
+MARKER_SIZE = 18.0
 
 
-def _marker_scale(group: Group) -> float:
-    """A duo/feature map's view_box can be much wider than the reference
-    (e.g. a cross-map cooldown pair) -- a fixed-size marker becomes
-    nearly invisible once zoomed out far enough. Scale it up so a
-    marker covers roughly the same fraction of the frame regardless of
-    how wide the crop is."""
-    _x, _y, w, _h = (float(v) for v in group.view_box.split())
-    return max(1.0, w / REFERENCE_VIEW_BOX_WIDTH)
+def _shared_fish_layer(groups: list[Group], sizes: dict) -> str:
+    """Every fish in the book, once, as a layer each map `<use>`s.
+
+    This is what makes a live map on every page affordable: an instance
+    is two nodes instead of one per fish. It also forces the highlight
+    to be a separate per-group overlay -- a shared layer is identical
+    everywhere, so it cannot know whose page it is on."""
+    out = []
+    for g in groups:
+        for f in g.fish:
+            for x, y in f.coords:
+                out.append(_fish_marker(f, sizes, x, y, MARKER_SIZE))
+    return '<g id="allFish">' + "".join(out) + "</g>"
 
 
-def _duo_map(group: Group, sizes: dict) -> str:
+def _fish_points(groups: list[Group]) -> str:
+    """Where every marker sits, for the click handler. A click inside a
+    `<use>` targets the `<use>`, not the fish inside it, so a tap is
+    resolved by map coordinates instead of by DOM node."""
+    import json
+
+    pts = [
+        {"k": f.key, "x": round(x, 1), "y": round(y, 1)}
+        for g in groups
+        for f in g.fish
+        for x, y in f.coords
+    ]
+    return (
+        '<script type="application/json" id="fish-points">'
+        + json.dumps(pts, separators=(",", ":"))
+        + "</script>"
+    )
+
+
+def _own_layer(fish: list[Fish], sizes: dict, numbered: bool) -> str:
+    """This group's own fish, redrawn at full strength on top of the
+    shared layer with a ring, plus their numbered pins when the page has
+    a numbered cast list to match them to."""
     parts = []
-    if group.path:
-        parts.append(
-            markers.dashed_path(group.path.points, group.path.start_gap, group.path.end_gap)
-        )
-    scale = _marker_scale(group)
-    for f in group.fish:
+    for i, f in enumerate(fish, start=1):
         for x, y in f.coords:
-            parts.append(_fish_marker(f, sizes, x, y, 26 * scale))
-    return "".join(parts)
+            parts.append(
+                f'<circle class="own-ring" cx="{x}" cy="{y}" r="{MARKER_SIZE * 0.62:.1f}"/>'
+            )
+            parts.append(_fish_marker(f, sizes, x, y, MARKER_SIZE))
+        if numbered:
+            x, y = f.coords[0]
+            parts.append(markers.numbered_pin(x, y + f.pin_dy, i))
+    return '<g class="own">' + "".join(parts) + "</g>"
 
 
-def _feature_map(group: Group, sizes: dict) -> str:
-    parts = []
+def _group_map(group: Group, sizes: dict, numbered: bool) -> str:
+    """A group's map: the shared fish layer, this group's own fish on
+    top, and the lure path if it has one. Identical for every layout --
+    the only thing that differs between pages is where it is pointed."""
+    parts = ['<use href="#allFish"/>']
     if group.path:
         parts.append(
             markers.dashed_path(group.path.points, group.path.start_gap, group.path.end_gap)
         )
-        parts.append(markers.start_dot(*group.path.points[0]))
-    scale = _marker_scale(group)
-    f = group.fish[0]
-    for x, y in f.coords:
-        parts.append(_fish_marker(f, sizes, x, y, 26 * scale))
-    return "".join(parts)
-
-
-def _cluster_map(fish: list[Fish], start_index: int, sizes: dict) -> str:
-    # Smaller than a duo/feature marker: a cluster map carries up to a
-    # dozen of these plus their numbered pins on one crop.
-    parts = []
-    for i, f in enumerate(fish, start=start_index):
-        x, y = f.coords[0]
-        parts.append(_fish_marker(f, sizes, x, y, 20))
-        parts.append(markers.numbered_pin(x, y + f.pin_dy, i))
+        # Only a feature page marks where the cast starts -- a duo page's
+        # path runs between its two fish, so a dot on one of them just
+        # sits under that fish's own marker.
+        if group.layout == "feature":
+            parts.append(markers.start_dot(*group.path.points[0]))
+    parts.append(_own_layer(group.fish, sizes, numbered))
     return "".join(parts)
 
 
@@ -313,7 +338,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: d
             out.append(
                 tmpl.render(
                     group=group,
-                    map_markers=_duo_map(group, sizes),
+                    map_markers=_group_map(group, sizes, False),
                     map_frame_style=_map_frame_style(group),
                     context_strip=context_strip,
                     **globals_,
@@ -325,7 +350,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: d
                 tmpl.render(
                     group=group,
                     f=group.fish[0],
-                    map_markers=_feature_map(group, sizes),
+                    map_markers=_group_map(group, sizes, False),
                     map_frame_style=_map_frame_style(group),
                     context_strip=context_strip,
                     **globals_,
@@ -337,7 +362,7 @@ def render_group(jinja_env: jinja2.Environment, group: Group, fish_pic, sizes: d
             # The map is shared by the whole group, not just this page's
             # chunk -- a continuation page's later fish still have their
             # numbered pins on the one map that sits on the main page.
-            map_markers = "" if page.is_continuation else _cluster_map(group.fish, 1, sizes)
+            map_markers = "" if page.is_continuation else _group_map(group, sizes, True)
             if page.is_continuation:
                 start, end = page.continued_range
                 tmpl = jinja_env.get_template("page_continuation.html.j2")
@@ -401,16 +426,9 @@ def _fish_registry(groups: list[Group], jinja_env: jinja2.Environment) -> str:
 
 
 def _world_map_markers(groups: list[Group], sizes: dict) -> str:
-    """Every fish in the book on the one world map. Markers are smaller
-    than a group map's -- 203 of them share this crop -- and carry no
-    numbered pins, since there is no cast list beside it to number
-    against; the fish's own picture is the label."""
-    parts = []
-    for g in groups:
-        for f in g.fish:
-            for x, y in f.coords:
-                parts.append(_fish_marker(f, sizes, x, y, 13))
-    return "".join(parts)
+    """The world map draws the same shared layer as every other map; no
+    group owns it, so nothing is highlighted."""
+    return '<use href="#allFish"/>'
 
 
 def render_overview(jinja_env: jinja2.Environment, groups: list[Group], sizes: dict) -> str:
@@ -467,6 +485,10 @@ def build_book(
     map_defs = (
         (assets_dir / "map_terrain_defs.html").read_text()
         + marker_defs
+        + '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>'
+        + _shared_fish_layer(groups, sizes)
+        + "</defs></svg>"
         + _fish_registry(groups, jinja_env)
+        + _fish_points(groups)
     )
     return base.render(content=content, map_defs=map_defs)

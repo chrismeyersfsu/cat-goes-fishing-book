@@ -213,4 +213,18 @@ All notable user-facing changes to this project. Format follows
   now been checked against the game's own catalogue and five were
   wrong, so the size field is worth checking across the roster rather
   than trusting the transcription.
+- Every map in the book is now the same world map, pointed at that
+  group's water. Drag to pan, scroll or pinch to zoom, jump to the
+  whole map and back to the group's focus, and tap any fish -- this
+  group's or a neighbour's -- for its card, all without leaving the
+  page. Full screen is now a control rather than a tap, since the map
+  itself is draggable.
+- Each map draws one shared layer holding every fish in the book, so a
+  live map costs two nodes rather than one per fish: 66 live maps added
+  862 DOM nodes, where drawing every fish per map would have added
+  about 27,000. A group's own fish are redrawn on top with a gold ring,
+  because a shared layer can't know whose page it's on.
+- The context strip's gold box is live: it moves and resizes as you pan
+  and zoom, so it always shows where you're looking rather than where
+  the page started.
 

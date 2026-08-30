@@ -121,6 +121,26 @@
   @media (prefers-reduced-motion:no-preference) {
     .mv-stage { transition:transform 0.24s ease, opacity 0.24s ease; }
   }
+  /* Every map is the same world map, pointed somewhere. The shared
+     layer holds every fish in the book; a group's own fish are redrawn
+     on top of it at full strength, because a shared layer cannot know
+     whose page it is on. */
+  #allFish .fish-marker { opacity:0.34; }
+  .map-frame { cursor:grab; touch-action:none; }
+  .map-frame.is-dragging { cursor:grabbing; }
+  .own-ring { fill:none; stroke:var(--gold); stroke-width:1.6; opacity:0.9; }
+  .fish-sel { fill:none; stroke:var(--gold); stroke-width:2.4; }
+  .map-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:9px; }
+  .map-hint { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.05em;
+    text-transform:uppercase; color:var(--ink-soft); }
+  .map-zoom { display:flex; gap:6px; margin-left:auto; }
+  .map-zoom button { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.05em;
+    text-transform:uppercase; color:var(--ink); background:transparent;
+    border:1px solid var(--line); border-radius:7px; padding:6px 10px; cursor:pointer; }
+  .map-zoom button:hover { background:var(--paper2); }
+  .mv .map-hint { color:rgba(246,240,225,0.7); }
+  .mv .map-zoom button { color:var(--paper); border-color:rgba(255,255,255,0.3); }
+  .mv .map-zoom button:hover { background:rgba(255,255,255,0.12); }
   /* Context strip: the whole world above a group's crop, with this
      page's slice marked and guide lines down to the detail map. The
      .ctx box must match the .map-frame's own width/centering per
@@ -226,7 +246,7 @@
     .wrap { max-width:none; }
     .page { break-after:page; box-shadow:none; border:none; border-radius:0; margin-bottom:0; }
     .page::before, .tape { display:none; }
-    .footnote, .back-to-top, .mv, .fc, .world-bar { display:none !important; }
+    .footnote, .back-to-top, .mv, .fc, .world-bar, .map-bar { display:none !important; }
     .entry-card, .duo-card, .dex-card, .index-row { break-inside:avoid; }
   }
 </style>
@@ -312,10 +332,10 @@
     if (before && before.classList.contains('ctx')) parts.push(before.cloneNode(true));
     var copy = frame.cloneNode(true);
     copy.removeAttribute('id');  // one #world-map in the document, not two
-    delete copy.dataset.panzoom;  // the clone carries the original's "already wired" flag
+    delete copy.dataset.wired;  // the clone carries the original's "already wired" flag
     parts.push(copy);
     var after = frame.nextElementSibling;
-    if (after && after.classList.contains('world-bar')) parts.push(after.cloneNode(true));
+    if (after && after.classList.contains('map-bar')) parts.push(after.cloneNode(true));
     inner.replaceChildren.apply(inner, parts);
     origin = window.scrollY;
     mv.setAttribute('open', '');
@@ -332,7 +352,9 @@
       var box = copy.getBoundingClientRect();
       var vw = Math.min(1450, 251 * (box.width / box.height));
       wsvg.setAttribute('viewBox', ((1450 - vw) / 2).toFixed(1) + ' 0 ' + vw.toFixed(1) + ' 251');
-      window.fishguidePanZoom(copy);
+      window.fishguideWireMap(copy);
+    } else {
+      window.fishguideWireMap(copy);
     }
     reset();
     history.pushState({ mapView: true }, '');
@@ -350,13 +372,11 @@
     if (!fromPop && history.state && history.state.mapView) history.back();
   }
 
+  // Opened from each map's "Full screen" control, not by tapping the map
+  // -- the map itself is draggable now and its fish are tappable.
+  window.fishguideOpenMap = open;
   document.addEventListener('click', function (e) {
-    if (e.target.closest('[data-mv-close]')) { close(); return; }
-    if (mv.hasAttribute('open')) return;
-    var hit = e.target.closest('.map-frame, .ctx');
-    if (!hit) return;
-    var frame = hit.classList.contains('map-frame') ? hit : hit.nextElementSibling;
-    if (frame && frame.classList.contains('map-frame')) open(frame);
+    if (e.target.closest('[data-mv-close]')) close();
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') close();
@@ -371,7 +391,7 @@
     // captures the pointer, so without this a tap on a zoom button never
     // becomes a click and a drag on the world map dismisses the view
     // instead of panning it.
-    if (e.target.closest('button, .world-bar, .world-map')) return;
+    if (e.target.closest('button, .map-bar, .map-frame')) return;
     y0 = e.clientY; t0 = Date.now(); dy = 0;
     stage.style.transition = 'none';
     stage.setPointerCapture(e.pointerId);
@@ -393,94 +413,193 @@
   stage.addEventListener('pointercancel', end);
 })();
 </script>
+
 <script>
-// Tapping a fish -- on the world map or inside the full-screen detail
-// view -- opens one shared card. The card's content comes from the JSON
-// blob emitted once per book, and its portrait is a <use> of the marker
-// symbol already in the document, so no card costs extra bytes.
+// Every map in the book is the same world map, pointed somewhere. This
+// wires one up: drag to pan, wheel or pinch to zoom, tap a fish for its
+// card, and keep the context strip's gold box showing where you are.
+(function () {
+  var WORLD = [0, 0, 1450, 251];
+  var pts = [];
+  try { pts = JSON.parse(document.getElementById('fish-points').textContent); } catch (e) {}
+
+  window.fishguideWireMap = function (frame) {
+    if (!frame || frame.dataset.wired) return;
+    frame.dataset.wired = '1';
+    var svg = frame.querySelector('svg.map-crop');
+    if (!svg) return;
+    var home = svg.getAttribute('viewBox').split(' ').map(Number);
+    var vb = home.slice();
+    var ratio = home[3] / home[2];
+    // the strip that belongs to this map, and the box drawn on it
+    var strip = frame.previousElementSibling;
+    var box = strip && strip.classList.contains('ctx') ? strip.querySelector('.ctx-box') : null;
+    var link = strip && strip.classList.contains('ctx') ? strip.querySelector('.ctx-link') : null;
+
+    function paint() {
+      svg.setAttribute('viewBox', vb.map(function (n) { return +n.toFixed(2); }).join(' '));
+      if (box) {
+        // the gold box is where you are looking, not where the page
+        // started -- it moves as you pan and resizes as you zoom
+        box.setAttribute('x', vb[0].toFixed(1));
+        box.setAttribute('width', vb[2].toFixed(1));
+      }
+      if (link) {
+        var l = vb[0] / WORLD[2] * 100, r = (vb[0] + vb[2]) / WORLD[2] * 100;
+        var poly = link.querySelector('polygon'), paths = link.querySelectorAll('path');
+        if (poly) poly.setAttribute('points', l.toFixed(2) + ',0 ' + r.toFixed(2) + ',0 100,10 0,10');
+        if (paths[0]) paths[0].setAttribute('d', 'M' + l.toFixed(2) + ' 0 L0 10');
+        if (paths[1]) paths[1].setAttribute('d', 'M' + r.toFixed(2) + ' 0 L100 10');
+      }
+    }
+    function clamp() {
+      vb[2] = Math.min(WORLD[2], Math.max(90, vb[2]));
+      vb[3] = Math.min(WORLD[3], vb[2] * ratio);
+      vb[0] = Math.min(WORLD[2] - vb[2], Math.max(0, vb[0]));
+      vb[1] = Math.min(WORLD[3] - vb[3], Math.max(0, vb[1]));
+      paint();
+    }
+    function zoom(f, cx, cy) {
+      var w = Math.min(WORLD[2], Math.max(90, vb[2] * f)), k = w / vb[2];
+      vb[0] = cx - (cx - vb[0]) * k;
+      vb[1] = cy - (cy - vb[1]) * k;
+      vb[2] = w;
+      clamp();
+    }
+    function user(e) {
+      var p = svg.createSVGPoint();
+      p.x = e.clientX; p.y = e.clientY;
+      return p.matrixTransform(svg.getScreenCTM().inverse());
+    }
+    clamp();
+
+    frame.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      var u = user(e);
+      zoom(e.deltaY > 0 ? 1.15 : 0.87, u.x, u.y);
+    }, { passive: false });
+
+    var drag = null, moved = 0;
+    frame.addEventListener('pointerdown', function (e) {
+      drag = { x: e.clientX, y: e.clientY, vx: vb[0], vy: vb[1] };
+      moved = 0;
+      frame.classList.add('is-dragging');
+      frame.setPointerCapture(e.pointerId);
+    });
+    frame.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var r = frame.getBoundingClientRect();
+      moved = Math.max(moved, Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y));
+      vb[0] = drag.vx - (e.clientX - drag.x) / r.width * vb[2];
+      vb[1] = drag.vy - (e.clientY - drag.y) / r.height * vb[3];
+      clamp();
+    });
+    function end() { drag = null; frame.classList.remove('is-dragging'); }
+    frame.addEventListener('pointerup', end);
+    frame.addEventListener('pointercancel', end);
+
+    // A tap inside the shared layer lands on the <use>, not on a fish,
+    // so work out which fish from where the tap was on the map. The
+    // radius follows the zoom: the same finger covers less water when
+    // you are zoomed in.
+    frame.addEventListener('click', function (e) {
+      if (moved > 6) return;
+      var u = user(e), best = null;
+      for (var i = 0; i < pts.length; i++) {
+        var d = Math.hypot(pts[i].x - u.x, pts[i].y - u.y);
+        if (!best || d < best.d) best = { d: d, k: pts[i].k };
+      }
+      if (best && best.d < Math.max(9, vb[2] * 0.05)) {
+        window.fishguideShowFish(best.k, svg, pts);
+      }
+    });
+
+    var bar = frame.nextElementSibling;
+    if (!bar || !bar.classList.contains('map-bar')) return;
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-z]');
+      if (!b) return;
+      var k = b.dataset.z, cx = vb[0] + vb[2] / 2, cy = vb[1] + vb[3] / 2;
+      if (k === 'in') zoom(0.7, cx, cy);
+      else if (k === 'out') zoom(1.45, cx, cy);
+      else if (k === 'home') { vb = home.slice(); clamp(); }
+      else if (k === 'world') { vb = [0, 0, WORLD[2], WORLD[2] * ratio]; clamp(); }
+      else if (k === 'full' && window.fishguideOpenMap) window.fishguideOpenMap(frame);
+    });
+  };
+
+  document.querySelectorAll('.map-frame').forEach(window.fishguideWireMap);
+})();
+</script>
+<script>
+// One card, shown from any map. Content comes from the JSON emitted once
+// per book; the portrait is a <use> of the marker symbol already in the
+// document, so a card costs no extra image bytes.
 (function () {
   var data = {};
   try { data = JSON.parse(document.getElementById('fish-data').textContent); } catch (e) { return; }
   var card = document.getElementById('fish-card');
   if (!card) return;
-  var els = {
+  var el = {
     name: card.querySelector('.fc-name'), size: card.querySelector('.fc-size'),
     where: card.querySelector('.fc-where'), about: card.querySelector('.fc-about'),
     stats: card.querySelector('.fc-stats'), count: card.querySelector('.fc-count'),
     use: card.querySelector('.fc-pic use'), svg: card.querySelector('.fc-pic svg'),
     prev: card.querySelector('[data-fc="prev"]'), next: card.querySelector('[data-fc="next"]')
   };
-  var scope = [];   // the fish keys tappable in whatever map is open
-  var at = -1;
+  // Stepping moves through the group the fish belongs to -- the set the
+  // reader has a cast list for beside the map.
+  var byGroup = {};
+  Object.keys(data).forEach(function (k) {
+    (byGroup[data[k].groupId] = byGroup[data[k].groupId] || []).push(k);
+  });
+  var scope = [], at = -1, host = null, points = [];
 
   function ring(key) {
     document.querySelectorAll('.fish-sel').forEach(function (n) { n.remove(); });
-    if (!key) return;
-    var host = document.querySelector('.mv[open]') || document;
-    var g = host.querySelector('.fish-marker[data-fish="' + key + '"]');
-    if (!g) return;
-    var b = g.getBBox();
-    var pad = Math.max(b.width, b.height) * 0.22;
-    var r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    r.setAttribute('class', 'fish-sel');
-    r.setAttribute('x', b.x - pad); r.setAttribute('y', b.y - pad);
-    r.setAttribute('width', b.width + pad * 2); r.setAttribute('height', b.height + pad * 2);
-    r.setAttribute('rx', (b.height + pad * 2) / 2);
-    r.setAttribute('fill', 'none'); r.setAttribute('stroke', '#cf9a3d');
-    r.setAttribute('stroke-width', Math.max(1.2, pad * 0.5));
-    g.parentNode.insertBefore(r, g);
+    if (!key || !host) return;
+    var p = null;
+    for (var i = 0; i < points.length; i++) if (points[i].k === key) { p = points[i]; break; }
+    if (!p) return;
+    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('class', 'fish-sel');
+    c.setAttribute('cx', p.x); c.setAttribute('cy', p.y); c.setAttribute('r', 13);
+    host.appendChild(c);
   }
-
-  function show(key) {
+  function render(key) {
     var f = data[key];
     if (!f) return;
-    at = scope.indexOf(key);
-    els.name.textContent = f.name;
-    els.size.textContent = f.size;
-    els.where.textContent = f.group;
-    els.about.textContent = f.about;
-    els.stats.innerHTML = f.stats || '';
-    els.use.setAttribute('href', '#fm-' + key);
+    el.name.textContent = f.name;
+    el.size.textContent = f.size;
+    el.where.textContent = f.group;
+    el.about.textContent = f.about;
+    el.stats.innerHTML = f.stats || '';
+    el.use.setAttribute('href', '#fm-' + key);
     var sym = document.getElementById('fm-' + key);
-    els.svg.setAttribute('viewBox', sym ? sym.getAttribute('viewBox') : '0 0 10 10');
-    els.count.textContent = at >= 0 && scope.length > 1
-      ? (at + 1) + ' of ' + scope.length
-      : f.n + ' of ' + f.of + ' · ' + f.group;
-    els.prev.disabled = els.next.disabled = scope.length < 2;
+    el.svg.setAttribute('viewBox', sym ? sym.getAttribute('viewBox') : '0 0 10 10');
+    at = scope.indexOf(key);
+    el.count.textContent = (at + 1) + ' of ' + scope.length + ' · ' + f.group;
+    el.prev.disabled = el.next.disabled = scope.length < 2;
     card.setAttribute('open', '');
     ring(key);
   }
+  window.fishguideShowFish = function (key, svg, pts) {
+    host = svg; points = pts || [];
+    scope = (data[key] && byGroup[data[key].groupId]) || [key];
+    render(key);
+  };
   function close() { card.removeAttribute('open'); ring(null); at = -1; }
   function step(d) {
     if (scope.length < 2) return;
     at = (at + d + scope.length) % scope.length;
-    show(scope[at]);
+    render(scope[at]);
   }
-
-  // Which fish are reachable right now: the ones drawn in the open
-  // detail view, or on the world map when nothing is open.
-  function setScope(host) {
-    scope = Array.prototype.map.call(
-      host.querySelectorAll('.fish-marker[data-fish]'),
-      function (g) { return g.getAttribute('data-fish'); });
-  }
-
-  document.addEventListener('click', function (e) {
-    var act = e.target.closest('[data-fc]');
-    if (act) {
-      var k = act.getAttribute('data-fc');
-      if (k === 'close') close(); else step(k === 'next' ? 1 : -1);
-      return;
-    }
-    var hit = e.target.closest('.fish-marker[data-fish]');
-    if (!hit) return;
-    var open = document.querySelector('.mv[open]');
-    if (!open) return;  // every map opens large first; fish are tapped in there
-    var host = open;
-    e.stopPropagation();
-    setScope(host);
-    show(hit.getAttribute('data-fish'));
-  }, true);
+  card.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-fc]');
+    if (!b) return;
+    var k = b.getAttribute('data-fc');
+    if (k === 'close') close(); else step(k === 'next' ? 1 : -1);
+  });
   document.addEventListener('keydown', function (e) {
     if (!card.hasAttribute('open')) return;
     if (e.key === 'Escape') { close(); e.stopPropagation(); }
@@ -489,88 +608,6 @@
   }, true);
   window.addEventListener('fishguide:mapclosed', close);
 })();
-
-// The world map is a viewport, not a picture: drag to pan, wheel or
-// pinch to zoom. It keeps its own viewBox rather than reusing the
-// detail view, because panning and a tap-to-open overlay fight.
-window.fishguidePanZoom = function (frame) {
-  if (!frame || frame.dataset.panzoom) return;
-  frame.dataset.panzoom = '1';
-  var svg = frame.querySelector('svg.map-crop');
-  // The pannable world can be wider than what's on screen: a tall crop
-  // of it shows full height and scrolls sideways.
-  var base = (frame.getAttribute('data-bounds') || svg.getAttribute('viewBox'))
-    .split(' ').map(Number);
-  var vb = svg.getAttribute('viewBox').split(' ').map(Number);
-  var ratio = vb[3] / vb[2];
-  var MIN_W = 120;
-
-  function apply() {
-    vb[2] = Math.min(base[2], Math.max(MIN_W, vb[2]));
-    vb[3] = Math.min(base[3], vb[2] * ratio);
-    vb[0] = Math.min(base[0] + base[2] - vb[2], Math.max(base[0], vb[0]));
-    vb[1] = Math.min(base[1] + base[3] - vb[3], Math.max(base[1], vb[1]));
-    svg.setAttribute('viewBox', vb.join(' '));
-  }
-  function zoom(factor, cx, cy) {
-    var w = vb[2] * factor;
-    w = Math.min(base[2], Math.max(MIN_W, w));
-    var k = w / vb[2];
-    vb[0] = cx - (cx - vb[0]) * k;
-    vb[1] = cy - (cy - vb[1]) * k;
-    vb[2] = w;
-    apply();
-  }
-  function at(e) {
-    var r = frame.getBoundingClientRect();
-    return [vb[0] + (e.clientX - r.left) / r.width * vb[2],
-            vb[1] + (e.clientY - r.top) / r.height * vb[3]];
-  }
-
-  frame.addEventListener('wheel', function (e) {
-    e.preventDefault();
-    var p = at(e);
-    zoom(e.deltaY > 0 ? 1.15 : 0.87, p[0], p[1]);
-  }, { passive: false });
-
-  var drag = null, moved = 0;
-  frame.addEventListener('pointerdown', function (e) {
-    if (e.target.closest('.world-zoom')) return;
-    drag = { x: e.clientX, y: e.clientY, vx: vb[0], vy: vb[1] };
-    moved = 0;
-    frame.classList.add('is-dragging');
-    frame.setPointerCapture(e.pointerId);
-  });
-  frame.addEventListener('pointermove', function (e) {
-    if (!drag) return;
-    var r = frame.getBoundingClientRect();
-    var dx = (e.clientX - drag.x) / r.width * vb[2];
-    var dy = (e.clientY - drag.y) / r.height * vb[3];
-    moved = Math.max(moved, Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y));
-    vb[0] = drag.vx - dx; vb[1] = drag.vy - dy;
-    apply();
-  });
-  function end() { drag = null; frame.classList.remove('is-dragging'); }
-  frame.addEventListener('pointerup', end);
-  frame.addEventListener('pointercancel', end);
-  // A drag that moved is not a tap: don't open a fish you merely passed over.
-  frame.addEventListener('click', function (e) { if (moved > 6) e.stopPropagation(); }, true);
-
-  // The zoom bar sits below the frame, not inside it, so the buttons
-  // have to be listened for there.
-  var bar = frame.nextElementSibling;
-  if (!bar || !bar.classList.contains('world-bar')) bar = frame;
-  bar.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-world]');
-    if (!b) return;
-    var k = b.getAttribute('data-world');
-    var cx = vb[0] + vb[2] / 2, cy = vb[1] + vb[3] / 2;
-    if (k === 'in') zoom(0.7, cx, cy);
-    else if (k === 'out') zoom(1.4, cx, cy);
-    else { vb[2] = base[3] / ratio; vb[0] = base[0] + (base[2] - vb[2]) / 2; vb[1] = base[1]; apply(); }
-  });
-};
-window.fishguidePanZoom(document.getElementById('world-map'));
 </script>
 </body>
 </html>

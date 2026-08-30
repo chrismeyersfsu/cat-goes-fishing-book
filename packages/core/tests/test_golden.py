@@ -35,6 +35,11 @@ as intentional, not bugs:
   collapse to a MARK placeholder so everything else on the map -- the
   dashed lure path, the numbered pins, the crop -- still compares
   exactly.
+- Every map is now the same live world map pointed at the group, not a
+  flat crop: it uses one shared layer of every fish in the book and
+  redraws the group's own fish on top with a ring. The shared layer,
+  the rings and the control bar are stripped before comparing, leaving
+  one marker per group fish -- exactly what the mockup drew.
 - The mockup no longer governs map geometry at all. Marker, pin, path
   and start-dot coordinates are collapsed on both sides; what the mockup
   still proves is how many there are, their pin numbers and order, and
@@ -139,6 +144,18 @@ def _normalize(html: str) -> str:
     # the crop sits without scrolling back to the overview. The mockup
     # is a 5-page preview with no such need.
     html = re.sub(r'<div class="ctx">.*?</div>', "", html)
+    # Every map is the same live world map now, pointed at this group:
+    # it draws one shared layer holding every fish in the book, then
+    # redraws this group's own fish on top of it with a ring. The mockup
+    # drew only the group's fish. The shared layer and the rings are
+    # stripped; what's left on the book side is one marker per fish in
+    # the group, which is what the mockup has too.
+    html = html.replace('<use href="#allFish"/>', "")
+    html = re.sub(r'<circle class="own-ring"[^>]*/>', "", html)
+    html = re.sub(r'<g class="own">(.*?)</g>\s*</svg>', r"\1</svg>", html, flags=re.S)
+    # Each map gained a control bar (drag/zoom/full screen) the mockup,
+    # a set of flat pictures, had no reason to carry.
+    html = re.sub(r'<div class="map-bar">.*?</div>\s*</div>', "</div>", html, flags=re.S)
     # Map geometry -- marker positions, pin positions, the lure path, the
     # start dot -- is no longer the mockup's to decide. terrain_fit moves
     # every marker onto open water with clearance and reroutes every path
@@ -177,6 +194,7 @@ def _normalize(html: str) -> str:
     # Feature layout wraps it to span both grid columns; strip both.
     html = re.sub(r'<div class="back-to-top">.*?</div>', "", html)
     html = re.sub(r'<div style="grid-column:1/-1;"></div>', "", html)
+    html = re.sub(r"\s+</svg>", "</svg>", html)
     html = re.sub(r">\s+<", "><", html)
     return re.sub(r"\s+", " ", html).strip()
 
